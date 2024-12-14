@@ -185,7 +185,7 @@ CREATE TABLE [dbo].[Socio](
 	[IdSocio] [int] IDENTITY(1,1) NOT NULL,
 	[Apellido] [varchar](40) NOT NULL,
 	[Nombre] [varchar](40) NOT NULL,
-	[Email] [varchar](60) NULL,
+	[Email] [varchar](60) NOT NULL,
 	[Domicilio] [varchar](80) NULL,
 	[Telefono] [varchar](50) NULL,
 PRIMARY KEY CLUSTERED 

@@ -210,6 +210,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Alquiler.cs" />
+    <Compile Include="Models\AlquilerEjemplar.cs" />
+    <Compile Include="Models\Autor.cs" />
+    <Compile Include="Models\AutorObra.cs" />
+    <Compile Include="Models\Bibliotecario.cs" />
+    <Compile Include="Models\Editorial.cs" />
+    <Compile Include="Models\Ejemplar.cs" />
+    <Compile Include="Models\Genero.cs" />
+    <Compile Include="Models\Idioma.cs" />
+    <Compile Include="Models\Obra.cs" />
+    <Compile Include="Models\ObraGenero.cs" />
+    <Compile Include="Models\Socio.cs" />
+    <Compile Include="Models\Ubicacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -220,12 +233,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
