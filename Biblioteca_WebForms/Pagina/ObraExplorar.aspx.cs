@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteca_WebForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,15 +11,18 @@ namespace Biblioteca.Pagina
     public partial class WebForm1 : System.Web.UI.Page
     {
         private static List<Item> items = new List<Item>
-    {
-        new Item { Id = 1, Nombre = "Item 1" },
-        new Item { Id = 2, Nombre = "Item 2" },
-        new Item { Id = 3, Nombre = "Item 3" }
-    };
+        {
+            new Item { Id = 1, Nombre = "Item 1" },
+            new Item { Id = 2, Nombre = "Item 2" },
+            new Item { Id = 3, Nombre = "Item 3" }
+        };
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                Ms masterPage = (Ms)this.Master;
+                masterPage.Titulo = "Explorar todas las Obras Literarias";
                 BindGrid();
             }
         }
@@ -34,7 +38,6 @@ namespace Biblioteca.Pagina
             string opcion = "C";
             string id = "-1";
             Response.Redirect($"ObraAbm.aspx?id={id}&opcion={opcion}");
-            //Response.Redirect("ObraAbm.aspx");
             BindGrid();
         }
 
@@ -67,7 +70,10 @@ namespace Biblioteca.Pagina
         {
             if (e.CommandName == "Editar")
             {
-                string[] args = e.CommandArgument.ToString().Split(','); if (args.Length == 2)
+                string[] args = e.CommandArgument.ToString().Split(','); 
+                
+
+                if (args.Length == 2)
                 {
                     string id = args[0];
                     string opcion = args[1];
@@ -79,13 +85,18 @@ namespace Biblioteca.Pagina
         {
             if (e.CommandName == "Borrar")
             {
-                string[] args = e.CommandArgument.ToString().Split(','); if (args.Length == 2)
+                string[] args = e.CommandArgument.ToString().Split(','); 
+                if (args.Length == 2)
                 {
                     string id = args[0];
                     string opcion = args[1];
                     Response.Redirect($"ObraAbm.aspx?id={id}&opcion={opcion}");
                 }
             }
+        }
+        protected void regresar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

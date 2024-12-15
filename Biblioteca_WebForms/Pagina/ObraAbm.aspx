@@ -6,8 +6,8 @@
     <br/>
     <section id="ABM-libro">
             <div class="campo-form col-md-5 mb-4">
-                 <asp:label  runat="server" for="titulo">Título del Libro:</asp:label>
-                 <asp:TextBox runat="server" id="titulo"  name="titulo" class="form-control" placeholder="Ingrese el título del libro"></asp:TextBox>
+                 <asp:label  runat="server" for="tituloLibro">Título del Libro:</asp:label>
+                 <asp:TextBox runat="server" id="tituloLibro"  name="titulo" class="form-control" placeholder="Ingrese el título de la Obra"></asp:TextBox>
              </div>
 
              <div class="campo-form col-md-5 mb-4">

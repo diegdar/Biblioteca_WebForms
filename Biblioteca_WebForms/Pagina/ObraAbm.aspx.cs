@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteca_WebForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -16,7 +17,9 @@ namespace Biblioteca
         {
             if (!Page.IsPostBack)
             {
-                titulo.Text = "Obra";
+                Ms masterPage = (Ms)this.Master; 
+                masterPage.Titulo = "Título Específico del Formulario";
+
                 if (Request.QueryString["id"] != null)
                 {
                     sId = Request.QueryString["id"].ToString();
@@ -28,12 +31,15 @@ namespace Biblioteca
                     {
                         case "C":
                             grabar.Visible = true;
+                            masterPage.Titulo = "Crear una Obra Nueva";
                             break;
                         case "D":
                             borrar.Visible = true;
+                            masterPage.Titulo = "Borrar una Obra";
                             break;
                         case "U":
                             TraerUnaObra();
+                            masterPage.Titulo = "Modificar una Obra";
                             actualizar.Visible = true;
                             break;
                     }

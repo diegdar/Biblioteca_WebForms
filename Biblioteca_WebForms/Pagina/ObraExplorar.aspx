@@ -5,9 +5,8 @@
     <br />
     <br />
     <br />
-
-        <div class="container">
-            <div class="row">
+    <div class="container">
+        <div class="row">
             <br />
             <br />
             <div class="botones-form mb-4 mt-2">
@@ -29,8 +28,8 @@
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("Id") + ",D" %>' onCommand="lnkBorrar_Command"></asp:LinkButton>
-                                <%--OnClientClick="return confirm('¿Estás seguro de que deseas borrar este elemento?');"></asp:LinkButton>--%>
+                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("Id") + ",D" %>' OnCommand="lnkBorrar_Command"></asp:LinkButton>
+                            <%--OnClientClick="return confirm('¿Estás seguro de que deseas borrar este elemento?');"></asp:LinkButton>--%>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -38,13 +37,15 @@
                 <HeaderStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
                 <%--<RowStyle BackColor="#FFFBD6" ForeColor="#333333" />--%>
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="False" ForeColor="Navy"/>
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="False" ForeColor="Navy" />
                 <SortedAscendingCellStyle BackColor="#FDF5AC" />
                 <SortedAscendingHeaderStyle BackColor="#4D0000" />
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
-         </div>
+            <div class="botones-form mb-4 mt-2">
+                <asp:Button type="submit" ID="regresar" runat="server" class="btn btn-secondary" Text="Regresar" OnClick="regresar_Click" />
+            </div>
         </div>
-    
+    </div>
 </asp:Content>

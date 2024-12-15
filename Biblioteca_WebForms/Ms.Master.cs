@@ -15,5 +15,16 @@ namespace Biblioteca_WebForms
             if (titulo != null)
                 lbTitulo.Text = titulo.Trim();
         }
+
+        public string Titulo 
+        { 
+           get 
+            {
+                return lbTitulo.Text; 
+            } 
+           set 
+            { lbTitulo.Text = value; 
+            } 
+        }
     }
 }

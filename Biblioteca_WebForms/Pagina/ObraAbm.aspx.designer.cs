@@ -15,13 +15,13 @@ namespace Biblioteca
     {
 
         /// <summary>
-        /// Control titulo.
+        /// Control tituloLibro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox titulo;
+        protected global::System.Web.UI.WebControls.TextBox tituloLibro;
 
         /// <summary>
         /// Control sinopsis.
