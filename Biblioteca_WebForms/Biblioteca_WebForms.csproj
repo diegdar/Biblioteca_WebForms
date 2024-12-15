@@ -122,12 +122,12 @@
     <Content Include="Estilo\estilos.css" />
     <Content Include="Estilo\secundario.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Formulario web1.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
     <Content Include="Pagina\index.aspx" />
     <Content Include="Pagina\ObraAbm.aspx" />
     <Content Include="Pagina\ObraExplorar.aspx" />
+    <Content Include="Pagina\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -216,13 +216,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Formulario web1.aspx.cs">
-      <DependentUpon>Formulario web1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formulario web1.aspx.designer.cs">
-      <DependentUpon>Formulario web1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +266,13 @@
     </Compile>
     <Compile Include="Pagina\ObraExplorar.aspx.designer.cs">
       <DependentUpon>ObraExplorar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
