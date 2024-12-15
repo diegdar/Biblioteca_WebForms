@@ -119,8 +119,15 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Estilo\estilos.css" />
+    <Content Include="Estilo\secundario.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Formulario web1.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Imagen\ImagenBibliotecaII.png" />
+    <Content Include="Pagina\index.aspx" />
+    <Content Include="Pagina\ObraAbm.aspx" />
+    <Content Include="Pagina\ObraExplorar.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -150,6 +157,8 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Documentation\Readme.md" />
+    <Content Include="Mp.Master" />
+    <Content Include="Ms.Master" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -207,6 +216,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formulario web1.aspx.cs">
+      <DependentUpon>Formulario web1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulario web1.aspx.designer.cs">
+      <DependentUpon>Formulario web1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +239,41 @@
     <Compile Include="Models\ObraGenero.cs" />
     <Compile Include="Models\Socio.cs" />
     <Compile Include="Models\Ubicacion.cs" />
+    <Compile Include="Mp.Master.cs">
+      <DependentUpon>Mp.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mp.Master.designer.cs">
+      <DependentUpon>Mp.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Ms.Master.cs">
+      <DependentUpon>Ms.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ms.Master.designer.cs">
+      <DependentUpon>Ms.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ObraAbm.aspx.cs">
+      <DependentUpon>ObraAbm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ObraAbm.aspx.designer.cs">
+      <DependentUpon>ObraAbm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ObraExplorar.aspx.cs">
+      <DependentUpon>ObraExplorar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ObraExplorar.aspx.designer.cs">
+      <DependentUpon>ObraExplorar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -248,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DAL\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
