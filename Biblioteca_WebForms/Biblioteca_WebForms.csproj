@@ -210,6 +210,10 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\BDConnection.cs" />
+    <Compile Include="DAL\DALBibliotecario.cs" />
+    <Compile Include="DAL\DALAlquiler.cs" />
+    <Compile Include="DAL\DALAlquilerEjemplar.cs" />
+    <Compile Include="DAL\DALSocio.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
