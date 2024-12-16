@@ -25,7 +25,7 @@ namespace Biblioteca_WebForms.DAL
         }
 
 
-        public int Delete(int idAlquiler)
+        public void Delete(int idAlquiler)
         {
             //int numFilas = 0;
             //string sentenciaSQL = string.Empty;
@@ -82,7 +82,7 @@ namespace Biblioteca_WebForms.DAL
             //bdConnection.DisconnectBD();
             //return numFilas;
         }
-        public List<Alquiler> Select()
+        public List<Alquiler> GetList()
         {
             //SqlDataReader lector = null;
             //List<Alquiler> listaAlquiler = new List<Alquiler>();
@@ -115,8 +115,8 @@ namespace Biblioteca_WebForms.DAL
             //bdConnection.DisconnectBD();
             //return listaAlquiler;
         }
-        //public List<Alquiler> SelectByIdSocio(int idSocio)
-        //{
+        public List<Alquiler> GetASocioById(int idSocio)
+        {
    //         SqlDataReader lector = null;
    //         string sentenciaSQL = string.Empty;
 			//List<Alquiler> listaAlquiler = new List<Alquiler>();
@@ -152,9 +152,9 @@ namespace Biblioteca_WebForms.DAL
 
    //         bdConnection.DisconnectBD();
    //         return listaAlquiler;
-   //     }
-   //     public Alquiler SelectById(int idAlquiler)
-   //     {
+        }
+        public Alquiler GetAlquilerById(int idAlquiler)
+        {
    //         Alquiler alquiler = null;
    //         SqlDataReader lector = null;
    //         string sentenciaSQL = string.Empty;
@@ -187,6 +187,6 @@ namespace Biblioteca_WebForms.DAL
 
    //         bdConnection.DisconnectBD();
    //         return alquiler;
-   //     }
+        }
     }
 }
