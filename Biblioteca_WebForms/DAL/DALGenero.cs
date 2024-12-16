@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Biblioteca_WebForms.DAL
 {
-    public class DALObra
+    public class DALGenero
     {
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public Obra GetById(int idObra)
+        public Genero GetById(int idGenero)
         {
             try
             {
-                return (from c in dataDB.Obras
-                        where c.IdObra == idObra
+                return (from c in dataDB.Generos
+                        where c.IdGenero == idGenero
                         select c).FirstOrDefault();
             }
             catch (Exception ex)
@@ -24,11 +25,11 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public List<Obra> GetList()
+        public List<Genero> GetList()
         {
             try
             {
-                return (from c in dataDB.Obras
+                return (from c in dataDB.Generos
                         select c).ToList();
             }
             catch (Exception ex)
@@ -38,11 +39,11 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Insert(Obra obra)
+        public void Insert(Genero genero)
         {
             try
             {
-                dataDB.Obras.InsertOnSubmit(obra);
+                dataDB.Generos.InsertOnSubmit(genero);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -51,18 +52,17 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Update(Obra unaObra)
+        public void Update(Genero unGenero)
         {
             try
             {
-                var obra = (from c in dataDB.Obras
-                            where c.IdObra == unaObra.IdObra
+                var genero = (from c in dataDB.Generos
+                            where c.IdGenero == unGenero.IdGenero
                             select c).FirstOrDefault();
 
-                if (obra != null)
+                if (genero != null)
                 {
-                    obra.Titulo = obra.Titulo;
-                    obra.Sinopsis = obra.Sinopsis;
+                    genero.Descripcion = unGenero.Descripcion;
                     dataDB.SubmitChanges();
                 }
             }
@@ -71,19 +71,19 @@ namespace Biblioteca_WebForms.DAL
                 Mensaje = ex.Message;
             }
         }
-        public void Delete(int idObra)
+        public void Delete(int idGenero)
         {
             try
             {
-               var obra= (from c in dataDB.Obras
-                          where c.IdObra == idObra
-                          select c).FirstOrDefault();
+                var genero = (from c in dataDB.Generos
+                            where c.IdGenero == idGenero
+                            select c).FirstOrDefault();
 
-               if (obra != null)
-               {
-                   dataDB.Obras.DeleteOnSubmit(obra);
-                   dataDB.SubmitChanges();
-               }
+                if (genero != null)
+                {
+                    dataDB.Generos.DeleteOnSubmit(genero);
+                    dataDB.SubmitChanges();
+                }
             }
             catch (Exception ex)
             {
