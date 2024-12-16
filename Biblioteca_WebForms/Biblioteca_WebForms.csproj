@@ -213,6 +213,7 @@
     <Compile Include="DAL\DALBibliotecario.cs" />
     <Compile Include="DAL\DALAlquiler.cs" />
     <Compile Include="DAL\DALAlquilerEjemplar.cs" />
+    <Compile Include="DAL\DALObra.cs" />
     <Compile Include="DAL\DALSocio.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
