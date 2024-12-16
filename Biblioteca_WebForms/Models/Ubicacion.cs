@@ -26,7 +26,7 @@ namespace Biblioteca.Models
         }
 		public override string ToString()
         {
-			return ($"[{Id}]/t{Estanteria} {Fila} {Columna}");
+			return ($"[{Id}]\t{Estanteria} {Fila} {Columna}");
 		}
     }
 }

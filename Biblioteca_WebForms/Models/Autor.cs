@@ -37,7 +37,7 @@ namespace Biblioteca.Models
 			if (Apellido2 != null)
 				nombreCompleto = nombreCompleto + Apellido2;
 				
-            return ($"[{Id}]/t{nombreCompleto}");
+            return ($"[{Id}]\t{nombreCompleto}");
         }
     }
 }

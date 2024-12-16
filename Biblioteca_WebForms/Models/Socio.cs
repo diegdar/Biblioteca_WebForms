@@ -49,7 +49,7 @@ namespace Biblioteca.Models
 			if (Email != null)
 				nombreCompleto = nombreCompleto + Email;
 				
-            return ($"[{Id}]/t{nombreCompleto}");
+            return ($"[{Id}]\t{nombreCompleto}");
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Biblioteca.Models
         }
 		public override string ToString()
         {				
-            return ($"[{Id}]/t{Nombre} {Apellido} {Email}");
+            return ($"[{Id}]\t{Nombre} {Apellido} {Email}");
         }
     }
 }
