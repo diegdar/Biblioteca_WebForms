@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PFBiblioteca" Class="DataLinQ_BibliotecaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Alquiler" Member="Alquilers">
+    <Type Name="Alquiler">
+      <Column Name="IdAlquiler" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FechaAlquiler" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FechaDevProbable" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FKSocio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FKBibliotecario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Alquiler_AlquilerEjemplar" Member="AlquilerEjemplars" ThisKey="IdAlquiler" OtherKey="FKAlquiler" Type="AlquilerEjemplar" />
+      <Association Name="Bibliotecario_Alquiler" Member="Bibliotecario" ThisKey="FKBibliotecario" OtherKey="IdBibliotecario" Type="Bibliotecario" IsForeignKey="true" />
+      <Association Name="Socio_Alquiler" Member="Socio" ThisKey="FKSocio" OtherKey="IdSocio" Type="Socio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ubicacion" Member="Ubicacions">
+    <Type Name="Ubicacion">
+      <Column Name="IdUbicacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Estanteria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fila" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Columna" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+      <Association Name="Ubicacion_Ejemplar" Member="Ejemplars" ThisKey="IdUbicacion" OtherKey="FkUbicacion" Type="Ejemplar" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlquilerEjemplar" Member="AlquilerEjemplars">
+    <Type Name="AlquilerEjemplar">
+      <Column Name="IdAlquilerEjemplar" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FKAlquiler" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FKEjemplar" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaDevReal" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Alquiler_AlquilerEjemplar" Member="Alquiler" ThisKey="FKAlquiler" OtherKey="IdAlquiler" Type="Alquiler" IsForeignKey="true" />
+      <Association Name="Ejemplar_AlquilerEjemplar" Member="Ejemplar" ThisKey="FKEjemplar" OtherKey="IdEjemplar" Type="Ejemplar" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Autor" Member="Autors">
+    <Type Name="Autor">
+      <Column Name="IdAutor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Apellido1" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido2" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Association Name="Autor_AutorObra" Member="AutorObras" ThisKey="IdAutor" OtherKey="FKAutor" Type="AutorObra" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AutorObra" Member="AutorObras">
+    <Type Name="AutorObra">
+      <Column Name="IdAutorObra" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FKObra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FKAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Autor_AutorObra" Member="Autor" ThisKey="FKAutor" OtherKey="IdAutor" Type="Autor" IsForeignKey="true" />
+      <Association Name="Obra_AutorObra" Member="Obra" ThisKey="FKObra" OtherKey="IdObra" Type="Obra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bibliotecario" Member="Bibliotecarios">
+    <Type Name="Bibliotecario">
+      <Column Name="IdBibliotecario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenia" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Bibliotecario_Alquiler" Member="Alquilers" ThisKey="IdBibliotecario" OtherKey="FKBibliotecario" Type="Alquiler" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Editorial" Member="Editorials">
+    <Type Name="Editorial">
+      <Column Name="IdEditorial" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="Editorial_Ejemplar" Member="Ejemplars" ThisKey="IdEditorial" OtherKey="FKEditorial" Type="Ejemplar" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ejemplar" Member="Ejemplars">
+    <Type Name="Ejemplar">
+      <Column Name="IdEjemplar" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CodigoBarras" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Column Name="ISBN" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="AnioPublicacion" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="EstaBuenEstado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NumPaginas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EstaAlquilado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FKEditorial" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FKObra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FkUbicacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FkIdioma" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Ejemplar_AlquilerEjemplar" Member="AlquilerEjemplars" ThisKey="IdEjemplar" OtherKey="FKEjemplar" Type="AlquilerEjemplar" />
+      <Association Name="Editorial_Ejemplar" Member="Editorial" ThisKey="FKEditorial" OtherKey="IdEditorial" Type="Editorial" IsForeignKey="true" />
+      <Association Name="Ubicacion_Ejemplar" Member="Ubicacion" ThisKey="FkUbicacion" OtherKey="IdUbicacion" Type="Ubicacion" IsForeignKey="true" />
+      <Association Name="Idioma_Ejemplar" Member="Idioma" ThisKey="FkIdioma" OtherKey="IdIdioma" Type="Idioma" IsForeignKey="true" />
+      <Association Name="Obra_Ejemplar" Member="Obra" ThisKey="FKObra" OtherKey="IdObra" Type="Obra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Genero" Member="Generos">
+    <Type Name="Genero">
+      <Column Name="IdGenero" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="Genero_ObraGenero" Member="ObraGeneros" ThisKey="IdGenero" OtherKey="FKGenero" Type="ObraGenero" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Idioma" Member="Idiomas">
+    <Type Name="Idioma">
+      <Column Name="IdIdioma" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="Idioma_Ejemplar" Member="Ejemplars" ThisKey="IdIdioma" OtherKey="FkIdioma" Type="Ejemplar" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Obra" Member="Obras">
+    <Type Name="Obra">
+      <Column Name="IdObra" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="Sinopsis" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Obra_AutorObra" Member="AutorObras" ThisKey="IdObra" OtherKey="FKObra" Type="AutorObra" />
+      <Association Name="Obra_Ejemplar" Member="Ejemplars" ThisKey="IdObra" OtherKey="FKObra" Type="Ejemplar" />
+      <Association Name="Obra_ObraGenero" Member="ObraGeneros" ThisKey="IdObra" OtherKey="FKObra" Type="ObraGenero" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ObraGenero" Member="ObraGeneros">
+    <Type Name="ObraGenero">
+      <Column Name="IdObraGenero" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FKObra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FKGenero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Genero_ObraGenero" Member="Genero" ThisKey="FKGenero" OtherKey="IdGenero" Type="Genero" IsForeignKey="true" />
+      <Association Name="Obra_ObraGenero" Member="Obra" ThisKey="FKObra" OtherKey="IdObra" Type="Obra" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Socio" Member="Socios">
+    <Type Name="Socio">
+      <Column Name="IdSocio" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Domicilio" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Socio_Alquiler" Member="Alquilers" ThisKey="IdSocio" OtherKey="FKSocio" Type="Alquiler" />
+    </Type>
+  </Table>
+</Database>
