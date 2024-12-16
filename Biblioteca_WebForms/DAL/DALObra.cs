@@ -53,5 +53,35 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
+        public bool InsertObra(Obra obra)
+        {
+            try
+            {
+                BDConnection.ConnectBD();
+
+                string sql = @"
+                    INSERT INTO obra(Titulo, Sinopsis)
+                    VALUES (@pTitulo, @pSinopsis);
+                    SELECT SCOPE_IDENTITY();";//SCOPE IDENTITY: nos devuelve el id del registro creado
+
+                SqlCommand cmd = new SqlCommand(sql, BDConnection.sqlConnection);
+
+                cmd.Parameters.AddWithValue("@pTitulo", obra.Titulo);
+                cmd.Parameters.AddWithValue("@pSinopsis", obra.Sinopsis);
+
+                object result = cmd.ExecuteScalar();
+                obra.Id = Convert.ToInt32(result);//obtenemos el id del registro
+
+                BDConnection.DisconnectBD();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+
     }
 }
