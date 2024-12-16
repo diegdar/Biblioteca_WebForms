@@ -16,7 +16,7 @@ namespace Biblioteca_WebForms.DAL
             bdConnection = new BDConnection();
         }
 
-        public int Insert(AlquilerEjemplar alquiler)
+        public int Insert(AlquilerEjemplar alquilerEjemplar)
         {
             int numFilas = 0;
             object idAlquiler = null;
@@ -29,30 +29,33 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 sentenciaSQL = @"INSERT INTO dbo.AlquilerEjemplar VALUES 
-				(AlquilerId = @AlquilerId, EjemplarId = @EjemplarId, FechaDevReal = @FechaDevReal); 
+				(FKAlquiler = @AlquilerId, FKEjemplar = @EjemplarId, FechaDevReal = @FechaDevReal); 
                 SELECT SCOPE_IDENTITY();";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@AlquilerId", alquiler.AlquilerId);
-                cmd.Parameters.AddWithValue("@EjemplarId", alquiler.EjemplarId);
+                cmd.Parameters.AddWithValue("@AlquilerId", alquilerEjemplar.AlquilerId);
+                cmd.Parameters.AddWithValue("@EjemplarId", alquilerEjemplar.EjemplarId);
 
-                if (alquiler.FechaDevReal == null)
+                if (alquilerEjemplar.FechaDevReal == null)
                     cmd.Parameters.AddWithValue("@FechaDevReal", DBNull.Value);
                 else
-                    cmd.Parameters.AddWithValue("@FechaDevReal", alquiler.FechaDevReal);
+                    cmd.Parameters.AddWithValue("@FechaDevReal", alquilerEjemplar.FechaDevReal);
 
                 idAlquiler = cmd.ExecuteScalar();
 
                 if (idAlquiler != null)
                 {
-                    alquiler.Id = (int)(decimal)idAlquiler;
+                    alquilerEjemplar.Id = (int)(decimal)idAlquiler;
                     numFilas = 1;
                 }
+				else
+					alquilerEjemplar.Id = 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+				alquilerEjemplar.Id = 0;
                 numFilas = -1;
             }
 
@@ -69,7 +72,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                sentenciaSQL = "DELETE FROM dbo.Alquiler WHERE Id = @Id;";
+                sentenciaSQL = "DELETE FROM dbo.Alquiler WHERE IdAlquilerEjemplar = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -85,30 +88,30 @@ namespace Biblioteca_WebForms.DAL
             bdConnection.DisconnectBD();
             return numFilas;
         }
-        public int Update(AlquilerEjemplar alquiler)
+        public int Update(AlquilerEjemplar alquilerEjemplar)
         {
             int numFilas = 0;
             string sentenciaSQL = string.Empty;
 
             // Devuelve 0 si no se ha actualizado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha actualizado
-            // la línea indicada en la variable alquiler
+            // la línea indicada en la variable alquilerEjemplar
 
             try
             {
-                sentenciaSQL = @"UPDATE dbo.AlquilerEjemplar SET AlquilerId = @AlquilerId, EjemplarId = @EjemplarId, 
-                FechaDevReal = @FechaDevReal WHERE Id = @Id;";
+                sentenciaSQL = @"UPDATE dbo.AlquilerEjemplar SET FKAlquiler = @AlquilerId, FKEjemplar = @EjemplarId, 
+                FechaDevReal = @FechaDevReal WHERE IdAlquilerEjemplar = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@AlquilerId", alquiler.AlquilerId);
-                cmd.Parameters.AddWithValue("@EjemplarId", alquiler.EjemplarId);
+                cmd.Parameters.AddWithValue("@AlquilerId", alquilerEjemplar.AlquilerId);
+                cmd.Parameters.AddWithValue("@EjemplarId", alquilerEjemplar.EjemplarId);
 
-                if (alquiler.FechaDevReal == null)
+                if (alquilerEjemplar.FechaDevReal == null)
                     cmd.Parameters.AddWithValue("@FechaDevReal", DBNull.Value);
                 else
-                    cmd.Parameters.AddWithValue("@FechaDevReal", alquiler.FechaDevReal);
+                    cmd.Parameters.AddWithValue("@FechaDevReal", alquilerEjemplar.FechaDevReal);
 
-                cmd.Parameters.AddWithValue("@Id", alquiler.Id);
+                cmd.Parameters.AddWithValue("@Id", alquilerEjemplar.Id);
                 numFilas = cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -123,7 +126,7 @@ namespace Biblioteca_WebForms.DAL
         public List<AlquilerEjemplar> Select()
         {
             SqlDataReader lector = null;
-            List<AlquilerEjemplar> listaAlquiler = new List<AlquilerEjemplar>();
+            List<AlquilerEjemplar> lista listaAlquilerEjemplar = new List<AlquilerEjemplar>();
             string sentenciaSQL = "SELECT * FROM dbo.AlquilerEjemplar;";
 
             try
@@ -134,17 +137,17 @@ namespace Biblioteca_WebForms.DAL
 
                 while (lector.Read())
                 {
-                    AlquilerEjemplar alquiler = new AlquilerEjemplar();
-                    alquiler.Id = lector.GetInt32(lector.GetOrdinal("Id"));
-                    alquiler.AlquilerId = lector.GetInt32(lector.GetOrdinal("AlquilerId"));
-                    alquiler.EjemplarId = lector.GetInt32(lector.GetOrdinal("Ejemplar"));
+                    AlquilerEjemplar alquilerEjemplar = new AlquilerEjemplar();
+                    alquilerEjemplar.Id = lector.GetInt32(lector.GetOrdinal("IdAlquilerEjemplar"));
+                    alquilerEjemplar.AlquilerId = lector.GetInt32(lector.GetOrdinal("FKAlquiler"));
+                    alquilerEjemplar.EjemplarId = lector.GetInt32(lector.GetOrdinal("FKEjemplar"));
 
                     if (lector.IsDBNull(lector.GetOrdinal("FechaDevReal")))
-                        alquiler.FechaDevReal = null;
+                        alquilerEjemplar.FechaDevReal = null;
                     else
-                        alquiler.FechaDevReal = lector.GetDateTime(lector.GetOrdinal("FechaDevReal"));
+                        alquilerEjemplar.FechaDevReal = lector.GetDateTime(lector.GetOrdinal("FechaDevReal"));
 
-                    listaAlquiler.Add(alquiler);
+                    listaAlquilerEjemplar.Add(alquilerEjemplar);
                 }
 
                 lector.Close();
@@ -155,34 +158,76 @@ namespace Biblioteca_WebForms.DAL
             }
 
             bdConnection.DisconnectBD();
-            return listaAlquiler;
+            return listaAlquilerEjemplar;
         }
-        public AlquilerEjemplar SelectById(int idAlquiler)
+        public List<AlquilerEjemplar> SelectByIdAlquiler(int idAlquiler)
         {
             SqlDataReader lector = null;
-            AlquilerEjemplar alquiler = null;
+			string sentenciaSQL = string.Empty;
+            List<AlquilerEjemplar> lista listaAlquilerEjemplar = new List<AlquilerEjemplar>();
+			
+			// La vamos a usar para saber todos los ejemplares alquilados dado un idAlquiler
+
+            try
+            {
+				sentenciaSQL = "SELECT * FROM dbo.AlquilerEjemplar WHERE FKAlquiler = @IdAlquiler;";
+				
+                bdConnection.ConnectBD();
+                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
+				cmd.Parameters.AddWithValue("@IdAlquiler", idAlquiler);
+                lector = cmd.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    AlquilerEjemplar alquilerEjemplar = new AlquilerEjemplar();
+                    alquilerEjemplar.Id = lector.GetInt32(lector.GetOrdinal("IdAlquilerEjemplar"));
+                    alquilerEjemplar.AlquilerId = lector.GetInt32(lector.GetOrdinal("FKAlquiler"));
+                    alquilerEjemplar.EjemplarId = lector.GetInt32(lector.GetOrdinal("FKEjemplar"));
+
+                    if (lector.IsDBNull(lector.GetOrdinal("FechaDevReal")))
+                        alquilerEjemplar.FechaDevReal = null;
+                    else
+                        alquilerEjemplar.FechaDevReal = lector.GetDateTime(lector.GetOrdinal("FechaDevReal"));
+
+                    listaAlquilerEjemplar.Add(alquilerEjemplar);
+                }
+
+                lector.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            bdConnection.DisconnectBD();
+            return listaAlquilerEjemplar;
+        }
+        public AlquilerEjemplar SelectById(int idAlquilerEjemplar)
+        {
+            SqlDataReader lector = null;
+            AlquilerEjemplar alquilerEjemplar = null;
             string sentenciaSQL = string.Empty;
 
             try
             {
-                sentenciaSQL = "SELECT * FROM dbo.AlquilerEjemplar WHERE Id = @Id;";
+                sentenciaSQL = "SELECT * FROM dbo.AlquilerEjemplar WHERE IdAlquilerEjemplar = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Id", idAlquiler);
+                cmd.Parameters.AddWithValue("@Id", idAlquilerEjemplar);
                 lector = cmd.ExecuteReader();
 
                 if (lector.Read())
                 {
-                    alquiler = new AlquilerEjemplar();
-                    alquiler.Id = lector.GetInt32(lector.GetOrdinal("Id"));
-                    alquiler.AlquilerId = lector.GetInt32(lector.GetOrdinal("AlquilerId"));
-                    alquiler.EjemplarId = lector.GetInt32(lector.GetOrdinal("Ejemplar"));
+                    alquilerEjemplar = new AlquilerEjemplar();
+                    alquilerEjemplar.Id = lector.GetInt32(lector.GetOrdinal("IdAlquilerEjemplar"));
+                    alquilerEjemplar.AlquilerId = lector.GetInt32(lector.GetOrdinal("FKAlquiler"));
+                    alquilerEjemplar.EjemplarId = lector.GetInt32(lector.GetOrdinal("FKEjemplar"));
 
                     if (lector.IsDBNull(lector.GetOrdinal("FechaDevReal")))
-                        alquiler.FechaDevReal = null;
+                        alquilerEjemplar.FechaDevReal = null;
                     else
-                        alquiler.FechaDevReal = lector.GetDateTime(lector.GetOrdinal("FechaDevReal"));
+                        alquilerEjemplar.FechaDevReal = lector.GetDateTime(lector.GetOrdinal("FechaDevReal"));
                 }
 
                 lector.Close();
@@ -193,7 +238,7 @@ namespace Biblioteca_WebForms.DAL
             }
 
             bdConnection.DisconnectBD();
-            return alquiler;
+            return alquilerEjemplar;
         }
     }
 }

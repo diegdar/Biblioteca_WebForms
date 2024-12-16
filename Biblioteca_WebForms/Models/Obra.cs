@@ -7,6 +7,10 @@ namespace Biblioteca.Models
 {
     public class Obra
     {
+        /* 	IdObra INT PRIMARY KEY IDENTITY(1,1),
+	        Titulo VARCHAR(80) NOT NULL,
+	        Sinopsis VARCHAR(MAX) */
+		
         public int Id { get; set; }
         public string Titulo { get; set; }
         public string Sinopsis { get; set; }
@@ -18,5 +22,9 @@ namespace Biblioteca.Models
             Titulo = titulo;
             Sinopsis = sinopsis;
         }
+		public override string ToString()
+        {
+            return ($"[{Id}]/t{Titulo}");
+        }		
     }
 }

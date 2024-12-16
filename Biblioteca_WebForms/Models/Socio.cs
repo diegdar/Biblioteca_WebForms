@@ -10,6 +10,13 @@ namespace Biblioteca.Models
 {
     public class Socio
     {
+        /*  IdSocio INT PRIMARY KEY IDENTITY(1,1),
+			Apellido VARCHAR(40) NOT NULL,
+			Nombre VARCHAR(40) NOT NULL,
+			Email VARCHAR(60) UNIQUE,
+			Domicilio VARCHAR(80),
+			Telefono VARCHAR(50) */
+		
 		public int Id { get; set; }
 		public string Apellido { get; set; }
 		public string Nombre { get; set; }
@@ -22,7 +29,7 @@ namespace Biblioteca.Models
             int id,
             string apellido,
             string nombre,
-            string email,
+            string email = null,
             string domicilio = null,
             string telefono = null)
         {
@@ -32,6 +39,17 @@ namespace Biblioteca.Models
             Email = email;
             Domicilio = domicilio;
             Telefono = telefono;
+        }
+		public override string ToString()
+        {				
+			string nombreCompleto = "";
+			
+			nombreCompleto = Nombre + Apellido;
+			
+			if (Email != null)
+				nombreCompleto = nombreCompleto + Email;
+				
+            return ($"[{Id}]/t{nombreCompleto}");
         }
     }
 }

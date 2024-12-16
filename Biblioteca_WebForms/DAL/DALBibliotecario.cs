@@ -45,10 +45,14 @@ namespace Biblioteca_WebForms.DAL
                     bibliotecario.Id = (int)(decimal)idBibliotecario;
                     numFilas = 1;
                 }
+				else
+					Bibliotecario.Id = 0;
+				
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+				Bibliotecario.Id = 0;
                 numFilas = -1;
             }
 
@@ -65,7 +69,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                sentenciaSQL = "DELETE FROM dbo.Socio WHERE Id = @Id;";
+                sentenciaSQL = "DELETE FROM dbo.Socio WHERE IdBibliotecario = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -87,12 +91,12 @@ namespace Biblioteca_WebForms.DAL
             string sentenciaSQL = string.Empty;
 
             // Devuelve 0 si no se ha actualizado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha actualizado
-            // la línea indicada en la variable socio
+            // la línea indicada en la variable bibliotecario
 
             try
             {
                 sentenciaSQL = @"UPDATE dbo.AlquilerEjemplar SET Apellido = @Apellido, Nombre = @Nombre, Email = @Email, 
-                Contrasenia = @Contrasenia WHERE Id = @Id;";
+                Contrasenia = @Contrasenia WHERE IdBibliotecario = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -115,8 +119,8 @@ namespace Biblioteca_WebForms.DAL
         public List<Bibliotecario> Select()
         {
             SqlDataReader lector = null;
-            List<Bibliotecario> listaBibliotecarios = new List<Bibliotecario>();
-            string sentenciaSQL = "SELECT * FROM dbo.Bibliotecario;";
+			string sentenciaSQL = "SELECT * FROM dbo.Bibliotecario;";
+			List<Bibliotecario> listaBibliotecarios = new List<Bibliotecario>();
 
             try
             {
@@ -127,7 +131,7 @@ namespace Biblioteca_WebForms.DAL
                 while (lector.Read())
                 {
                     Bibliotecario bibliotecario = new Bibliotecario();
-                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("Id"));
+                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("IdBibliotecario"));
                     bibliotecario.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
                     bibliotecario.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
                     bibliotecario.Email = lector.GetString(lector.GetOrdinal("Email"));
@@ -154,7 +158,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                sentenciaSQL = "SELECT * FROM dbo.Bibliotecario WHERE Id = @Id;";
+                sentenciaSQL = "SELECT * FROM dbo.Bibliotecario WHERE IdBibliotecario = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -164,7 +168,7 @@ namespace Biblioteca_WebForms.DAL
                 if (lector.Read())
                 {
                     bibliotecario = new Bibliotecario();
-                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("Id"));
+                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("IdBibliotecario"));
                     bibliotecario.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
                     bibliotecario.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
                     bibliotecario.Email = lector.GetString(lector.GetOrdinal("Email"));
@@ -202,7 +206,7 @@ namespace Biblioteca_WebForms.DAL
                 if (lector.Read())
                 {
                     bibliotecario = new Bibliotecario();
-                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("Id"));
+                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("IdBibliotecario"));
                     bibliotecario.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
                     bibliotecario.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
                     bibliotecario.Email = lector.GetString(lector.GetOrdinal("Email"));

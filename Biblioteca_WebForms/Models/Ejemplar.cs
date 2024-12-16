@@ -7,6 +7,18 @@ namespace Biblioteca.Models
 {
     public class Ejemplar
     {
+		/* 	IdEjemplar INT PRIMARY KEY IDENTITY(1,1),
+	        CodigoBarras CHAR(13),
+	        ISBN VARCHAR(13),
+	        AnioPublicacion SMALLINT,
+	        EstaBuenEstado BIT NOT NULL,
+	        NumPaginas INT,
+	        EstaAlquilado BIT NOT NULL,
+	        FKEditorial INT NOT NULL,
+	        FKObra INT NOT NULL,
+	        FkUbicacion INT,
+	        FkIdioma INT NOT NULL */
+		
         public int Id { get; set; }
         public string CodigoBarras { get; set; }
         public string ISBN { get; set; }
@@ -46,6 +58,5 @@ namespace Biblioteca.Models
             UbicacionId = ubicacionId;
             IdiomaId = idiomaId;
         }
-
     }
 }

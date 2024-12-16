@@ -7,6 +7,10 @@ namespace Biblioteca.Models
 {
     public class ObraGenero
     {
+        /* 	IdObraGenero INT PRIMARY KEY IDENTITY(1,1),
+	        FKObra INT NOT NULL,
+	        FKGenero INT NOT NULL */
+		
         public int Id { get; set; }
         public int ObraId {get; set; }
 
@@ -19,5 +23,5 @@ namespace Biblioteca.Models
             ObraId = obraId;
             GeneroId = generoId;
         }
-    }
+	}
 }

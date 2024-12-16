@@ -8,6 +8,11 @@ namespace Biblioteca.Models
 {
     public class AlquilerEjemplar
     {
+		/* 	IdAlquilerEjemplar INT PRIMARY KEY IDENTITY(1,1),
+			FKAlquiler INT NOT NULL,
+			FKEjemplar INT NOT NULL,
+			FechaDevReal DATE */
+		
         public int Id { get; set; }
         public int AlquilerId { get; set; }
         public int EjemplarId { get; set; }

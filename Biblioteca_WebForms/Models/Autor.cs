@@ -11,6 +11,7 @@ namespace Biblioteca.Models
 	        Apellido1 VARCHAR(40) NOT NULL,
 	        Apellido2 VARCHAR(40),
 	        Nombre VARCHAR(40) */
+		
         public int Id { get; set; }
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
@@ -24,6 +25,19 @@ namespace Biblioteca.Models
             Apellido2 = apellido2;
             Nombre = nombre;
         }
-
+		public override string ToString()
+        {
+			string nombreCompleto = "";
+			
+			if (Nombre != null)
+				nombreCompleto = Nombre;
+			
+			nombreCompleto = nombreCompleto + Apellido1;
+			
+			if (Apellido2 != null)
+				nombreCompleto = nombreCompleto + Apellido2;
+				
+            return ($"[{Id}]/t{nombreCompleto}");
+        }
     }
 }

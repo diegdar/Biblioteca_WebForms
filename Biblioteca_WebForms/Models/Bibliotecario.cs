@@ -8,6 +8,12 @@ namespace Biblioteca.Models
 {
     public class Bibliotecario
     {
+        /*  IdBibliotecario INT PRIMARY KEY IDENTITY(1,1),
+	        Apellido VARCHAR(40) NOT NULL,
+	        Nombre VARCHAR(40) NOT NULL,
+	        Email VARCHAR(60) NOT NULL UNIQUE,
+	        Contrasenia VARCHAR(20) NOT NULL */
+			
         public int Id { get; set; }
         public string Apellido { get; set; }
         public string Nombre { get; set; }
@@ -23,6 +29,10 @@ namespace Biblioteca.Models
             Nombre = nombre;
             Email = email;
             Contrasenia = contrasenia;
+        }
+		public override string ToString()
+        {				
+            return ($"[{Id}]/t{Nombre} {Apellido} {Email}");
         }
     }
 }

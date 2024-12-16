@@ -30,8 +30,8 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 sentenciaSQL = @"INSERT INTO dbo.Alquiler VALUES 
-				(FechaAlquiler = @FechaAlquiler, FechaDevProbable = @FechaDevProbable, SocioId = @SocioId,
-                BibliotecarioId = @BibliotecarioId); SELECT SCOPE_IDENTITY();";
+				(FechaAlquiler = @FechaAlquiler, FechaDevProbable = @FechaDevProbable, FKSocio = @SocioId,
+                FKBibliotecario = @BibliotecarioId); SELECT SCOPE_IDENTITY();";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -46,10 +46,13 @@ namespace Biblioteca_WebForms.DAL
                     alquiler.Id = (int)(decimal)idAlquiler;
                     numFilas = 1;
                 }
+				else
+					alquiler.Id = 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+				alquiler.Id = 0;
                 numFilas = -1;
             }
 
@@ -66,7 +69,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                sentenciaSQL = "DELETE FROM dbo.Alquiler WHERE Id = @Id;";
+                sentenciaSQL = "DELETE FROM dbo.Alquiler WHERE IdAlquiler = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -93,7 +96,7 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 sentenciaSQL = @"UPDATE dbo.Alquiler SET FechaAlquiler = @FechaAlquiler, FechaDevProbable = @FechaDevProbable, 
-                SocioId = @SocioId, BibliotecarioId = @BibliotecarioId WHERE Id = @Id;";
+                FKSocio = @SocioId, FKBibliotecario = @BibliotecarioId WHERE IdAlquiler = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -128,14 +131,52 @@ namespace Biblioteca_WebForms.DAL
                 while (lector.Read())
                 {
                     Alquiler alquiler = new Alquiler();
-                    alquiler.Id = lector.GetInt32(lector.GetOrdinal("Id"));
+                    alquiler.Id = lector.GetInt32(lector.GetOrdinal("IdAlquiler"));
                     alquiler.FechaAlquiler = lector.GetDateTime(lector.GetOrdinal("FechaAlquiler"));
                     alquiler.FechaDevProbable = lector.GetDateTime(lector.GetOrdinal("FechaDevProbable"));
-                    alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("BibliotecarioId"));
-                    alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("SocioId"));
+                    alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("FKBibliotecario"));
+                    alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("FKSocio"));
                     listaAlquiler.Add(alquiler);
                 }
 
+                lector.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            bdConnection.DisconnectBD();
+            return listaAlquiler;
+        }
+        public List<Alquiler> SelectByIdSocio(int idSocio)
+        {
+            SqlDataReader lector = null;
+            string sentenciaSQL = string.Empty;
+			List<Alquiler> listaAlquiler = new List<Alquiler>();
+			
+			// Lo vamos a usar para saber todos los alquileres de un socio
+
+            try
+            {
+                sentenciaSQL = "SELECT * FROM dbo.Alquiler WHERE FKSocio= @IdSocio;";
+
+                bdConnection.ConnectBD();
+                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
+                cmd.Parameters.AddWithValue("@IdSocio", idSocio);
+                lector = cmd.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Alquiler alquiler = new Alquiler();
+                    alquiler.Id = lector.GetInt32(lector.GetOrdinal("IdAlquiler"));
+                    alquiler.FechaAlquiler = lector.GetDateTime(lector.GetOrdinal("FechaAlquiler"));
+                    alquiler.FechaDevProbable = lector.GetDateTime(lector.GetOrdinal("FechaDevProbable"));
+                    alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("FKBibliotecario"));
+                    alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("FKSocio"));
+                    listaAlquiler.Add(alquiler);
+                }
+				
                 lector.Close();
             }
             catch (Exception ex)
@@ -154,7 +195,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                sentenciaSQL = "SELECT * FROM dbo.Alquiler WHERE Id = @Id;";
+                sentenciaSQL = "SELECT * FROM dbo.Alquiler WHERE IdAlquiler = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -164,11 +205,11 @@ namespace Biblioteca_WebForms.DAL
                 if (lector.Read())
                 {
                     alquiler = new Alquiler();
-                    alquiler.Id = lector.GetInt32(lector.GetOrdinal("Id"));
+                    alquiler.Id = lector.GetInt32(lector.GetOrdinal("IdAlquiler"));
                     alquiler.FechaAlquiler = lector.GetDateTime(lector.GetOrdinal("FechaAlquiler"));
                     alquiler.FechaDevProbable = lector.GetDateTime(lector.GetOrdinal("FechaDevProbable"));
-                    alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("BibliotecarioId"));
-                    alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("SocioId"));
+                    alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("FKBibliotecario"));
+                    alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("FKSocio"));
                 }
 
                 lector.Close();

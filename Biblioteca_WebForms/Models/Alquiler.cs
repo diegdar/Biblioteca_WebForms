@@ -12,6 +12,7 @@ namespace Biblioteca.Models
 	        FechaDevProbable DATE NOT NULL  DEFAULT DATEADD(DAY,15,GETDATE()),
 	        FKSocio INT NOT NULL,
 	        FKBibliotecario INT NOT NULL */
+		
         public int Id { get; set; }
         public DateTime FechaAlquiler { get; set; }
         public DateTime FechaDevProbable { get; set; }

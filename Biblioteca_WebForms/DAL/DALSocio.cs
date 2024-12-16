@@ -36,7 +36,11 @@ namespace Biblioteca_WebForms.DAL
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
                 cmd.Parameters.AddWithValue("@Apellido", socio.Apellido);
                 cmd.Parameters.AddWithValue("@Nombre", socio.Nombre);
-                cmd.Parameters.AddWithValue("@Email", socio.Email);
+				
+				if (socio.Email == null)
+                    cmd.Parameters.AddWithValue("@Email", DBNull.Value);
+                else
+					cmd.Parameters.AddWithValue("@Email", socio.Email);
 
                 if (socio.Domicilio == null)
                     cmd.Parameters.AddWithValue("@Domicilio", DBNull.Value);
@@ -55,11 +59,14 @@ namespace Biblioteca_WebForms.DAL
                     socio.Id = (int)(decimal)idSocio;
                     numFilas = 1;
                 }
+				else
+					socio.Id = 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 numFilas = -1;
+				socio.Id = 0;
             }
 
             bdConnection.DisconnectBD();
@@ -75,7 +82,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                sentenciaSQL = "DELETE FROM dbo.Socio WHERE Id = @Id;";
+                sentenciaSQL = "DELETE FROM dbo.Socio WHERE IdSocio = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -102,13 +109,17 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 sentenciaSQL = @"UPDATE dbo.AlquilerEjemplar SET Apellido = @Apellido, Nombre = @Nombre, Email = @Email, 
-                Domicilio = @Domicilio, Telefono = @Telefono WHERE Id = @Id;";
+                Domicilio = @Domicilio, Telefono = @Telefono WHERE IdSocio = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
                 cmd.Parameters.AddWithValue("@Apellido", socio.Apellido);
                 cmd.Parameters.AddWithValue("@Nombre", socio.Nombre);
-                cmd.Parameters.AddWithValue("@Email", socio.Email);
+				
+				if (socio.Email == null)
+                    cmd.Parameters.AddWithValue("@Email", DBNull.Value);
+                else
+					cmd.Parameters.AddWithValue("@Email", socio.Email);
 
                 if (socio.Domicilio == null)
                     cmd.Parameters.AddWithValue("@Domicilio", DBNull.Value);
@@ -147,10 +158,14 @@ namespace Biblioteca_WebForms.DAL
                 while (lector.Read())
                 {
                     Socio socio = new Socio();
-                    socio.Id = lector.GetInt32(lector.GetOrdinal("Id"));
+                    socio.Id = lector.GetInt32(lector.GetOrdinal("IdSocio"));
                     socio.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
                     socio.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
-                    socio.Email = lector.GetString(lector.GetOrdinal("Email"));
+					
+					if (lector.IsDBNull(lector.GetOrdinal("Email")))
+                        socio.Email = null;
+                    else
+						socio.Email = lector.GetString(lector.GetOrdinal("Email"));
 
                     if (lector.IsDBNull(lector.GetOrdinal("Domicilio")))
                         socio.Domicilio = null;
@@ -183,7 +198,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                sentenciaSQL = "SELECT * FROM dbo.Socio WHERE Id = @Id;";
+                sentenciaSQL = "SELECT * FROM dbo.Socio WHERE IdSocio = @Id;";
 
                 bdConnection.ConnectBD();
                 SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
@@ -193,10 +208,14 @@ namespace Biblioteca_WebForms.DAL
                 if (lector.Read())
                 {
                     socio = new Socio();
-                    socio.Id = lector.GetInt32(lector.GetOrdinal("Id"));
+                    socio.Id = lector.GetInt32(lector.GetOrdinal("IdSocio"));
                     socio.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
                     socio.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
-                    socio.Email = lector.GetString(lector.GetOrdinal("Email"));
+					
+					if (lector.IsDBNull(lector.GetOrdinal("Email")))
+                        socio.Email = null;
+                    else
+						socio.Email = lector.GetString(lector.GetOrdinal("Email"));
 
                     if (lector.IsDBNull(lector.GetOrdinal("Domicilio")))
                         socio.Domicilio = null;
