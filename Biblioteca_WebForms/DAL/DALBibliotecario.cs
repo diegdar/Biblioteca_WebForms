@@ -46,13 +46,13 @@ namespace Biblioteca_WebForms.DAL
                     numFilas = 1;
                 }
 				else
-					Bibliotecario.Id = 0;
+					bibliotecario.Id = 0;
 				
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-				Bibliotecario.Id = 0;
+				bibliotecario.Id = 0;
                 numFilas = -1;
             }
 

@@ -126,7 +126,7 @@ namespace Biblioteca_WebForms.DAL
         public List<AlquilerEjemplar> Select()
         {
             SqlDataReader lector = null;
-            List<AlquilerEjemplar> lista listaAlquilerEjemplar = new List<AlquilerEjemplar>();
+            List<AlquilerEjemplar> listaAlquilerEjemplar = new List<AlquilerEjemplar>();
             string sentenciaSQL = "SELECT * FROM dbo.AlquilerEjemplar;";
 
             try
@@ -164,7 +164,7 @@ namespace Biblioteca_WebForms.DAL
         {
             SqlDataReader lector = null;
 			string sentenciaSQL = string.Empty;
-            List<AlquilerEjemplar> lista listaAlquilerEjemplar = new List<AlquilerEjemplar>();
+            List<AlquilerEjemplar> listaAlquilerEjemplar = new List<AlquilerEjemplar>();
 			
 			// La vamos a usar para saber todos los ejemplares alquilados dado un idAlquiler
 
