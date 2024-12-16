@@ -11,109 +11,82 @@ namespace Biblioteca_WebForms.DAL
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public void Insert(Alquiler alquiler)
+        public bool Insert(Alquiler nuevoAlquiler)
         {
             try
             {
-                dataDB.Alquilers.InsertOnSubmit(alquiler);
+                dataDB.Alquilers.InsertOnSubmit(nuevoAlquiler);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
+
+            return true;
         }
 
-
-        public void Delete(int idAlquiler)
+        public bool Delete(int idAlquiler)
         {
-            //int numFilas = 0;
-            //string sentenciaSQL = string.Empty;
+            var alquilerById = (from alquiler in dataDB.Alquilers
+                        where alquiler.Id == idAlquiler
+                        select alquiler);
 
-            //// Devuelve 0 si no se ha borrado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha borrado
-            //// la línea indicada en la variable idAquiler
+            try
+            {
+                dataDB.Alquilers.DeleteOnSubmit(alquilerById);
+                dc.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
 
-            //try
-            //{
-            //    sentenciaSQL = "DELETE FROM dbo.Alquiler WHERE IdAlquiler = @Id;";
-
-            //    bdConnection.ConnectBD();
-            //    SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-            //    cmd.Parameters.AddWithValue("@Id", idAlquiler);
-            //    numFilas = cmd.ExecuteNonQuery();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"Error: {ex.Message}");
-            //    numFilas = -1;
-            //}
-
-            //bdConnection.DisconnectBD();
-            //return numFilas;
+            return true;
         }
-        public int Update(Alquiler alquiler)
+        public bool Update(Alquiler nuevoAlquiler)
         {
-            //int numFilas = 0;
-            //string sentenciaSQL = string.Empty;
+            try
+            {
+                var alquilerById = (from alquiler in dataDB.Alquilers
+                                    where alquiler.IdAquiler = nuevoAlquiler.IdAlquiler
+                                    select alquiler).FirstOrDefault();
 
-            //// Devuelve 0 si no se ha actualizado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha actualizado
-            //// la línea indicada en la variable alquiler
+                alquilerById.FechaAlquiler = nuevoAlquiler.FechaAlquiler;
+                alquilerById.FechaDevProbable = nuevoAlquiler.FechaDevProbable;
+                alquilerById.FKBibliotecario = nuevoAlquiler.FKBibliotecario;
+                alquilerById.FKSocio = nuevoAlquiler.FKSocio;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
 
-            //try
-            //{
-            //    sentenciaSQL = @"UPDATE dbo.Alquiler SET FechaAlquiler = @FechaAlquiler, FechaDevProbable = @FechaDevProbable, 
-            //    FKSocio = @SocioId, FKBibliotecario = @BibliotecarioId WHERE IdAlquiler = @Id;";
-
-            //    bdConnection.ConnectBD();
-            //    SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-            //    cmd.Parameters.AddWithValue("@FechaAlquiler", alquiler.FechaAlquiler);
-            //    cmd.Parameters.AddWithValue("@FechaDevProbable", alquiler.FechaDevProbable);
-            //    cmd.Parameters.AddWithValue("@BibliotecarioId", alquiler.BibliotecarioId);
-            //    cmd.Parameters.AddWithValue("@SocioId", alquiler.SocioId);
-            //    cmd.Parameters.AddWithValue("@Id", alquiler.Id);
-            //    numFilas = cmd.ExecuteNonQuery();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"Error: {ex.Message}");
-            //    numFilas = -1;
-            //}
-
-            //bdConnection.DisconnectBD();
-            //return numFilas;
+            return true;
         }
         public List<Alquiler> GetList()
         {
-            //SqlDataReader lector = null;
-            //List<Alquiler> listaAlquiler = new List<Alquiler>();
-            //string sentenciaSQL = "SELECT * FROM dbo.Alquiler;";
+            List<Alquiler> listaAlquileres = new List<Alquiler>();
 
-            //try
-            //{
-            //    bdConnection.ConnectBD();
-            //    SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-            //    lector = cmd.ExecuteReader();
+            try
+            {
+                var lstAlquileres = from alquiler in dataDB.Alquilers select alquiler;
 
-            //    while (lector.Read())
-            //    {
-            //        Alquiler alquiler = new Alquiler();
-            //        alquiler.Id = lector.GetInt32(lector.GetOrdinal("IdAlquiler"));
-            //        alquiler.FechaAlquiler = lector.GetDateTime(lector.GetOrdinal("FechaAlquiler"));
-            //        alquiler.FechaDevProbable = lector.GetDateTime(lector.GetOrdinal("FechaDevProbable"));
-            //        alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("FKBibliotecario"));
-            //        alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("FKSocio"));
-            //        listaAlquiler.Add(alquiler);
-            //    }
-
-            //    lector.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"Error: {ex.Message}");
-            //}
-
-            //bdConnection.DisconnectBD();
-            //return listaAlquiler;
+                foreach (var alquiler in lstAlquileres)
+                {
+                    listaAquileres.Items.Add(alquiler);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return null;
+            }
+            
+            return listaAlquileres;
         }
         public List<Alquiler> GetASocioById(int idSocio)
         {
@@ -153,7 +126,7 @@ namespace Biblioteca_WebForms.DAL
    //         bdConnection.DisconnectBD();
    //         return listaAlquiler;
         }
-        public Alquiler GetAlquilerById(int idAlquiler)
+        public Alquiler GetById(int idAlquiler)
         {
    //         Alquiler alquiler = null;
    //         SqlDataReader lector = null;
