@@ -82,6 +82,38 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
+        public bool UpdateObra(Obra obra)
+        {
+            try
+            {
+                BDConnection.ConnectBD();
+
+                string sql = @"
+                    UPDATE obra
+                    SET Titulo=@pTitulo, Sinopsis=@pSinopsis
+                    WHERE IdObra = @pId";
+
+                SqlCommand cmd = new SqlCommand(sql, BDConnection.sqlConnection);
+
+
+                cmd.Parameters.AddWithValue("@pId", obra.Id);
+                cmd.Parameters.AddWithValue("@pTitulo", obra.Titulo);
+                cmd.Parameters.AddWithValue("@pSinopsis", obra.Sinopsis);
+
+                cmd.ExecuteNonQuery();
+
+                BDConnection.ConnectBD();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
+
+
 
     }
 }
