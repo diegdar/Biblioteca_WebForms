@@ -113,6 +113,35 @@ namespace Biblioteca_WebForms.DAL
 
         }
 
+        public bool DeleteJob(int IdObra)
+        {
+            try
+            {
+                BDConnection.ConnectBD();
+
+                string sql = @"
+                    DELETE obra
+                    WHERE IdObra = @pId";
+
+                SqlCommand cmd = new SqlCommand(sql, BDConnection.sqlConnection);
+
+
+                cmd.Parameters.AddWithValue("@pId", IdObra);
+
+                cmd.ExecuteNonQuery();
+
+                BDConnection.DisconnectBD();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
+
+
 
 
     }
