@@ -219,11 +219,15 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\DALAlquiler.cs" />
+    <Compile Include="DAL\DALAlquilerEjemplar.cs" />
     <Compile Include="DAL\DALAutor.cs" />
+    <Compile Include="DAL\DALBibliotecario.cs" />
+    <Compile Include="DAL\DALEditorial.cs" />
     <Compile Include="DAL\DALEjemplar.cs" />
     <Compile Include="DAL\DALGenero.cs" />
     <Compile Include="DAL\DALIdioma.cs" />
     <Compile Include="DAL\DALObra.cs" />
+    <Compile Include="DAL\DALSocio.cs" />
     <Compile Include="DAL\DALUbicacion.cs" />
     <Compile Include="DAL\DataLinQ_Biblioteca.designer.cs">
       <AutoGen>True</AutoGen>
