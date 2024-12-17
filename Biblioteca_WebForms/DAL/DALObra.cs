@@ -26,7 +26,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return from c in dataDB.Obras.ToList();
+                return dataDB.Obras.ToList();
             }
             catch (Exception ex)
             {
