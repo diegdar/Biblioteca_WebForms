@@ -11,11 +11,14 @@ namespace Biblioteca_WebForms.DAL
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public bool Insert(Alquiler nuevoAlquiler)
+        public bool Insert(Alquiler alquiler)
         {
+            // Devuelve true si se ha insertado el objeto y false si no se
+            // ha conseguido
+
             try
             {
-                dataDB.Alquilers.InsertOnSubmit(nuevoAlquiler);
+                dataDB.Alquilers.InsertOnSubmit(alquiler);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -29,14 +32,17 @@ namespace Biblioteca_WebForms.DAL
 
         public bool Delete(int idAlquiler)
         {
-            var alquilerById = (from alquiler in dataDB.Alquilers
-                        where alquiler.Id == idAlquiler
-                        select alquiler);
+            // Devuelve true si se ha borrado el objeto o false si no lo ha
+            // conseguido
 
             try
             {
-                dataDB.Alquilers.DeleteOnSubmit(alquilerById);
-                dc.SubmitChanges();
+                var alquiler = (from al in dataDB.Alquilers
+                                where al.IdAlquiler == idAlquiler
+                                select al).FirstOrDefault();
+
+                dataDB.Alquilers.DeleteOnSubmit(alquiler);
+                dataDB.SubmitChanges();
             }
             catch (Exception ex)
             {
@@ -46,18 +52,22 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Update(Alquiler nuevoAlquiler)
+        public bool Update(Alquiler newAlquiler)
         {
+            // Devuelve true si se ha modificado el objeto o false si no se
+            // ha conseguido
+
             try
             {
-                var alquilerById = (from alquiler in dataDB.Alquilers
-                                    where alquiler.IdAquiler = nuevoAlquiler.IdAlquiler
-                                    select alquiler).FirstOrDefault();
+                var alquiler = (from al in dataDB.Alquilers
+                                where al.IdAquiler == newAlquiler.IdAlquiler
+                                select al).FirstOrDefault();
 
-                alquilerById.FechaAlquiler = nuevoAlquiler.FechaAlquiler;
-                alquilerById.FechaDevProbable = nuevoAlquiler.FechaDevProbable;
-                alquilerById.FKBibliotecario = nuevoAlquiler.FKBibliotecario;
-                alquilerById.FKSocio = nuevoAlquiler.FKSocio;
+                alquiler.FechaAlquiler = newAlquiler.FechaAlquiler;
+                alquiler.FechaDevProbable = newAlquiler.FechaDevProbable;
+                alquiler.FKBibliotecario = newAlquiler.FKBibliotecario;
+                alquiler.FKSocio = newAlquiler.FKSocio;
+                dataDB.SubmitChanges();
             }
             catch (Exception ex)
             {
@@ -69,15 +79,19 @@ namespace Biblioteca_WebForms.DAL
         }
         public List<Alquiler> GetList()
         {
-            List<Alquiler> listaAlquileres = new List<Alquiler>();
+            // Devuelve null si se ha producido un error o la lista de
+            // de objetos si no se ha producido
+
+            List<Alquiler> listaAlquiler = new List<Alquiler>();
 
             try
             {
-                var lstAlquileres = from alquiler in dataDB.Alquilers select alquiler;
+                var lstAlquiler = from alquiler in dataDB.Alquilers
+                                  select alquiler;
 
-                foreach (var alquiler in lstAlquileres)
+                foreach (var alquiler in lstAlquiler)
                 {
-                    listaAquileres.Items.Add(alquiler);
+                    listaAlquiler.Add(alquiler);
                 }
             }
             catch (Exception ex)
@@ -85,81 +99,63 @@ namespace Biblioteca_WebForms.DAL
                 Mensaje = ex.Message;
                 return null;
             }
-            
-            return listaAlquileres;
+
+            return listaAlquiler;
         }
         public List<Alquiler> GetASocioById(int idSocio)
         {
-   //         SqlDataReader lector = null;
-   //         string sentenciaSQL = string.Empty;
-			//List<Alquiler> listaAlquiler = new List<Alquiler>();
-			
-			//// Lo vamos a usar para saber todos los alquileres de un socio
+            // Lo vamos a usar para saber todos los alquileres de un socio
+            // Devuelve null si se ha producido un error o la lista de
+            // de objetos si no se ha producido
 
-   //         try
-   //         {
-   //             sentenciaSQL = "SELECT * FROM dbo.Alquiler WHERE FKSocio= @IdSocio;";
+            List<Alquiler> listaAlquiler = new List<Alquiler>();
 
-   //             bdConnection.ConnectBD();
-   //             SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-   //             cmd.Parameters.AddWithValue("@IdSocio", idSocio);
-   //             lector = cmd.ExecuteReader();
+            try
+            {
+                var lstAlquiler = from alquiler in dataDB.Alquilers
+                                  where alquiler.FKSocio == idSocio
+                                  select alquiler;
 
-   //             while (lector.Read())
-   //             {
-   //                 Alquiler alquiler = new Alquiler();
-   //                 alquiler.Id = lector.GetInt32(lector.GetOrdinal("IdAlquiler"));
-   //                 alquiler.FechaAlquiler = lector.GetDateTime(lector.GetOrdinal("FechaAlquiler"));
-   //                 alquiler.FechaDevProbable = lector.GetDateTime(lector.GetOrdinal("FechaDevProbable"));
-   //                 alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("FKBibliotecario"));
-   //                 alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("FKSocio"));
-   //                 listaAlquiler.Add(alquiler);
-   //             }
-				
-   //             lector.Close();
-   //         }
-   //         catch (Exception ex)
-   //         {
-   //             Console.WriteLine($"Error: {ex.Message}");
-   //         }
+                foreach (var alquiler in lstAlquiler)
+                {
+                    listaAlquiler.Add(alquiler);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return null;
+            }
 
-   //         bdConnection.DisconnectBD();
-   //         return listaAlquiler;
+            return listaAlquiler;
+
         }
         public Alquiler GetById(int idAlquiler)
         {
-   //         Alquiler alquiler = null;
-   //         SqlDataReader lector = null;
-   //         string sentenciaSQL = string.Empty;
+            // Devuelve null si se ha producido un error o el objeto
+            // buscado si no se ha producido
 
-   //         try
-   //         {
-   //             sentenciaSQL = "SELECT * FROM dbo.Alquiler WHERE IdAlquiler = @Id;";
+            Alquiler alquiler = new Alquiler();
 
-   //             bdConnection.ConnectBD();
-   //             SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-   //             cmd.Parameters.AddWithValue("@Id", idAlquiler);
-   //             lector = cmd.ExecuteReader();
+            try
+            {
+                var alquilerById = (from al in dataDB.Alquilers
+                                    where al.IdAquiler == IdAlquiler
+                                    select al).FirstOrDefault();
 
-   //             if (lector.Read())
-   //             {
-   //                 alquiler = new Alquiler();
-   //                 alquiler.Id = lector.GetInt32(lector.GetOrdinal("IdAlquiler"));
-   //                 alquiler.FechaAlquiler = lector.GetDateTime(lector.GetOrdinal("FechaAlquiler"));
-   //                 alquiler.FechaDevProbable = lector.GetDateTime(lector.GetOrdinal("FechaDevProbable"));
-   //                 alquiler.BibliotecarioId = lector.GetInt32(lector.GetOrdinal("FKBibliotecario"));
-   //                 alquiler.SocioId = lector.GetInt32(lector.GetOrdinal("FKSocio"));
-   //             }
+                alquiler.IdAlquiler = alquilerById.IdAlquiler;
+                alquiler.FechaAlquiler = alquilerById.FechaAlquiler;
+                alquiler.FechaDevProbable = alquilerById.FechaDevProbable;
+                alquiler.FKBibliotecario = alquilerById.FKBibliotecario;
+                alquiler.FKSocio = alquilerById.FKSocio;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return null;
+            }
 
-   //             lector.Close();
-   //         }
-   //         catch (Exception ex)
-   //         {
-   //             Console.WriteLine($"Error: {ex.Message}");
-   //         }
-
-   //         bdConnection.DisconnectBD();
-   //         return alquiler;
+            return alquiler;
         }
     }
 }

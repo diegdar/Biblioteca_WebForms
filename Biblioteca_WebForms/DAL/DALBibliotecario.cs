@@ -3,224 +3,160 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using Biblioteca.Models;
 
 namespace Biblioteca_WebForms.DAL
 {
     public class DALBibliotecario
     {
-        private BDConnection bdConnection;
+        private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
+        public string Mensaje { get; set; }
 
-        public DALBibliotecario()
+        public bool Insert(Bibliotecario bibliotecario)
         {
-            bdConnection = new BDConnection();
-        }
-
-        public int Insert(Bibliotecario bibliotecario)
-        {
-            int numFilas = 0;
-            object idBibliotecario = null;
-            string sentenciaSQL = string.Empty;
-
-            // Devuelve -1 si ha habido un error, 0 si no se ha insertado ninguna fila pero no ha habido error y
-            // 1 si la fila se ha insertado correctamente, en el campo Id del objeto se coloca el número autogenerado
-            // en la inserción
+            // Devuelve true si se ha insertado el objeto y false si no se
+            // ha conseguido
 
             try
             {
-                sentenciaSQL = @"INSERT INTO dbo.Bibliotecario VALUES 
-				(Apellido = @Apellido, Nombre = @Nombre, Email = @Email, Contrasenia = @Contrasenia); 
-                SELECT SCOPE_IDENTITY();";
+                dataDB.Bibliotecarios.InsertOnSubmit(bibliotecario);
+                dataDB.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
 
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Apellido", bibliotecario.Apellido);
-                cmd.Parameters.AddWithValue("@Nombre", bibliotecario.Nombre);
-                cmd.Parameters.AddWithValue("@Email", bibliotecario.Email);
-                cmd.Parameters.AddWithValue("@Contrasenia", bibliotecario.Contrasenia);
-                idBibliotecario = cmd.ExecuteScalar();
+            return true;
+        }
+        public bool Delete(int idBibliotecario)
+        {
+            // Devuelve true si se ha borrado el objeto o false si no lo ha
+            // conseguido
 
-                if (idBibliotecario != null)
+            try
+            {
+                var bibliotecario = (from bi in dataDB.Bibliotecarios
+                                     where bi.IdBibliotecario == idBibliotecario
+                                     select bi).FirstOrDefault();
+
+                dataDB.Bibliotecarios.DeleteOnSubmit(bibliotecario);
+                dataDB.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+
+            return true;
+        }
+        public bool Update(Bibliotecario newBibliotecario)
+        {
+            // Devuelve true si se ha modificado el objeto o false si no se
+            // ha conseguido
+
+            try
+            {
+                var bibliotecario = (from bi in dataDB.Bibliotecarios
+                                     where bi.IdBibliotecario == newBibliotecario.IdBibliotecario
+                                     select bi).FirstOrDefault();
+
+                bibliotecario.Apellido = newBibliotecario.Apellido;
+                bibliotecario.Nombre = newBibliotecario.Nombre;
+                bibliotecario.Email = newBibliotecario.Email;
+                bibliotecario.Contraseniea = newBibliotecario.Contrasenia;
+                dataDB.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+
+            return true;
+        }
+        public List<Bibliotecario> GetList()
+        {
+            // Devuelve null si se ha producido un error o la lista de
+            // de objetos si no se ha producido
+
+            List<Bibliotecario> listaBibliotecario = new List<Bibliotecario>();
+
+            try
+            {
+                var lstBibliotecario = from bibliotecario in dataDB.Bibliotecarios
+                                       select bibliotecario;
+
+                foreach (var bibliotecario in lstBibliotecario)
                 {
-                    bibliotecario.Id = (int)(decimal)idBibliotecario;
-                    numFilas = 1;
+                    listaBibliotecario.Add(bibliotecario);
                 }
-				else
-					bibliotecario.Id = 0;
-				
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-				bibliotecario.Id = 0;
-                numFilas = -1;
+                Mensaje = ex.Message;
+                return null;
             }
 
-            bdConnection.DisconnectBD();
-            return numFilas;
+            return listaBibliotecario;
         }
-        public int Delete(int idBibliotecario)
+        public Bibliotecario GetById(int idBibliotecario)
         {
-            int numFilas = 0;
-            string sentenciaSQL = string.Empty;
+            // Devuelve null si se ha producido un error o el objeto
+            // buscado si no se ha producido
 
-            // Devuelve 0 si no se ha borrado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha borrado
-            // la línea indicada en la variable idSocio
+            Bibliotecario bibliotecario = new Bibliotecario();
 
             try
             {
-                sentenciaSQL = "DELETE FROM dbo.Socio WHERE IdBibliotecario = @Id;";
+                var bibliotecarioById = (from bi in dataDB.Bibliotecarios
+                                         where bi.IdBibliotecario == idBibliotecario
+                                         select bi).FirstOrDefault();
 
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Id", idBibliotecario);
-                numFilas = cmd.ExecuteNonQuery();
+                bibliotecario.IdBibliotecario = bibliotecarioById.IdBibliotecario;
+                bibliotecario.Apellido = bibliotecarioById.Apellido;
+                bibliotecario.Nombre = bibliotecarioById.Nombre;
+                bibliotecario.Email = bibliotecarioById.Email;
+                bibliotecario.Contraseniea = bibliotecarioById.Contrasenia;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                numFilas = -1;
+                Mensaje = ex.Message;
+                return null;
             }
 
-            bdConnection.DisconnectBD();
-            return numFilas;
-        }
-        public int Update(Bibliotecario bibliotecario)
-        {
-            int numFilas = 0;
-            string sentenciaSQL = string.Empty;
-
-            // Devuelve 0 si no se ha actualizado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha actualizado
-            // la línea indicada en la variable bibliotecario
-
-            try
-            {
-                sentenciaSQL = @"UPDATE dbo.AlquilerEjemplar SET Apellido = @Apellido, Nombre = @Nombre, Email = @Email, 
-                Contrasenia = @Contrasenia WHERE IdBibliotecario = @Id;";
-
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Apellido", bibliotecario.Apellido);
-                cmd.Parameters.AddWithValue("@Nombre", bibliotecario.Nombre);
-                cmd.Parameters.AddWithValue("@Email", bibliotecario.Email);
-                cmd.Parameters.AddWithValue("@Contrasenia", bibliotecario.Contrasenia);
-                cmd.Parameters.AddWithValue("@Id", bibliotecario.Id);
-                numFilas = cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                numFilas = -1;
-            }
-
-            bdConnection.DisconnectBD();
-            return numFilas;
-        }
-        public List<Bibliotecario> Select()
-        {
-            SqlDataReader lector = null;
-			string sentenciaSQL = "SELECT * FROM dbo.Bibliotecario;";
-			List<Bibliotecario> listaBibliotecarios = new List<Bibliotecario>();
-
-            try
-            {
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                lector = cmd.ExecuteReader();
-
-                while (lector.Read())
-                {
-                    Bibliotecario bibliotecario = new Bibliotecario();
-                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("IdBibliotecario"));
-                    bibliotecario.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
-                    bibliotecario.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
-                    bibliotecario.Email = lector.GetString(lector.GetOrdinal("Email"));
-                    bibliotecario.Contrasenia = lector.GetString(lector.GetOrdinal("Contrasenia"));
-                    listaBibliotecarios.Add(bibliotecario);
-                }
-
-                lector.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
-            bdConnection.DisconnectBD();
-            return listaBibliotecarios;
-            ;
-        }
-        public Bibliotecario SelectById(int idBibliotecario)
-        {
-            SqlDataReader lector = null;
-            Bibliotecario bibliotecario = null;
-            string sentenciaSQL = string.Empty;
-
-            try
-            {
-                sentenciaSQL = "SELECT * FROM dbo.Bibliotecario WHERE IdBibliotecario = @Id;";
-
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Id", idBibliotecario);
-                lector = cmd.ExecuteReader();
-
-                if (lector.Read())
-                {
-                    bibliotecario = new Bibliotecario();
-                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("IdBibliotecario"));
-                    bibliotecario.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
-                    bibliotecario.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
-                    bibliotecario.Email = lector.GetString(lector.GetOrdinal("Email"));
-                    bibliotecario.Contrasenia = lector.GetString(lector.GetOrdinal("Contrasenia"));
-                }
-
-                lector.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
-            bdConnection.DisconnectBD();
             return bibliotecario;
         }
-
-        public Bibliotecario SelectByEmail(int email)
+        public Bibliotecario GetByEmail(int email)
         {
-            SqlDataReader lector = null;
-            Bibliotecario bibliotecario = null;
-            string sentenciaSQL = string.Empty;
+            // La usaremos con el login, el campo email es único
+            // y no puede tomar un valor nulo para cada bibliotecario
+            // Es clave candidata
 
-            // La usaremos con el login, el campo email es único para cada bibliotecario
+            // Devuelve null si se ha producido un error o el objeto
+            // buscado si no se ha producido
+
+            Bibliotecario bibliotecario = new Bibliotecario();
 
             try
             {
-                sentenciaSQL = "SELECT * FROM dbo.Bibliotecario WHERE Email = @Email;";
+                var bibliotecarioById = (from bi in dataDB.Bibliotecarios
+                                         where bi.Email == email
+                                         select bi).FirstOrDefault();
 
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Email", email);
-                lector = cmd.ExecuteReader();
-
-                if (lector.Read())
-                {
-                    bibliotecario = new Bibliotecario();
-                    bibliotecario.Id = lector.GetInt32(lector.GetOrdinal("IdBibliotecario"));
-                    bibliotecario.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
-                    bibliotecario.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
-                    bibliotecario.Email = lector.GetString(lector.GetOrdinal("Email"));
-                    bibliotecario.Contrasenia = lector.GetString(lector.GetOrdinal("Contrasenia"));
-                }
-
-                lector.Close();
+                bibliotecario.IdBibliotecario = bibliotecarioById.IdBibliotecario;
+                bibliotecario.Apellido = bibliotecarioById.Apellido;
+                bibliotecario.Nombre = bibliotecarioById.Nombre;
+                bibliotecario.Email = bibliotecarioById.Email;
+                bibliotecario.Contraseniea = bibliotecarioById.Contrasenia;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Mensaje = ex.Message;
+                return null;
             }
 
-            bdConnection.DisconnectBD();
             return bibliotecario;
         }
     }

@@ -9,234 +9,127 @@ namespace Biblioteca_WebForms.DAL
 {
     public class DALSocio
     {
-        private BDConnection bdConnection;
+        private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
+        public string Mensaje { get; set; }
 
-        public DALSocio()
+        public bool Insert(Socio socio)
         {
-            bdConnection = new BDConnection();
-        }
-
-        public int Insert(Socio socio)
-        {
-            int numFilas = 0;
-            object idSocio = null;
-            string sentenciaSQL = string.Empty;
-
-            // Devuelve -1 si ha habido un error, 0 si no se ha insertado ninguna fila pero no ha habido error y
-            // 1 si la fila se ha insertado correctamente, en el campo Id del objeto se coloca el número autogenerado
-            // en la inserción
+            // Devuelve true si se ha insertado el objeto y false si no se
+            // ha conseguido
 
             try
             {
-                sentenciaSQL = @"INSERT INTO dbo.Socio VALUES 
-				(Apellido = @Apellido, Nombre = @Nombre, Email = @Email, Domicilio = @Domicilio, Telefono = @Telefono); 
-                SELECT SCOPE_IDENTITY();";
+                dataDB.Socios.InsertOnSubmit(socio);
+                dataDB.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
 
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Apellido", socio.Apellido);
-                cmd.Parameters.AddWithValue("@Nombre", socio.Nombre);
-				
-				if (socio.Email == null)
-                    cmd.Parameters.AddWithValue("@Email", DBNull.Value);
-                else
-					cmd.Parameters.AddWithValue("@Email", socio.Email);
+            return true;
+        }
+        public bool Delete(int idSocio)
+        {
+            // Devuelve true si se ha borrado el objeto o false si no lo ha
+            // conseguido
 
-                if (socio.Domicilio == null)
-                    cmd.Parameters.AddWithValue("@Domicilio", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@Domicilio", socio.Domicilio);
+            try
+            {
+                var socio = (from so in dataDB.Socios
+                             where so.IdSocio == idSocio
+                             select so).FirstOrDefault();
 
-                if (socio.Telefono == null)
-                    cmd.Parameters.AddWithValue("@Telefono", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@Telefono", socio.Telefono);
+                dataDB.Socios.DeleteOnSubmit(socio);
+                dataDB.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
 
-                idSocio = cmd.ExecuteScalar();
+            return true;
+        }
+        public bool Update(Socios newSocio)
+        {
+            // Devuelve true si se ha modificado el objeto o false si no se
+            // ha conseguido
 
-                if (idSocio != null)
+            try
+            {
+                var socio = (from so in dataDB.Socios
+                             where so.IdSocio == newSocio.IdSocio
+                             select so).FirstOrDefault();
+
+                socio.Apellido = newSocio.Apellido;
+                socio.Nombre = newSocio.Nombre;
+                socio.Email = newSocio.Email;
+                socio.Domicilio = newSocio.Domicilio;
+                socio.Telefono = newSocio.Telefono;
+                dataDB.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+
+            return true;
+        }
+        public List<Socios> GetList()
+        {
+            // Devuelve null si se ha producido un error o la lista de
+            // de objetos si no se ha producido
+
+            List<Socio> listaSocio = new List<Socio>();
+
+            try
+            {
+                var lstSocio = from socio in dataDB.Socios
+                               select socio;
+
+                foreach (var socio in lstSocio)
                 {
-                    socio.Id = (int)(decimal)idSocio;
-                    numFilas = 1;
+                    listaSocio.Add(socio);
                 }
-				else
-					socio.Id = 0;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                numFilas = -1;
-				socio.Id = 0;
+                Mensaje = ex.Message;
+                return null;
             }
 
-            bdConnection.DisconnectBD();
-            return numFilas;
+            return listaSocio;
         }
-        public int Delete(int idSocio)
+        public Socios GetById(int idSocio)
         {
-            int numFilas = 0;
-            string sentenciaSQL = string.Empty;
+            // Devuelve null si se ha producido un error o el objeto
+            // buscado si no se ha producido
 
-            // Devuelve 0 si no se ha borrado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha borrado
-            // la línea indicada en la variable idSocio
+            Socio socio = new Socio();
 
             try
             {
-                sentenciaSQL = "DELETE FROM dbo.Socio WHERE IdSocio = @Id;";
+                var socioById = (from so in dataDB.Socios
+                                 where so.IdSocio == idSocio
+                                 select so).FirstOrDefault();
 
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Id", idSocio);
-                numFilas = cmd.ExecuteNonQuery();
+                socio.IdSocio = socioById.IdSocio;
+                socio.Apellido = socioById.Apellido;
+                socio.Nombre = socioById.Nombre;
+                socio.Email = socioById.Email;
+                socio.Domicilio = socioById.Domicilio;
+                socio.Telefono = socioById.Telefono;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                numFilas = -1;
+                Mensaje = ex.Message;
+                return null;
             }
 
-            bdConnection.DisconnectBD();
-            return numFilas;
-        }
-        public int Update(Socio socio)
-        {
-            int numFilas = 0;
-            string sentenciaSQL = string.Empty;
-
-            // Devuelve 0 si no se ha actualizado ninguna línea de la tabla, -1 si ha habido algún error o 1 si se ha actualizado
-            // la línea indicada en la variable socio
-
-            try
-            {
-                sentenciaSQL = @"UPDATE dbo.AlquilerEjemplar SET Apellido = @Apellido, Nombre = @Nombre, Email = @Email, 
-                Domicilio = @Domicilio, Telefono = @Telefono WHERE IdSocio = @Id;";
-
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Apellido", socio.Apellido);
-                cmd.Parameters.AddWithValue("@Nombre", socio.Nombre);
-				
-				if (socio.Email == null)
-                    cmd.Parameters.AddWithValue("@Email", DBNull.Value);
-                else
-					cmd.Parameters.AddWithValue("@Email", socio.Email);
-
-                if (socio.Domicilio == null)
-                    cmd.Parameters.AddWithValue("@Domicilio", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@Domicilio", socio.Domicilio);
-
-                if (socio.Telefono == null)
-                    cmd.Parameters.AddWithValue("@Telefono", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@Telefono", socio.Telefono);
-
-                cmd.Parameters.AddWithValue("@Id", socio.Id);
-                numFilas = cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                numFilas = -1;
-            }
-
-            bdConnection.DisconnectBD();
-            return numFilas;
-        }
-        public List<Socio> Select()
-        {
-            SqlDataReader lector = null;
-            List<Socio> listaSocios = new List<Socio>();
-            string sentenciaSQL = "SELECT * FROM dbo.Socio;";
-
-            try
-            {
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                lector = cmd.ExecuteReader();
-
-                while (lector.Read())
-                {
-                    Socio socio = new Socio();
-                    socio.Id = lector.GetInt32(lector.GetOrdinal("IdSocio"));
-                    socio.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
-                    socio.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
-					
-					if (lector.IsDBNull(lector.GetOrdinal("Email")))
-                        socio.Email = null;
-                    else
-						socio.Email = lector.GetString(lector.GetOrdinal("Email"));
-
-                    if (lector.IsDBNull(lector.GetOrdinal("Domicilio")))
-                        socio.Domicilio = null;
-                    else
-                        socio.Domicilio = lector.GetString(lector.GetOrdinal("Domicilio"));
-
-                    if (lector.IsDBNull(lector.GetOrdinal("Telefono")))
-                        socio.Domicilio = null;
-                    else
-                        socio.Domicilio = lector.GetString(lector.GetOrdinal("Telefono"));
-
-                    listaSocios.Add(socio);
-                }
-
-                lector.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
-            bdConnection.DisconnectBD();
-            return listaSocios;
-        }
-        public Socio SelectById(int idSocio)
-        {
-            Socio socio = null;
-            SqlDataReader lector = null;
-            string sentenciaSQL = string.Empty;
-
-            try
-            {
-                sentenciaSQL = "SELECT * FROM dbo.Socio WHERE IdSocio = @Id;";
-
-                bdConnection.ConnectBD();
-                SqlCommand cmd = new SqlCommand(sentenciaSQL, bdConnection.sqlConnection);
-                cmd.Parameters.AddWithValue("@Id", idSocio);
-                lector = cmd.ExecuteReader();
-
-                if (lector.Read())
-                {
-                    socio = new Socio();
-                    socio.Id = lector.GetInt32(lector.GetOrdinal("IdSocio"));
-                    socio.Nombre = lector.GetString(lector.GetOrdinal("Nombre"));
-                    socio.Apellido = lector.GetString(lector.GetOrdinal("Apellido"));
-					
-					if (lector.IsDBNull(lector.GetOrdinal("Email")))
-                        socio.Email = null;
-                    else
-						socio.Email = lector.GetString(lector.GetOrdinal("Email"));
-
-                    if (lector.IsDBNull(lector.GetOrdinal("Domicilio")))
-                        socio.Domicilio = null;
-                    else
-                        socio.Domicilio = lector.GetString(lector.GetOrdinal("Domicilio"));
-
-                    if (lector.IsDBNull(lector.GetOrdinal("Telefono")))
-                        socio.Domicilio = null;
-                    else
-                        socio.Domicilio = lector.GetString(lector.GetOrdinal("Telefono"));
-                }
-
-                lector.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-
-            bdConnection.DisconnectBD();
-            return socio;
+            return Socios;
         }
     }
 }
