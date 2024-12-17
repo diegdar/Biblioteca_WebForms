@@ -1314,6 +1314,8 @@ namespace Biblioteca_WebForms.DAL
 		
 		private int _FkIdioma;
 		
+		private System.Nullable<bool> _EstaActivo;
+		
 		private EntitySet<AlquilerEjemplar> _AlquilerEjemplars;
 		
 		private EntityRef<Editorial> _Editorial;
@@ -1350,6 +1352,8 @@ namespace Biblioteca_WebForms.DAL
     partial void OnFkUbicacionChanged();
     partial void OnFkIdiomaChanging(int value);
     partial void OnFkIdiomaChanged();
+    partial void OnEstaActivoChanging(System.Nullable<bool> value);
+    partial void OnEstaActivoChanged();
     #endregion
 		
 		public Ejemplar()
@@ -1594,6 +1598,26 @@ namespace Biblioteca_WebForms.DAL
 					this._FkIdioma = value;
 					this.SendPropertyChanged("FkIdioma");
 					this.OnFkIdiomaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstaActivo", DbType="Bit")]
+		public System.Nullable<bool> EstaActivo
+		{
+			get
+			{
+				return this._EstaActivo;
+			}
+			set
+			{
+				if ((this._EstaActivo != value))
+				{
+					this.OnEstaActivoChanging(value);
+					this.SendPropertyChanging();
+					this._EstaActivo = value;
+					this.SendPropertyChanged("EstaActivo");
+					this.OnEstaActivoChanged();
 				}
 			}
 		}

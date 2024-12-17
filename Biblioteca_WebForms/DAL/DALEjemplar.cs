@@ -21,7 +21,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return dataDB.Ejemplars.ToList();
+                return dataDB.Ejemplars.Where(ej => ej.EstaActivo == true).ToList();
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace Biblioteca_WebForms.DAL
                 var ejemplar = dataDB.Ejemplars.Where
                     (ej => ej.IdEjemplar == ejemplarId).FirstOrDefault();
 
-                dataDB.Ejemplars.DeleteOnSubmit(ejemplar);
+                ejemplar.EstaActivo = false;
                 dataDB.SubmitChanges();
                 return true;
             }
@@ -62,5 +62,39 @@ namespace Biblioteca_WebForms.DAL
                 return false;
             }
         }
+
+        public bool Update(Ejemplar ejempData)
+        {
+            try
+            {
+                var ejempFound = dataDB.Ejemplars.Where
+                        (ej => ej.IdEjemplar == ejempData.IdEjemplar).FirstOrDefault();
+
+                ejempFound.CodigoBarras = ejempData.CodigoBarras;
+                ejempFound.ISBN = ejempData.ISBN;
+                ejempFound.AnioPublicacion = ejempData.AnioPublicacion;
+                ejempFound.EstaBuenEstado = ejempData.EstaBuenEstado;
+                ejempFound.NumPaginas = ejempData.NumPaginas;
+                ejempFound.EstaAlquilado = ejempData.EstaAlquilado;
+                ejempFound.FKEditorial = ejempData.FKEditorial;
+                ejempFound.FKObra = ejempData.FKObra;
+                ejempFound.FkUbicacion = ejempData.FkUbicacion;
+                ejempFound.FkIdioma = ejempData.FkIdioma;
+
+                dataDB.SubmitChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+
+
+
+
+
     }
 }
