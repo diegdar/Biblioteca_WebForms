@@ -222,7 +222,9 @@
     <Compile Include="DAL\DALAutor.cs" />
     <Compile Include="DAL\DALEjemplar.cs" />
     <Compile Include="DAL\DALGenero.cs" />
+    <Compile Include="DAL\DALIdioma.cs" />
     <Compile Include="DAL\DALObra.cs" />
+    <Compile Include="DAL\DALUbicacion.cs" />
     <Compile Include="DAL\DataLinQ_Biblioteca.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
