@@ -49,12 +49,8 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-
-                var ejemplar = dataDB.Ejemplars.Where(ej =>ej.Equals(ejemplarId)).FirstOrDefault();
-                if (true)
-                {
-                    
-                }
+                var ejemplar = dataDB.Ejemplars.Where
+                    (ej => ej.IdEjemplar == ejemplarId).FirstOrDefault();
 
                 dataDB.Ejemplars.DeleteOnSubmit(ejemplar);
                 dataDB.SubmitChanges();
@@ -66,29 +62,5 @@ namespace Biblioteca_WebForms.DAL
                 return false;
             }
         }
-
-        private bool IsEjemplarRent(Ejemplar ejemplar)
-        {
-            var ejemplar = dataDB.Ejemplars.Where(ej => ej.Equals(ejemplarId)).FirstOrDefault();
-
-        }
-
-        public bool Update(int )
-        {
-            try
-            {
-                // modificar
-                var empA = (from ejp in dataDB.Ejemplars
-                            where ejp.IdEjemplar == 104
-                            select emp).FirstOrDefault();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Mensaje = ex.Message;
-                return false;
-            }
-        }
-
     }
 }
