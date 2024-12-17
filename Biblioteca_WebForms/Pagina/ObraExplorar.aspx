@@ -9,8 +9,8 @@
         <div class="row">
             <br />
             <br />
+                <asp:Label ID="txtmensaje" runat="server" Text="" style="color: red"></asp:Label>
             <div class="botones-form mb-4 mt-2">
-                <asp:Label ID="txtmensaje" runat="server" Text=""></asp:Label>
                 <!-- Botón Crear -->
                 <asp:Button type="submit" ID="BtnCrear" runat="server" class="btn btn-primary" Text="Crear" OnClick="BtnCrear_Click" />
             </div>
@@ -20,16 +20,16 @@
                 AllowPaging="True" PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="_IdEjemplar" HeaderText="Id" />
-                    <asp:BoundField DataField="_EstaAlquilado" HeaderText="Esta Alquilado" />
+                    <asp:BoundField DataField="IdEjemplar" HeaderText="Id" />
+                    <asp:BoundField DataField="EstaAlquilado" HeaderText="Esta Alquilado" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("Id") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
+                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdEjemplar") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("Id") + ",D" %>' OnCommand="lnkBorrar_Command"></asp:LinkButton>
+                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdEjemplar") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdEjemplar") + "?\");" %>' />
                             <%--OnClientClick="return confirm('¿Estás seguro de que deseas borrar este elemento?');"></asp:LinkButton>--%>
                         </ItemTemplate>
                     </asp:TemplateField>

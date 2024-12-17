@@ -21,7 +21,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return dataDB.Ejemplars.ToList();
+                return dataDB.Ejemplars.Where(ej => ej.EstaActivo == true).ToList();
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace Biblioteca_WebForms.DAL
                 var ejemplar = dataDB.Ejemplars.Where
                     (ej => ej.IdEjemplar == ejemplarId).FirstOrDefault();
 
-                dataDB.Ejemplars.DeleteOnSubmit(ejemplar);
+                ejemplar.EstaActivo = false;
                 dataDB.SubmitChanges();
                 return true;
             }

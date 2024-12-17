@@ -20,13 +20,6 @@ namespace Biblioteca.Pagina
             dALEjemplar = new DALEjemplar();
         }
 
-        private static List<Item> items = new List<Item>
-        {
-            new Item { Id = 1, Nombre = "Item 1" },
-            new Item { Id = 2, Nombre = "Item 2" },
-            new Item { Id = 3, Nombre = "Item 3" }
-        };
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,8 +31,7 @@ namespace Biblioteca.Pagina
         }
         private void BindGrid()
         {
-            var listEjemplares = dALEjemplar.GetList();
-            GridView1.DataSource = listEjemplares;
+            GridView1.DataSource = dALEjemplar.GetList();
             GridView1.DataBind();
         }
 
@@ -62,42 +54,29 @@ namespace Biblioteca.Pagina
         // Evento para manejar acciones de editar/borrar
         protected void GridView1_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
-            int id = Convert.ToInt32(e.CommandArgument);
+            //int id = Convert.ToInt32(e.CommandArgument);
 
-            if (e.CommandName == "Editar")
-            {
-                // Lógica para editar
-                Response.Write($"Editar: {id}");
-            }
-            else if (e.CommandName == "Borrar")
-            {
-                // Lógica para borrar
-                //items.RemoveAll(i => i.Id == id);
-                DeleteEjemplar(id);
+            //if (e.CommandName == "Editar")
+            //{
+            //    // Lógica para editar
+            //    Response.Write($"Editar: {id}");
+            //}
+            //else if (e.CommandName == "Borrar")
+            //{
+            //    // Lógica para borrar
+            //    //items.RemoveAll(i => i.Id == id);
+            //    //DeleteEjemplar(id);
 
-                BindGrid();
-            }
-        }
-
-        private void DeleteEjemplar(int ejemplarId)
-        {
-            if (comMethods.IsEjemplarRented(ejemplarId))
-            {
-                dALEjemplar.Delete(ejemplarId);
-            }
-            else
-            {
-                txtmensaje.Text = $"No se puede eliminar el libro {ejemplarId}" +
-                    $" pues esta actualmente alquilado!";
-            }
+            //    BindGrid();
+            //}
         }
 
         protected void lnkEditar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Editar")
             {
-                string[] args = e.CommandArgument.ToString().Split(','); 
-                
+                string[] args = e.CommandArgument.ToString().Split(',');
+
 
                 if (args.Length == 2)
                 {
@@ -111,15 +90,32 @@ namespace Biblioteca.Pagina
         {
             if (e.CommandName == "Borrar")
             {
-                string[] args = e.CommandArgument.ToString().Split(','); 
+                string[] args = e.CommandArgument.ToString().Split(',');
                 if (args.Length == 2)
                 {
-                    string id = args[0];
-                    string opcion = args[1];
-                    Response.Redirect($"ObraAbm.aspx?id={id}&opcion={opcion}");
+                    int id = int.Parse(args[0]);
+                    DeleteEjemplar(id);
                 }
             }
         }
+
+        private void DeleteEjemplar(int ejemplarId)
+        {
+            if (!comMethods.IsEjemplarRented(ejemplarId))
+            {
+                dALEjemplar.Delete(ejemplarId);
+                BindGrid();
+                txtmensaje.Text = $"El libro con id {ejemplarId}" +
+                    $" ha sido eliminado!";
+
+            }
+            else
+            {
+                txtmensaje.Text = $"No se puede eliminar el libro {ejemplarId}" +
+                    $" pues esta actualmente alquilado!";
+            }
+        }
+
         protected void regresar_Click(object sender, EventArgs e)
         {
 
