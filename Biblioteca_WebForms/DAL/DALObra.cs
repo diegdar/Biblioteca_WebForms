@@ -13,9 +13,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Obras
-                        where c.IdObra == idObra
-                        select c).FirstOrDefault();
+                return dataDB.Obras.Where(ob=>ob.IdObra == idObra).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -28,8 +26,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Obras
-                        select c).ToList();
+                return dataDB.Obras.ToList();
             }
             catch (Exception ex)
             {
@@ -38,57 +35,56 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Insert(Obra obra)
+        public bool Insert(Obra obra)
         {
             try
             {
                 dataDB.Obras.InsertOnSubmit(obra);
                 dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
 
-        public void Update(Obra unaObra)
+        public bool Update(Obra obra)
         {
             try
             {
-                var obra = (from c in dataDB.Obras
-                            where c.IdObra == unaObra.IdObra
-                            select c).FirstOrDefault();
+                var obraExistente = dataDB.Obras.Where(ob => ob.IdObra ==obra.IdObra).FirstOrDefault();
+                obraExistente.Titulo = obra.Titulo;
+                obraExistente.Sinopsis = obra.Sinopsis;
+                obraExistente.FKAutor = obra.FKAutor;
+                obraExistente.FKGenero = obra.FKGenero;
 
-                if (obra != null)
-                {
-                    obra.Titulo = obra.Titulo;
-                    obra.Sinopsis = obra.Sinopsis;
-                    dataDB.SubmitChanges();
-                }
+                dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
-        public void Delete(int idObra)
+
+        public bool Delete(int idObra)
         {
             try
             {
-               var obra= (from c in dataDB.Obras
-                          where c.IdObra == idObra
-                          select c).FirstOrDefault();
-
-               if (obra != null)
-               {
-                   dataDB.Obras.DeleteOnSubmit(obra);
-                   dataDB.SubmitChanges();
-               }
+                var obra = dataDB.Obras.Where(ob=>ob.IdObra == idObra).FirstOrDefault();
+                dataDB.Obras.DeleteOnSubmit(obra);
+                dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
     }
 }
+    

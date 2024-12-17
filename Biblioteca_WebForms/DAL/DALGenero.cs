@@ -14,9 +14,8 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Generos
-                        where c.IdGenero == idGenero
-                        select c).FirstOrDefault();
+                return dataDB.Generos.Where(ge => ge.IdGenero == idGenero).FirstOrDefault();
+                        
             }
             catch (Exception ex)
             {
@@ -29,8 +28,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Generos
-                        select c).ToList();
+                return dataDB.Generos.ToList();
             }
             catch (Exception ex)
             {
@@ -39,55 +37,51 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Insert(Genero genero)
+        public bool Insert(Genero genero)
         {
             try
             {
                 dataDB.Generos.InsertOnSubmit(genero);
                 dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
 
-        public void Update(Genero unGenero)
+        public bool Update(Genero genero)
         {
             try
             {
-                var genero = (from c in dataDB.Generos
-                            where c.IdGenero == unGenero.IdGenero
-                            select c).FirstOrDefault();
+                var generoExistente = dataDB.Generos.Where(ge => ge.IdGenero == genero.IdGenero).FirstOrDefault();
 
-                if (genero != null)
-                {
-                    genero.Descripcion = unGenero.Descripcion;
-                    dataDB.SubmitChanges();
-                }
+                generoExistente.Descripcion = genero.Descripcion;
+                dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
-        public void Delete(int idGenero)
+        public bool Delete(int idGenero)
         {
             try
             {
-                var genero = (from c in dataDB.Generos
-                            where c.IdGenero == idGenero
-                            select c).FirstOrDefault();
+                var generoExistente = dataDB.Generos.Where(ge => ge.IdGenero == idGenero).FirstOrDefault();
 
-                if (genero != null)
-                {
-                    dataDB.Generos.DeleteOnSubmit(genero);
-                    dataDB.SubmitChanges();
-                }
+                dataDB.Generos.DeleteOnSubmit(generoExistente);
+                dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
     }

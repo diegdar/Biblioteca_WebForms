@@ -20,9 +20,9 @@ namespace Biblioteca_WebForms.DAL
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using System.Configuration;
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="PFBiblioteca")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="PFBiblioteca")]
 	public partial class DataLinQ_BibliotecaDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -42,9 +42,6 @@ namespace Biblioteca_WebForms.DAL
     partial void InsertAutor(Autor instance);
     partial void UpdateAutor(Autor instance);
     partial void DeleteAutor(Autor instance);
-    partial void InsertAutorObra(AutorObra instance);
-    partial void UpdateAutorObra(AutorObra instance);
-    partial void DeleteAutorObra(AutorObra instance);
     partial void InsertBibliotecario(Bibliotecario instance);
     partial void UpdateBibliotecario(Bibliotecario instance);
     partial void DeleteBibliotecario(Bibliotecario instance);
@@ -63,15 +60,12 @@ namespace Biblioteca_WebForms.DAL
     partial void InsertObra(Obra instance);
     partial void UpdateObra(Obra instance);
     partial void DeleteObra(Obra instance);
-    partial void InsertObraGenero(ObraGenero instance);
-    partial void UpdateObraGenero(ObraGenero instance);
-    partial void DeleteObraGenero(ObraGenero instance);
     partial void InsertSocio(Socio instance);
     partial void UpdateSocio(Socio instance);
     partial void DeleteSocio(Socio instance);
-        #endregion
-
-        public DataLinQ_BibliotecaDataContext(string connection) : 
+    #endregion
+		
+		public DataLinQ_BibliotecaDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -127,14 +121,6 @@ namespace Biblioteca_WebForms.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<AutorObra> AutorObras
-		{
-			get
-			{
-				return this.GetTable<AutorObra>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Bibliotecario> Bibliotecarios
 		{
 			get
@@ -180,14 +166,6 @@ namespace Biblioteca_WebForms.DAL
 			get
 			{
 				return this.GetTable<Obra>();
-			}
-		}
-		
-		public System.Data.Linq.Table<ObraGenero> ObraGeneros
-		{
-			get
-			{
-				return this.GetTable<ObraGenero>();
 			}
 		}
 		
@@ -860,7 +838,7 @@ namespace Biblioteca_WebForms.DAL
 		
 		private string _Nombre;
 		
-		private EntitySet<AutorObra> _AutorObras;
+		private EntitySet<Obra> _Obras;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -878,7 +856,7 @@ namespace Biblioteca_WebForms.DAL
 		
 		public Autor()
 		{
-			this._AutorObras = new EntitySet<AutorObra>(new Action<AutorObra>(this.attach_AutorObras), new Action<AutorObra>(this.detach_AutorObras));
+			this._Obras = new EntitySet<Obra>(new Action<Obra>(this.attach_Obras), new Action<Obra>(this.detach_Obras));
 			OnCreated();
 		}
 		
@@ -962,16 +940,16 @@ namespace Biblioteca_WebForms.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_AutorObra", Storage="_AutorObras", ThisKey="IdAutor", OtherKey="FKAutor")]
-		public EntitySet<AutorObra> AutorObras
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_Obra", Storage="_Obras", ThisKey="IdAutor", OtherKey="FKAutor")]
+		public EntitySet<Obra> Obras
 		{
 			get
 			{
-				return this._AutorObras;
+				return this._Obras;
 			}
 			set
 			{
-				this._AutorObras.Assign(value);
+				this._Obras.Assign(value);
 			}
 		}
 		
@@ -995,208 +973,16 @@ namespace Biblioteca_WebForms.DAL
 			}
 		}
 		
-		private void attach_AutorObras(AutorObra entity)
+		private void attach_Obras(Obra entity)
 		{
 			this.SendPropertyChanging();
 			entity.Autor = this;
 		}
 		
-		private void detach_AutorObras(AutorObra entity)
+		private void detach_Obras(Obra entity)
 		{
 			this.SendPropertyChanging();
 			entity.Autor = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AutorObra")]
-	public partial class AutorObra : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IdAutorObra;
-		
-		private int _FKObra;
-		
-		private int _FKAutor;
-		
-		private EntityRef<Autor> _Autor;
-		
-		private EntityRef<Obra> _Obra;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdAutorObraChanging(int value);
-    partial void OnIdAutorObraChanged();
-    partial void OnFKObraChanging(int value);
-    partial void OnFKObraChanged();
-    partial void OnFKAutorChanging(int value);
-    partial void OnFKAutorChanged();
-    #endregion
-		
-		public AutorObra()
-		{
-			this._Autor = default(EntityRef<Autor>);
-			this._Obra = default(EntityRef<Obra>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdAutorObra", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IdAutorObra
-		{
-			get
-			{
-				return this._IdAutorObra;
-			}
-			set
-			{
-				if ((this._IdAutorObra != value))
-				{
-					this.OnIdAutorObraChanging(value);
-					this.SendPropertyChanging();
-					this._IdAutorObra = value;
-					this.SendPropertyChanged("IdAutorObra");
-					this.OnIdAutorObraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKObra", DbType="Int NOT NULL")]
-		public int FKObra
-		{
-			get
-			{
-				return this._FKObra;
-			}
-			set
-			{
-				if ((this._FKObra != value))
-				{
-					if (this._Obra.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFKObraChanging(value);
-					this.SendPropertyChanging();
-					this._FKObra = value;
-					this.SendPropertyChanged("FKObra");
-					this.OnFKObraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKAutor", DbType="Int NOT NULL")]
-		public int FKAutor
-		{
-			get
-			{
-				return this._FKAutor;
-			}
-			set
-			{
-				if ((this._FKAutor != value))
-				{
-					if (this._Autor.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFKAutorChanging(value);
-					this.SendPropertyChanging();
-					this._FKAutor = value;
-					this.SendPropertyChanged("FKAutor");
-					this.OnFKAutorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_AutorObra", Storage="_Autor", ThisKey="FKAutor", OtherKey="IdAutor", IsForeignKey=true)]
-		public Autor Autor
-		{
-			get
-			{
-				return this._Autor.Entity;
-			}
-			set
-			{
-				Autor previousValue = this._Autor.Entity;
-				if (((previousValue != value) 
-							|| (this._Autor.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Autor.Entity = null;
-						previousValue.AutorObras.Remove(this);
-					}
-					this._Autor.Entity = value;
-					if ((value != null))
-					{
-						value.AutorObras.Add(this);
-						this._FKAutor = value.IdAutor;
-					}
-					else
-					{
-						this._FKAutor = default(int);
-					}
-					this.SendPropertyChanged("Autor");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Obra_AutorObra", Storage="_Obra", ThisKey="FKObra", OtherKey="IdObra", IsForeignKey=true)]
-		public Obra Obra
-		{
-			get
-			{
-				return this._Obra.Entity;
-			}
-			set
-			{
-				Obra previousValue = this._Obra.Entity;
-				if (((previousValue != value) 
-							|| (this._Obra.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Obra.Entity = null;
-						previousValue.AutorObras.Remove(this);
-					}
-					this._Obra.Entity = value;
-					if ((value != null))
-					{
-						value.AutorObras.Add(this);
-						this._FKObra = value.IdObra;
-					}
-					else
-					{
-						this._FKObra = default(int);
-					}
-					this.SendPropertyChanged("Obra");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -2004,7 +1790,7 @@ namespace Biblioteca_WebForms.DAL
 		
 		private string _Descripcion;
 		
-		private EntitySet<ObraGenero> _ObraGeneros;
+		private EntitySet<Obra> _Obras;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2018,7 +1804,7 @@ namespace Biblioteca_WebForms.DAL
 		
 		public Genero()
 		{
-			this._ObraGeneros = new EntitySet<ObraGenero>(new Action<ObraGenero>(this.attach_ObraGeneros), new Action<ObraGenero>(this.detach_ObraGeneros));
+			this._Obras = new EntitySet<Obra>(new Action<Obra>(this.attach_Obras), new Action<Obra>(this.detach_Obras));
 			OnCreated();
 		}
 		
@@ -2062,16 +1848,16 @@ namespace Biblioteca_WebForms.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_ObraGenero", Storage="_ObraGeneros", ThisKey="IdGenero", OtherKey="FKGenero")]
-		public EntitySet<ObraGenero> ObraGeneros
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Obra", Storage="_Obras", ThisKey="IdGenero", OtherKey="FKGenero")]
+		public EntitySet<Obra> Obras
 		{
 			get
 			{
-				return this._ObraGeneros;
+				return this._Obras;
 			}
 			set
 			{
-				this._ObraGeneros.Assign(value);
+				this._Obras.Assign(value);
 			}
 		}
 		
@@ -2095,13 +1881,13 @@ namespace Biblioteca_WebForms.DAL
 			}
 		}
 		
-		private void attach_ObraGeneros(ObraGenero entity)
+		private void attach_Obras(Obra entity)
 		{
 			this.SendPropertyChanging();
 			entity.Genero = this;
 		}
 		
-		private void detach_ObraGeneros(ObraGenero entity)
+		private void detach_Obras(Obra entity)
 		{
 			this.SendPropertyChanging();
 			entity.Genero = null;
@@ -2234,11 +2020,15 @@ namespace Biblioteca_WebForms.DAL
 		
 		private string _Sinopsis;
 		
-		private EntitySet<AutorObra> _AutorObras;
+		private System.Nullable<int> _FKAutor;
+		
+		private System.Nullable<int> _FKGenero;
 		
 		private EntitySet<Ejemplar> _Ejemplars;
 		
-		private EntitySet<ObraGenero> _ObraGeneros;
+		private EntityRef<Autor> _Autor;
+		
+		private EntityRef<Genero> _Genero;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2250,13 +2040,17 @@ namespace Biblioteca_WebForms.DAL
     partial void OnTituloChanged();
     partial void OnSinopsisChanging(string value);
     partial void OnSinopsisChanged();
+    partial void OnFKAutorChanging(System.Nullable<int> value);
+    partial void OnFKAutorChanged();
+    partial void OnFKGeneroChanging(System.Nullable<int> value);
+    partial void OnFKGeneroChanged();
     #endregion
 		
 		public Obra()
 		{
-			this._AutorObras = new EntitySet<AutorObra>(new Action<AutorObra>(this.attach_AutorObras), new Action<AutorObra>(this.detach_AutorObras));
 			this._Ejemplars = new EntitySet<Ejemplar>(new Action<Ejemplar>(this.attach_Ejemplars), new Action<Ejemplar>(this.detach_Ejemplars));
-			this._ObraGeneros = new EntitySet<ObraGenero>(new Action<ObraGenero>(this.attach_ObraGeneros), new Action<ObraGenero>(this.detach_ObraGeneros));
+			this._Autor = default(EntityRef<Autor>);
+			this._Genero = default(EntityRef<Genero>);
 			OnCreated();
 		}
 		
@@ -2320,183 +2114,32 @@ namespace Biblioteca_WebForms.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Obra_AutorObra", Storage="_AutorObras", ThisKey="IdObra", OtherKey="FKObra")]
-		public EntitySet<AutorObra> AutorObras
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKAutor", DbType="Int")]
+		public System.Nullable<int> FKAutor
 		{
 			get
 			{
-				return this._AutorObras;
+				return this._FKAutor;
 			}
 			set
 			{
-				this._AutorObras.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Obra_Ejemplar", Storage="_Ejemplars", ThisKey="IdObra", OtherKey="FKObra")]
-		public EntitySet<Ejemplar> Ejemplars
-		{
-			get
-			{
-				return this._Ejemplars;
-			}
-			set
-			{
-				this._Ejemplars.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Obra_ObraGenero", Storage="_ObraGeneros", ThisKey="IdObra", OtherKey="FKObra")]
-		public EntitySet<ObraGenero> ObraGeneros
-		{
-			get
-			{
-				return this._ObraGeneros;
-			}
-			set
-			{
-				this._ObraGeneros.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_AutorObras(AutorObra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Obra = this;
-		}
-		
-		private void detach_AutorObras(AutorObra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Obra = null;
-		}
-		
-		private void attach_Ejemplars(Ejemplar entity)
-		{
-			this.SendPropertyChanging();
-			entity.Obra = this;
-		}
-		
-		private void detach_Ejemplars(Ejemplar entity)
-		{
-			this.SendPropertyChanging();
-			entity.Obra = null;
-		}
-		
-		private void attach_ObraGeneros(ObraGenero entity)
-		{
-			this.SendPropertyChanging();
-			entity.Obra = this;
-		}
-		
-		private void detach_ObraGeneros(ObraGenero entity)
-		{
-			this.SendPropertyChanging();
-			entity.Obra = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ObraGenero")]
-	public partial class ObraGenero : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IdObraGenero;
-		
-		private int _FKObra;
-		
-		private int _FKGenero;
-		
-		private EntityRef<Genero> _Genero;
-		
-		private EntityRef<Obra> _Obra;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdObraGeneroChanging(int value);
-    partial void OnIdObraGeneroChanged();
-    partial void OnFKObraChanging(int value);
-    partial void OnFKObraChanged();
-    partial void OnFKGeneroChanging(int value);
-    partial void OnFKGeneroChanged();
-    #endregion
-		
-		public ObraGenero()
-		{
-			this._Genero = default(EntityRef<Genero>);
-			this._Obra = default(EntityRef<Obra>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdObraGenero", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IdObraGenero
-		{
-			get
-			{
-				return this._IdObraGenero;
-			}
-			set
-			{
-				if ((this._IdObraGenero != value))
+				if ((this._FKAutor != value))
 				{
-					this.OnIdObraGeneroChanging(value);
-					this.SendPropertyChanging();
-					this._IdObraGenero = value;
-					this.SendPropertyChanged("IdObraGenero");
-					this.OnIdObraGeneroChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKObra", DbType="Int NOT NULL")]
-		public int FKObra
-		{
-			get
-			{
-				return this._FKObra;
-			}
-			set
-			{
-				if ((this._FKObra != value))
-				{
-					if (this._Obra.HasLoadedOrAssignedValue)
+					if (this._Autor.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnFKObraChanging(value);
+					this.OnFKAutorChanging(value);
 					this.SendPropertyChanging();
-					this._FKObra = value;
-					this.SendPropertyChanged("FKObra");
-					this.OnFKObraChanged();
+					this._FKAutor = value;
+					this.SendPropertyChanged("FKAutor");
+					this.OnFKAutorChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKGenero", DbType="Int NOT NULL")]
-		public int FKGenero
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FKGenero", DbType="Int")]
+		public System.Nullable<int> FKGenero
 		{
 			get
 			{
@@ -2519,7 +2162,54 @@ namespace Biblioteca_WebForms.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_ObraGenero", Storage="_Genero", ThisKey="FKGenero", OtherKey="IdGenero", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Obra_Ejemplar", Storage="_Ejemplars", ThisKey="IdObra", OtherKey="FKObra")]
+		public EntitySet<Ejemplar> Ejemplars
+		{
+			get
+			{
+				return this._Ejemplars;
+			}
+			set
+			{
+				this._Ejemplars.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_Obra", Storage="_Autor", ThisKey="FKAutor", OtherKey="IdAutor", IsForeignKey=true)]
+		public Autor Autor
+		{
+			get
+			{
+				return this._Autor.Entity;
+			}
+			set
+			{
+				Autor previousValue = this._Autor.Entity;
+				if (((previousValue != value) 
+							|| (this._Autor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Autor.Entity = null;
+						previousValue.Obras.Remove(this);
+					}
+					this._Autor.Entity = value;
+					if ((value != null))
+					{
+						value.Obras.Add(this);
+						this._FKAutor = value.IdAutor;
+					}
+					else
+					{
+						this._FKAutor = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Autor");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Obra", Storage="_Genero", ThisKey="FKGenero", OtherKey="IdGenero", IsForeignKey=true)]
 		public Genero Genero
 		{
 			get
@@ -2536,53 +2226,19 @@ namespace Biblioteca_WebForms.DAL
 					if ((previousValue != null))
 					{
 						this._Genero.Entity = null;
-						previousValue.ObraGeneros.Remove(this);
+						previousValue.Obras.Remove(this);
 					}
 					this._Genero.Entity = value;
 					if ((value != null))
 					{
-						value.ObraGeneros.Add(this);
+						value.Obras.Add(this);
 						this._FKGenero = value.IdGenero;
 					}
 					else
 					{
-						this._FKGenero = default(int);
+						this._FKGenero = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Genero");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Obra_ObraGenero", Storage="_Obra", ThisKey="FKObra", OtherKey="IdObra", IsForeignKey=true)]
-		public Obra Obra
-		{
-			get
-			{
-				return this._Obra.Entity;
-			}
-			set
-			{
-				Obra previousValue = this._Obra.Entity;
-				if (((previousValue != value) 
-							|| (this._Obra.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Obra.Entity = null;
-						previousValue.ObraGeneros.Remove(this);
-					}
-					this._Obra.Entity = value;
-					if ((value != null))
-					{
-						value.ObraGeneros.Add(this);
-						this._FKObra = value.IdObra;
-					}
-					else
-					{
-						this._FKObra = default(int);
-					}
-					this.SendPropertyChanged("Obra");
 				}
 			}
 		}
@@ -2605,6 +2261,18 @@ namespace Biblioteca_WebForms.DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Ejemplars(Ejemplar entity)
+		{
+			this.SendPropertyChanging();
+			entity.Obra = this;
+		}
+		
+		private void detach_Ejemplars(Ejemplar entity)
+		{
+			this.SendPropertyChanging();
+			entity.Obra = null;
 		}
 	}
 	
