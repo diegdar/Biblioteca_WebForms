@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Biblioteca_WebForms.DAL
 {
-    public class DALObra
+    public class DALAutor
     {
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public Obra GetById(int idObra)
+        public Autor GetById(int idAutor)
         {
             try
             {
-                return (from c in dataDB.Obras
-                        where c.IdObra == idObra
+                return (from c in dataDB.Autors
+                        where c.IdAutor == idAutor
                         select c).FirstOrDefault();
             }
             catch (Exception ex)
@@ -24,11 +25,11 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public List<Obra> GetList()
+        public List<Autor> GetList()
         {
             try
             {
-                return (from c in dataDB.Obras
+                return (from c in dataDB.Autors
                         select c).ToList();
             }
             catch (Exception ex)
@@ -38,11 +39,11 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Insert(Obra obra)
+        public void Insert(Autor autor)
         {
             try
             {
-                dataDB.Obras.InsertOnSubmit(obra);
+                dataDB.Autors.InsertOnSubmit(autor);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -51,18 +52,19 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Update(Obra unaObra)
+        public void Update(Autor unAutor)
         {
             try
             {
-                var obra = (from c in dataDB.Obras
-                            where c.IdObra == unaObra.IdObra
-                            select c).FirstOrDefault();
+                var autor = (from c in dataDB.Autors
+                              where c.IdAutor == unAutor.IdAutor
+                              select c).FirstOrDefault();
 
-                if (obra != null)
+                if (autor != null)
                 {
-                    obra.Titulo = obra.Titulo;
-                    obra.Sinopsis = obra.Sinopsis;
+                    autor.Apellido1 = unAutor.Apellido1;
+                    autor.Apellido2 = unAutor.Apellido2;
+                    autor.Nombre = unAutor.Nombre;
                     dataDB.SubmitChanges();
                 }
             }
@@ -71,24 +73,31 @@ namespace Biblioteca_WebForms.DAL
                 Mensaje = ex.Message;
             }
         }
-        public void Delete(int idObra)
+        public bool Delete(int idAutor)
         {
             try
             {
-               var obra= (from c in dataDB.Obras
-                          where c.IdObra == idObra
-                          select c).FirstOrDefault();
+                var autor = (from c in dataDB.Autors
+                              where c.IdAutor == idAutor
+                              select c).FirstOrDefault();
 
-               if (obra != null)
-               {
-                   dataDB.Obras.DeleteOnSubmit(obra);
-                   dataDB.SubmitChanges();
-               }
+                if (autor != null)
+                {
+                    dataDB.Autors.DeleteOnSubmit(autor);
+                    dataDB.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
     }
+}
 }
