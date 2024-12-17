@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 namespace Biblioteca_WebForms.DAL
 {
-    public class DALSocio
+    public class DALUbicacion
     {
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public bool Insert(Socio socio)
+        public bool Insert(Ubicacion ubicacion)
         {
             // Devuelve true si se ha insertado el objeto y false si no se
             // ha conseguido
 
             try
             {
-                dataDB.Socios.InsertOnSubmit(socio);
+                dataDB.Ubicacions.InsertOnSubmit(ubicacion);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -29,18 +28,19 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Delete(int idSocio)
+
+        public bool Delete(int idUbicacion)
         {
             // Devuelve true si se ha borrado el objeto o false si no lo ha
             // conseguido
 
             try
             {
-                var socio = (from so in dataDB.Socios
-                             where so.IdSocio == idSocio
-                             select so).FirstOrDefault();
+                var ubicacion = (from ub in dataDB.Ubicacions
+                                 where ub.IdUbicacion == idUbicacion
+                                 select ub).FirstOrDefault();
 
-                dataDB.Socios.DeleteOnSubmit(socio);
+                dataDB.Ubicacions.DeleteOnSubmit(ubicacion);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -51,22 +51,20 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Update(Socio newSocio)
+        public bool Update(Ubicacion newUbicacion)
         {
             // Devuelve true si se ha modificado el objeto o false si no se
             // ha conseguido
 
             try
             {
-                var socio = (from so in dataDB.Socios
-                             where so.IdSocio == newSocio.IdSocio
-                             select so).FirstOrDefault();
+                var ubicacion = (from ub in dataDB.Ubicacions
+                                 where ub.IdUbicacion == newUbicacion.IdUbicacion
+                                 select ub).FirstOrDefault();
 
-                socio.Apellido = newSocio.Apellido;
-                socio.Nombre = newSocio.Nombre;
-                socio.Email = newSocio.Email;
-                socio.Domicilio = newSocio.Domicilio;
-                socio.Telefono = newSocio.Telefono;
+                ubicacion.Estanteria = newUbicacion.Estanteria;
+                ubicacion.Fila = newUbicacion.Fila;
+                ubicacion.Columna = newUbicacion.Columna;
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -77,21 +75,21 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public List<Socio> GetList()
+        public List<Ubicacion> GetList()
         {
             // Devuelve null si se ha producido un error o la lista de
             // de objetos si no se ha producido
 
-            List<Socio> listaSocio = new List<Socio>();
+            List<Ubicacion> listaUbicacion = new List<Ubicacion>();
 
             try
             {
-                var lstSocio = from socio in dataDB.Socios
-                               select socio;
+                var lstUbicacion = from ubicacion in dataDB.Ubicacions
+                                   select ubicacion;
 
-                foreach (var socio in lstSocio)
+                foreach (var ubicacion in lstUbicacion)
                 {
-                    listaSocio.Add(socio);
+                    listaUbicacion.Add(ubicacion);
                 }
             }
             catch (Exception ex)
@@ -100,27 +98,25 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return listaSocio;
+            return listaUbicacion;
         }
-        public Socio GetById(int idSocio)
+        public Ubicacion GetById(int idUbicacion)
         {
             // Devuelve null si se ha producido un error o el objeto
             // buscado si no se ha producido
 
-            Socio socio = new Socio();
+            Ubicacion ubicacion = new Ubicacion();
 
             try
             {
-                var socioById = (from so in dataDB.Socios
-                                 where so.IdSocio == idSocio
-                                 select so).FirstOrDefault();
+                var ubicacionById = (from ub in dataDB.Ubicacions
+                                     where ub.IdUbicacion == idUbicacion
+                                     select ub).FirstOrDefault();
 
-                socio.IdSocio = socioById.IdSocio;
-                socio.Apellido = socioById.Apellido;
-                socio.Nombre = socioById.Nombre;
-                socio.Email = socioById.Email;
-                socio.Domicilio = socioById.Domicilio;
-                socio.Telefono = socioById.Telefono;
+                ubicacion.IdUbicacion = ubicacionById.IdUbicacion;
+                ubicacion.Estanteria = ubicacionById.Estanteria;
+                ubicacion.Fila = ubicacionById.Fila;
+                ubicacion.Columna = ubicacionById.Columna;
             }
             catch (Exception ex)
             {
@@ -128,7 +124,7 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return socio;
+            return ubicacion;
         }
     }
 }

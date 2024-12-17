@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 namespace Biblioteca_WebForms.DAL
 {
-    public class DALSocio
+    public class DALIdioma
     {
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public bool Insert(Socio socio)
+        public bool Insert(Idioma idioma)
         {
             // Devuelve true si se ha insertado el objeto y false si no se
             // ha conseguido
 
             try
             {
-                dataDB.Socios.InsertOnSubmit(socio);
+                dataDB.Idiomas.InsertOnSubmit(idioma);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -29,18 +28,19 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Delete(int idSocio)
+
+        public bool Delete(int idIdioma)
         {
             // Devuelve true si se ha borrado el objeto o false si no lo ha
             // conseguido
 
             try
             {
-                var socio = (from so in dataDB.Socios
-                             where so.IdSocio == idSocio
-                             select so).FirstOrDefault();
+                var idioma = (from id in dataDB.Idiomas
+                              where id.IdIdioma == idIdioma
+                              select id).FirstOrDefault();
 
-                dataDB.Socios.DeleteOnSubmit(socio);
+                dataDB.Idiomas.DeleteOnSubmit(idioma);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -51,22 +51,18 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Update(Socio newSocio)
+        public bool Update(Idioma newIdioma)
         {
             // Devuelve true si se ha modificado el objeto o false si no se
             // ha conseguido
 
             try
             {
-                var socio = (from so in dataDB.Socios
-                             where so.IdSocio == newSocio.IdSocio
-                             select so).FirstOrDefault();
+                var idioma = (from id in dataDB.Idiomas
+                              where id.IdIdioma == newIdioma.IdIdioma
+                              select id).FirstOrDefault();
 
-                socio.Apellido = newSocio.Apellido;
-                socio.Nombre = newSocio.Nombre;
-                socio.Email = newSocio.Email;
-                socio.Domicilio = newSocio.Domicilio;
-                socio.Telefono = newSocio.Telefono;
+                idioma.Descripcion = newIdioma.Descripcion;
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -77,21 +73,21 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public List<Socio> GetList()
+        public List<Idioma> GetList()
         {
             // Devuelve null si se ha producido un error o la lista de
             // de objetos si no se ha producido
 
-            List<Socio> listaSocio = new List<Socio>();
+            List<Idioma> listaIdioma = new List<Idioma>();
 
             try
             {
-                var lstSocio = from socio in dataDB.Socios
-                               select socio;
+                var lstIdioma = from idioma in dataDB.Idiomas
+                                   select idioma;
 
-                foreach (var socio in lstSocio)
+                foreach (var idioma in lstIdioma)
                 {
-                    listaSocio.Add(socio);
+                    listaIdioma.Add(idioma);
                 }
             }
             catch (Exception ex)
@@ -100,27 +96,23 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return listaSocio;
+            return listaIdioma;
         }
-        public Socio GetById(int idSocio)
+        public Idioma GetById(int idIdioma)
         {
             // Devuelve null si se ha producido un error o el objeto
             // buscado si no se ha producido
 
-            Socio socio = new Socio();
+            Idioma idioma = new Idioma();
 
             try
             {
-                var socioById = (from so in dataDB.Socios
-                                 where so.IdSocio == idSocio
-                                 select so).FirstOrDefault();
+                var idiomaById = (from id in dataDB.Idiomas
+                                     where id.IdIdioma == idIdioma
+                                     select id).FirstOrDefault();
 
-                socio.IdSocio = socioById.IdSocio;
-                socio.Apellido = socioById.Apellido;
-                socio.Nombre = socioById.Nombre;
-                socio.Email = socioById.Email;
-                socio.Domicilio = socioById.Domicilio;
-                socio.Telefono = socioById.Telefono;
+                idioma.IdIdioma = idiomaById.IdIdioma;
+                idioma.Descripcion = idiomaById.Descripcion;
             }
             catch (Exception ex)
             {
@@ -128,7 +120,7 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return socio;
+            return idioma;
         }
     }
 }

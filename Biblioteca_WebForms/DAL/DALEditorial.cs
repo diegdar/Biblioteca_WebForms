@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
 namespace Biblioteca_WebForms.DAL
 {
-    public class DALSocio
+    public class DALEditorial
     {
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public bool Insert(Socio socio)
+        public bool Insert(Editorial editorial)
         {
             // Devuelve true si se ha insertado el objeto y false si no se
             // ha conseguido
 
             try
             {
-                dataDB.Socios.InsertOnSubmit(socio);
+                dataDB.Editorials.InsertOnSubmit(editorial);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -29,18 +28,19 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Delete(int idSocio)
+
+        public bool Delete(int idEditorial)
         {
             // Devuelve true si se ha borrado el objeto o false si no lo ha
             // conseguido
 
             try
             {
-                var socio = (from so in dataDB.Socios
-                             where so.IdSocio == idSocio
-                             select so).FirstOrDefault();
+                var editorial = (from ed in dataDB.Editorials
+                                 where ed.IdEditorial == idEditorial
+                                 select ed).FirstOrDefault();
 
-                dataDB.Socios.DeleteOnSubmit(socio);
+                dataDB.Editorials.DeleteOnSubmit(editorial);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -51,22 +51,18 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Update(Socio newSocio)
+        public bool Update(Editorial newEditorial)
         {
             // Devuelve true si se ha modificado el objeto o false si no se
             // ha conseguido
 
             try
             {
-                var socio = (from so in dataDB.Socios
-                             where so.IdSocio == newSocio.IdSocio
-                             select so).FirstOrDefault();
+                var editorial = (from ed in dataDB.Editorials
+                                 where ed.IdEditorial == newEditorial.IdEditorial
+                                 select ed).FirstOrDefault();
 
-                socio.Apellido = newSocio.Apellido;
-                socio.Nombre = newSocio.Nombre;
-                socio.Email = newSocio.Email;
-                socio.Domicilio = newSocio.Domicilio;
-                socio.Telefono = newSocio.Telefono;
+                editorial.Descripcion = newEditorial.Descripcion;
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -77,21 +73,21 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public List<Socio> GetList()
+        public List<Editorial> GetList()
         {
             // Devuelve null si se ha producido un error o la lista de
             // de objetos si no se ha producido
 
-            List<Socio> listaSocio = new List<Socio>();
+            List<Editorial> listaEditorial = new List<Editorial>();
 
             try
             {
-                var lstSocio = from socio in dataDB.Socios
-                               select socio;
+                var lstEditorial = from editorial in dataDB.Editorials
+                                   select editorial;
 
-                foreach (var socio in lstSocio)
+                foreach (var editorial in lstEditorial)
                 {
-                    listaSocio.Add(socio);
+                    listaEditorial.Add(editorial);
                 }
             }
             catch (Exception ex)
@@ -100,27 +96,23 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return listaSocio;
+            return listaEditorial;
         }
-        public Socio GetById(int idSocio)
+        public Editorial GetById(int idEditorial)
         {
             // Devuelve null si se ha producido un error o el objeto
             // buscado si no se ha producido
 
-            Socio socio = new Socio();
+            Editorial editorial = new Editorial();
 
             try
             {
-                var socioById = (from so in dataDB.Socios
-                                 where so.IdSocio == idSocio
-                                 select so).FirstOrDefault();
+                var editorialById = (from ed in dataDB.Editorials
+                                     where ed.IdEditorial == idEditorial
+                                     select ed).FirstOrDefault();
 
-                socio.IdSocio = socioById.IdSocio;
-                socio.Apellido = socioById.Apellido;
-                socio.Nombre = socioById.Nombre;
-                socio.Email = socioById.Email;
-                socio.Domicilio = socioById.Domicilio;
-                socio.Telefono = socioById.Telefono;
+                editorial.IdEditorial = editorialById.IdEditorial;
+                editorial.Descripcion = editorialById.Descripcion;
             }
             catch (Exception ex)
             {
@@ -128,7 +120,7 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return socio;
+            return editorial;
         }
     }
 }
