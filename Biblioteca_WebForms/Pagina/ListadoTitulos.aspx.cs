@@ -31,6 +31,7 @@ namespace Biblioteca.Pagina
         }
         private void BindGrid()
         {
+            //var listEjemps = GetEjempListForView();
             GridView1.DataSource = dALEjemplar.GetList();
             GridView1.DataBind();
         }
@@ -86,6 +87,8 @@ namespace Biblioteca.Pagina
                 }
             }
         }
+
+
         protected void lnkBorrar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Borrar")
