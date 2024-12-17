@@ -16,7 +16,7 @@
             <li><a href="#devolver-libro">Devolver Libro</a></li>
             <li><a href="#gestion-libro">Gestionar Libros</a>
                 <ul class="submenu">
-                    <li><a href="ObraExplorar.aspx">Explorar Libros</a></li>
+                    <li><a href="ObraExplorar.aspx">Ver Libros</a></li>
                     <li><a href="#estadistica-libros">Estadisticas</a></li>
                     <li><a href="#ubicar-libros">Ubicar Libros</a></li>
                 </ul>

@@ -10,6 +10,7 @@
             <br />
             <br />
             <div class="botones-form mb-4 mt-2">
+                <asp:Label ID="txtmensaje" runat="server" Text=""></asp:Label>
                 <!-- Botón Crear -->
                 <asp:Button type="submit" ID="BtnCrear" runat="server" class="btn btn-primary" Text="Crear" OnClick="BtnCrear_Click" />
             </div>
@@ -19,8 +20,8 @@
                 AllowPaging="True" PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="Id" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                    <asp:BoundField DataField="_IdEjemplar" HeaderText="Id" />
+                    <asp:BoundField DataField="_EstaAlquilado" HeaderText="Esta Alquilado" />
                     <asp:TemplateField>
                         <ItemTemplate>
                             <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("Id") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>

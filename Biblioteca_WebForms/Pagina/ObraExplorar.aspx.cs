@@ -1,4 +1,5 @@
 ﻿using Biblioteca_WebForms;
+using Biblioteca_WebForms.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,15 @@ namespace Biblioteca.Pagina
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        private CommonMethods comMethods;
+        private DALEjemplar dALEjemplar;
+
+        public WebForm1()
+        {
+            comMethods = new CommonMethods();
+            dALEjemplar = new DALEjemplar();
+        }
+
         private static List<Item> items = new List<Item>
         {
             new Item { Id = 1, Nombre = "Item 1" },
@@ -28,7 +38,8 @@ namespace Biblioteca.Pagina
         }
         private void BindGrid()
         {
-            GridView1.DataSource = items;
+            var listEjemplares = dALEjemplar.GetList();
+            GridView1.DataSource = listEjemplares;
             GridView1.DataBind();
         }
 
@@ -51,19 +62,34 @@ namespace Biblioteca.Pagina
         // Evento para manejar acciones de editar/borrar
         protected void GridView1_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
-            //int id = Convert.ToInt32(e.CommandArgument);
+            int id = Convert.ToInt32(e.CommandArgument);
 
-            //if (e.CommandName == "Editar")
-            //{
-            //    // Lógica para editar
-            //    Response.Write($"Editar: {id}");
-            //}
-            //else if (e.CommandName == "Borrar")
-            //{
-            //    // Lógica para borrar
-            //    items.RemoveAll(i => i.Id == id);
-            //    BindGrid();
-            //}
+            if (e.CommandName == "Editar")
+            {
+                // Lógica para editar
+                Response.Write($"Editar: {id}");
+            }
+            else if (e.CommandName == "Borrar")
+            {
+                // Lógica para borrar
+                //items.RemoveAll(i => i.Id == id);
+                DeleteEjemplar(id);
+
+                BindGrid();
+            }
+        }
+
+        private void DeleteEjemplar(int ejemplarId)
+        {
+            if (comMethods.IsEjemplarRented(ejemplarId))
+            {
+                dALEjemplar.Delete(ejemplarId);
+            }
+            else
+            {
+                txtmensaje.Text = $"No se puede eliminar el libro {ejemplarId}" +
+                    $" pues esta actualmente alquilado!";
+            }
         }
 
         protected void lnkEditar_Command(object sender, CommandEventArgs e)

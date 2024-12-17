@@ -16,10 +16,10 @@ namespace Biblioteca_WebForms
             dataDB = new DataLinQ_BibliotecaDataContext();
         }
 
-        public bool IsEjemplarRented(Ejemplar ejemplar)
+        public bool IsEjemplarRented(int ejemplarId)
         {
             return dataDB.AlquilerEjemplars.Where
-                        (ae => ae.FKEjemplar == ejemplar.IdEjemplar).Any();
+                        (ae => ae.FKEjemplar == ejemplarId).Any();
         }
 
     }
