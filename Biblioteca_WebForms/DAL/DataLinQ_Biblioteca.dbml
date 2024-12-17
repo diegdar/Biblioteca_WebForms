@@ -36,16 +36,7 @@
       <Column Name="Apellido1" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
       <Column Name="Apellido2" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
-      <Association Name="Autor_AutorObra" Member="AutorObras" ThisKey="IdAutor" OtherKey="FKAutor" Type="AutorObra" />
-    </Type>
-  </Table>
-  <Table Name="dbo.AutorObra" Member="AutorObras">
-    <Type Name="AutorObra">
-      <Column Name="IdAutorObra" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FKObra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FKAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Autor_AutorObra" Member="Autor" ThisKey="FKAutor" OtherKey="IdAutor" Type="Autor" IsForeignKey="true" />
-      <Association Name="Obra_AutorObra" Member="Obra" ThisKey="FKObra" OtherKey="IdObra" Type="Obra" IsForeignKey="true" />
+      <Association Name="Autor_Obra" Member="Obras" ThisKey="IdAutor" OtherKey="FKAutor" Type="Obra" />
     </Type>
   </Table>
   <Table Name="dbo.Bibliotecario" Member="Bibliotecarios">
@@ -89,7 +80,7 @@
     <Type Name="Genero">
       <Column Name="IdGenero" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
-      <Association Name="Genero_ObraGenero" Member="ObraGeneros" ThisKey="IdGenero" OtherKey="FKGenero" Type="ObraGenero" />
+      <Association Name="Genero_Obra" Member="Obras" ThisKey="IdGenero" OtherKey="FKGenero" Type="Obra" />
     </Type>
   </Table>
   <Table Name="dbo.Idioma" Member="Idiomas">
@@ -104,18 +95,11 @@
       <Column Name="IdObra" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Titulo" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
       <Column Name="Sinopsis" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="Obra_AutorObra" Member="AutorObras" ThisKey="IdObra" OtherKey="FKObra" Type="AutorObra" />
+      <Column Name="FKAutor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FKGenero" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Obra_Ejemplar" Member="Ejemplars" ThisKey="IdObra" OtherKey="FKObra" Type="Ejemplar" />
-      <Association Name="Obra_ObraGenero" Member="ObraGeneros" ThisKey="IdObra" OtherKey="FKObra" Type="ObraGenero" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ObraGenero" Member="ObraGeneros">
-    <Type Name="ObraGenero">
-      <Column Name="IdObraGenero" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FKObra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FKGenero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Genero_ObraGenero" Member="Genero" ThisKey="FKGenero" OtherKey="IdGenero" Type="Genero" IsForeignKey="true" />
-      <Association Name="Obra_ObraGenero" Member="Obra" ThisKey="FKObra" OtherKey="IdObra" Type="Obra" IsForeignKey="true" />
+      <Association Name="Autor_Obra" Member="Autor" ThisKey="FKAutor" OtherKey="IdAutor" Type="Autor" IsForeignKey="true" />
+      <Association Name="Genero_Obra" Member="Genero" ThisKey="FKGenero" OtherKey="IdGenero" Type="Genero" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Socio" Member="Socios">
