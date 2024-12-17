@@ -219,12 +219,10 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\DALAlquiler.cs" />
-    <Compile Include="DAL\DALAlquilerEjemplar.cs" />
     <Compile Include="DAL\DALAutor.cs" />
-    <Compile Include="DAL\DALBibliotecario.cs" />
+    <Compile Include="DAL\DALEjemplar.cs" />
     <Compile Include="DAL\DALGenero.cs" />
     <Compile Include="DAL\DALObra.cs" />
-    <Compile Include="DAL\DALSocio.cs" />
     <Compile Include="DAL\DataLinQ_Biblioteca.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -241,6 +239,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\CommonMethods.cs" />
     <Compile Include="Mp.Master.cs">
       <DependentUpon>Mp.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
