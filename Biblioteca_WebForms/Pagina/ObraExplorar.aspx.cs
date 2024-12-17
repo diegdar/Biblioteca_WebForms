@@ -1,4 +1,5 @@
 ﻿using Biblioteca_WebForms;
+using Biblioteca_WebForms.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,8 @@ namespace Biblioteca.Pagina
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        private static List<Item> items = new List<Item>
-        {
-            new Item { Id = 1, Nombre = "Item 1" },
-            new Item { Id = 2, Nombre = "Item 2" },
-            new Item { Id = 3, Nombre = "Item 3" }
-        };
+        private static List<Obra> items = new List<Obra>();
+        DALObra obra = new DALObra();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,9 +23,11 @@ namespace Biblioteca.Pagina
                 BindGrid();
             }
         }
+
+
         private void BindGrid()
         {
-            GridView1.DataSource = items;
+            GridView1.DataSource = obra.GetList();
             GridView1.DataBind();
         }
 
@@ -96,7 +95,7 @@ namespace Biblioteca.Pagina
         }
         protected void regresar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("index.aspx");
         }
     }
 

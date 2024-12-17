@@ -16,19 +16,19 @@
 
             <!-- GridView con enlaces para Editar y Borrar -->
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
-                AllowPaging="True" PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
+                AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None" Width="500px">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="Id" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                    <asp:BoundField DataField="IdObra" HeaderText="Id" />
+                    <asp:BoundField DataField="Titulo" HeaderText="Titulo" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("Id") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
+                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdObra") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("Id") + ",D" %>' OnCommand="lnkBorrar_Command"></asp:LinkButton>
+                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdObra") + ",D" %>' OnCommand="lnkBorrar_Command"></asp:LinkButton>
                             <%--OnClientClick="return confirm('¿Estás seguro de que deseas borrar este elemento?');"></asp:LinkButton>--%>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -43,7 +43,7 @@
                 <SortedDescendingCellStyle BackColor="#FCF6C0" />
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
-            <div class="botones-form mb-4 mt-2">
+            <div class="botones-form mb-4 mt-4">
                 <asp:Button type="submit" ID="regresar" runat="server" class="btn btn-secondary" Text="Regresar" OnClick="regresar_Click" />
             </div>
         </div>
