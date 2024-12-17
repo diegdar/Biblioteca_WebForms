@@ -13,9 +13,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Obras
-                        where c.IdObra == idObra
-                        select c).FirstOrDefault();
+                return dataDB.Obras.Where(ob=>ob.IdObra == idObra).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -28,8 +26,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Obras
-                        select c).ToList();
+                return from c in dataDB.Obras.ToList();
             }
             catch (Exception ex)
             {
@@ -38,57 +35,121 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Insert(Obra obra)
+        public bool Insert(Obra obra, List<int> listaIdGenero, List<int> ListaIdAutor)
         {
             try
             {
                 dataDB.Obras.InsertOnSubmit(obra);
                 dataDB.SubmitChanges();
-            }
-            catch (Exception ex)
-            {
-                Mensaje = ex.Message;
-            }
-        }
 
-        public void Update(Obra unaObra)
-        {
-            try
-            {
-                var obra = (from c in dataDB.Obras
-                            where c.IdObra == unaObra.IdObra
-                            select c).FirstOrDefault();
-
-                if (obra != null)
+                foreach (var generoId in listaIdGenero)
                 {
-                    obra.Titulo = obra.Titulo;
-                    obra.Sinopsis = obra.Sinopsis;
-                    dataDB.SubmitChanges();
+                    var obraGenero = new ObraGenero
+                    {
+                        FKObra = obra.IdObra,
+                        FKGenero = generoId
+                    };
+                    dataDB.ObraGeneros.InsertOnSubmit(obraGenero);
                 }
+
+                foreach (var autorId in ListaIdAutor)
+                {
+                    var obraAutor = new AutorObra
+                    {
+                        FKObra = obra.IdObra,
+                        FKAutor = autorId
+                    };
+                    dataDB.AutorObras.InsertOnSubmit(obraAutor);
+                }
+
+                dataDB.SubmitChanges(); // Guardar las dos relaciones, Autor y Genero
+
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
-        public void Delete(int idObra)
+
+        public bool Update(Obra obra, List<int> listaIdGenero, List<int> ListaIdAutor)
         {
             try
             {
-               var obra= (from c in dataDB.Obras
-                          where c.IdObra == idObra
-                          select c).FirstOrDefault();
+                var obraExistente = dataDB.Obras.Where(ob => ob.IdObra ==obra.IdObra).FirstOrDefault();
+                obraExistente.Titulo = obra.Titulo;
+                obraExistente.Sinopsis = obra.Sinopsis;
 
-               if (obra != null)
-               {
-                   dataDB.Obras.DeleteOnSubmit(obra);
-                   dataDB.SubmitChanges();
-               }
+                // Primero, eliminar las relaciones existentes
+                // Actualizar las relaciones con los géneros nuevos
+
+                var generosExistentes = dataDB.ObraGeneros.Where(ob => ob.FKObra == obra.IdObra).ToList();
+                dataDB.ObraGeneros.DeleteAllOnSubmit(generosExistentes);
+
+                foreach (var generoId in listaIdGenero)
+                {
+                    var obraGenero = new ObraGenero
+                    {
+                        FKObra = obra.IdObra,
+                        FKGenero = generoId
+                    };
+                    dataDB.ObraGeneros.InsertOnSubmit(obraGenero);
+                }
+
+                // Primero, eliminar las relaciones existentes
+                // Actualizar las relaciones con los autores nuevos
+
+                var autoresExistentes = dataDB.AutorObras.Where(oa => oa.FKObra == obra.IdObra).ToList();
+                dataDB.AutorObras.DeleteAllOnSubmit(autoresExistentes);
+
+                foreach (var autorId in ListaIdAutor)
+                {
+                    var obraAutor = new AutorObra
+                    {
+                        FKObra = obra.IdObra,
+                        FKAutor = autorId
+                    };
+                    dataDB.AutorObras.InsertOnSubmit(obraAutor);
+                }
+
+                dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
+            }
+        }
+
+        public bool Delete(int idObra)
+        {
+            try
+            {
+                var obra = dataDB.Obras.Where(ob=>ob.IdObra == idObra).FirstOrDefault();
+
+                // Eliminar las relaciones con los generos
+                var generosExistentes = dataDB.ObraGeneros.Where(ob => ob.FKObra == idObra).ToList();
+                dataDB.ObraGeneros.DeleteAllOnSubmit(generosExistentes);
+
+                // Eliminar las relaciones con los autores
+                var autoresExistentes = dataDB.AutorObras.Where(oa => oa.FKObra == idObra).ToList();
+                dataDB.AutorObras.DeleteAllOnSubmit(autoresExistentes);
+
+                // Eliminar la obra
+                dataDB.Obras.DeleteOnSubmit(obra);
+
+                // Guarda los cambios
+                dataDB.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
             }
         }
     }
 }
+    

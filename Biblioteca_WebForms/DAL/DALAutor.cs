@@ -14,9 +14,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Autors
-                        where c.IdAutor == idAutor
-                        select c).FirstOrDefault();
+                return dataDB.Autors.Where(au=>au.IdAutor==idAutor).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -29,8 +27,7 @@ namespace Biblioteca_WebForms.DAL
         {
             try
             {
-                return (from c in dataDB.Autors
-                        select c).ToList();
+                return dataDB.Autors.ToList();
             }
             catch (Exception ex)
             {
@@ -39,58 +36,48 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public void Insert(Autor autor)
+        public bool Insert(Autor autor)
         {
             try
             {
                 dataDB.Autors.InsertOnSubmit(autor);
                 dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
 
-        public void Update(Autor unAutor)
+        public bool Update(Autor autor)
         {
             try
             {
-                var autor = (from c in dataDB.Autors
-                              where c.IdAutor == unAutor.IdAutor
-                              select c).FirstOrDefault();
+                var autorExistente = dataDB.Autors.Where(au=>au.IdAutor == autor.IdAutor).FirstOrDefault();
 
-                if (autor != null)
-                {
-                    autor.Apellido1 = unAutor.Apellido1;
-                    autor.Apellido2 = unAutor.Apellido2;
-                    autor.Nombre = unAutor.Nombre;
-                    dataDB.SubmitChanges();
-                }
+                autorExistente.Apellido1 = autor.Apellido1;
+                autorExistente.Apellido2 = autor.Apellido2;
+                autorExistente.Nombre = autor.Nombre;
+                dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
+                return false;
             }
         }
         public bool Delete(int idAutor)
         {
             try
             {
-                var autor = (from c in dataDB.Autors
-                              where c.IdAutor == idAutor
-                              select c).FirstOrDefault();
-
-                if (autor != null)
-                {
-                    dataDB.Autors.DeleteOnSubmit(autor);
-                    dataDB.SubmitChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                var autor = dataDB.Autors.Where(au=>au.IdAutor == idAutor).FirstOrDefault();
+                               
+                dataDB.Autors.DeleteOnSubmit(autor);
+                dataDB.SubmitChanges();
+                return true;
             }
             catch (Exception ex)
             {
@@ -99,5 +86,4 @@ namespace Biblioteca_WebForms.DAL
             }
         }
     }
-}
 }
