@@ -60,7 +60,7 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 var alquiler = (from al in dataDB.Alquilers
-                                where al.IdAquiler == newAlquiler.IdAlquiler
+                                where al.IdAlquiler == newAlquiler.IdAlquiler
                                 select al).FirstOrDefault();
 
                 alquiler.FechaAlquiler = newAlquiler.FechaAlquiler;
@@ -140,7 +140,7 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 var alquilerById = (from al in dataDB.Alquilers
-                                    where al.IdAquiler == IdAlquiler
+                                    where al.IdAlquiler == idAlquiler
                                     select al).FirstOrDefault();
 
                 alquiler.IdAlquiler = alquilerById.IdAlquiler;
