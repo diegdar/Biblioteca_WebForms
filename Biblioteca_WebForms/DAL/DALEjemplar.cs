@@ -92,7 +92,19 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-
+        public Ejemplar GetById(int idEjemplar)
+        {
+            try
+            {
+                return dataDB.Ejemplars.Where
+                    (ej => ej.IdEjemplar == idEjemplar).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return null;
+            }
+        }
 
 
 
