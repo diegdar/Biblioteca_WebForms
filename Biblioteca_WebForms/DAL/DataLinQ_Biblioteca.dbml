@@ -113,4 +113,17 @@
       <Association Name="Socio_Alquiler" Member="Alquilers" ThisKey="IdSocio" OtherKey="FKSocio" Type="Alquiler" />
     </Type>
   </Table>
+  <Table Name="dbo.v_Obras" Member="v_Obras">
+    <Type Name="v_Obras">
+      <Column Name="IdObra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="Sinopsis" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdAutor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido1" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido2" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="IdGenero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

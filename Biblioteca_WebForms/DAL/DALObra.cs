@@ -22,11 +22,11 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
-        public List<Obra> GetList()
+        public List<v_Obras> GetList()
         {
             try
             {
-                return dataDB.Obras.ToList();
+                return dataDB.v_Obras.ToList();
             }
             catch (Exception ex)
             {
@@ -84,6 +84,11 @@ namespace Biblioteca_WebForms.DAL
                 Mensaje = ex.Message;
                 return false;
             }
+        }
+
+        public List<v_Obras> ObrasFiltrar(string text)
+        {
+            return dataDB.v_Obras.Where(ob => ob.Titulo.StartsWith(text)).ToList();
         }
     }
 }

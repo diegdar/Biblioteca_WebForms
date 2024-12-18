@@ -25,7 +25,7 @@ namespace Biblioteca
             {
                 Ms masterPage = (Ms)this.Master; 
                 masterPage.Titulo = "Título Específico del Formulario";
-
+                lbMensaje.Text = "";
                 if (Request.QueryString["id"] != null)
                 {
                     sId = Request.QueryString["id"].ToString();
@@ -88,7 +88,7 @@ namespace Biblioteca
 
         protected void retornar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ObraExplorar.aspx");
+            Response.Redirect("ListadoObras.aspx");
         }
 
         protected void actualizar_Click(object sender, EventArgs e)
@@ -102,11 +102,11 @@ namespace Biblioteca
             obra.IdObra =int.Parse(sId);
             if(dobra.Update(obra))
             {
-                Response.Redirect("ObraExplorar.aspx");
+                Response.Redirect("ListadoObras.aspx");
             }
             else
             {
-
+                lbMensaje.Text = "No se pudo realizar la grabacion del registro";
             };
         }
 
@@ -121,11 +121,11 @@ namespace Biblioteca
             obra.IdObra = int.Parse(sId);
             if (dobra.Insert(obra))
             {
-                Response.Redirect("ObraExplorar.aspx");
+                Response.Redirect("ListadoObras.aspx");
             }
             else
             {
-
+                lbMensaje.Text = "No se pudo realizar la grabacion del registro";
             };
         }
 

@@ -11,7 +11,7 @@ namespace Biblioteca.Pagina
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        private static List<Obra> items = new List<Obra>();
+        //private static List<v_Obras> items = new List<v_Obras>();
         DALObra obra = new DALObra();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,16 +19,15 @@ namespace Biblioteca.Pagina
             if (!IsPostBack)
             {
                 Ms masterPage = (Ms)this.Master;
-                masterPage.Titulo = "Explorar todas las Obras Literarias";
+                masterPage.Titulo = "Listar las Obras Literarias";
                 BindGrid();
             }
         }
 
-
         private void BindGrid()
         {
-            GridView1.DataSource = obra.GetList();
-            GridView1.DataBind();
+            dvObras.DataSource = obra.GetList();
+            dvObras.DataBind();
         }
 
         // Evento del botón "Crear"
@@ -43,7 +42,7 @@ namespace Biblioteca.Pagina
         // Evento para paginación
         protected void GridView1_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
-            GridView1.PageIndex = e.NewPageIndex;
+            dvObras.PageIndex = e.NewPageIndex;
             BindGrid();
         }
 
@@ -80,6 +79,7 @@ namespace Biblioteca.Pagina
                 }
             }
         }
+
         protected void lnkBorrar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Borrar")
@@ -93,16 +93,16 @@ namespace Biblioteca.Pagina
                 }
             }
         }
+        
         protected void regresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
         }
-    }
 
-    // Clase de ejemplo para los datos
-    public class Item
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
+        protected void btBuscar_Click(object sender, EventArgs e)
+        {
+            dvObras.DataSource = obra.ObrasFiltrar(txtBuscar.Text);
+            dvObras.DataBind();
+        }
     }
 }

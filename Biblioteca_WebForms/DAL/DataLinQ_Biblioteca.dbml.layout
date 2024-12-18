@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 15.75" name="DataLinQ_Biblioteca">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.375, 15.75" name="DataLinQ_Biblioteca">
   <DataContextMoniker Name="/DataLinQ_BibliotecaDataContext" />
   <nestedChildShapes>
     <classShape Id="fa1d2dab-c92a-46ff-bca4-777f5835a28d" absoluteBounds="6.25, 12.25, 2, 1.7708968098958344">
@@ -68,49 +68,49 @@
         <elementListCompartment Id="173be5eb-d7e4-4fe1-90ee-0f923cc6a063" absoluteBounds="3.515, 13.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.25 : 13.1354484049479); (10 : 13.1354484049479); (10 : 3.20359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 13.1354484049479); (9.53125 : 13.1354484049479); (9.53125 : 3.20359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Alquiler/Alquiler_AlquilerEjemplar" />
       <nodes>
         <classShapeMoniker Id="fa1d2dab-c92a-46ff-bca4-777f5835a28d" />
         <classShapeMoniker Id="a620710f-8355-4d95-b95f-9fa6e0a8a3da" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 12.5104484049479); (6.25 : 12.5104484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 12.5104484049479); (6.25 : 12.5104484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Bibliotecario/Bibliotecario_Alquiler" />
       <nodes>
         <classShapeMoniker Id="38dd1963-925a-499f-8bb2-2b048474518b" />
         <classShapeMoniker Id="fa1d2dab-c92a-46ff-bca4-777f5835a28d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 2.41429768880208); (9 : 2.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 2.41429768880208); (9 : 2.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Ejemplar/Ejemplar_AlquilerEjemplar" />
       <nodes>
         <classShapeMoniker Id="07953683-46f7-40f1-a347-d9461fa903f3" />
         <classShapeMoniker Id="a620710f-8355-4d95-b95f-9fa6e0a8a3da" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 4.97199625651042); (6.63541416666667 : 4.97199625651042 : JumpStart); (6.80208083333333 : 4.97199625651042 : JumpEnd); (7.25 : 4.97199625651042); (7.25 : 3.92470540364583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.97199625651042); (7.25 : 4.97199625651042); (7.25 : 3.92470540364583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Editorial/Editorial_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="37d72865-9dc3-44a2-a603-0c51870863f5" />
         <classShapeMoniker Id="07953683-46f7-40f1-a347-d9461fa903f3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.03929768880208); (6.7187475 : 9.03929768880208); (6.7187475 : 3.92470540364583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 9.03929768880208); (6.7187475 : 9.03929768880208); (6.7187475 : 3.92470540364583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Ubicacion/Ubicacion_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="8e5bb201-e73e-4944-b230-4ece6f3913a4" />
         <classShapeMoniker Id="07953683-46f7-40f1-a347-d9461fa903f3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.97199625651042); (6.63541416666667 : 6.97199625651042 : JumpStart); (6.80208083333333 : 6.97199625651042 : JumpEnd); (7.7812525 : 6.97199625651042); (7.7812525 : 3.92470540364583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 6.97199625651042); (7.7812525 : 6.97199625651042); (7.7812525 : 3.92470540364583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Idioma/Idioma_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="41ad32ab-8df5-4c8b-8232-1cea68d7aec1" />
         <classShapeMoniker Id="07953683-46f7-40f1-a347-d9461fa903f3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.38544840494792); (6.25 : 2.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.38544840494792); (6.25 : 2.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Obra/Obra_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="7ee30545-0c43-428e-b8dc-e20f1384a2aa" />
@@ -131,12 +131,18 @@
         <classShapeMoniker Id="7ee30545-0c43-428e-b8dc-e20f1384a2aa" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 13.7604484049479); (6.25 : 13.7604484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 13.7604484049479); (6.25 : 13.7604484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Socio/Socio_Alquiler" />
       <nodes>
         <classShapeMoniker Id="8fa83ce1-5063-488f-a0d0-c0b8d81e6bbb" />
         <classShapeMoniker Id="fa1d2dab-c92a-46ff-bca4-777f5835a28d" />
       </nodes>
     </associationConnector>
+    <classShape Id="9df054e5-8d79-48b9-a71c-6befbb032108" absoluteBounds="10.125, 5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DataLinQ_BibliotecaDataContext/v_Obras" />
+      <nestedChildShapes>
+        <elementListCompartment Id="04a27062-f09a-4c40-bc60-c2c60013d4c9" absoluteBounds="10.14, 5.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

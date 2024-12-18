@@ -127,7 +127,7 @@
     <Content Include="Imagen\ImagenBibliotecaII.png" />
     <Content Include="Pagina\index.aspx" />
     <Content Include="Pagina\ObraAbm.aspx" />
-    <Content Include="Pagina\ObraExplorar.aspx" />
+    <Content Include="Pagina\ListadoObras.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -274,12 +274,12 @@
     <Compile Include="Pagina\ObraAbm.aspx.designer.cs">
       <DependentUpon>ObraAbm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\ObraExplorar.aspx.cs">
-      <DependentUpon>ObraExplorar.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoObras.aspx.cs">
+      <DependentUpon>ListadoObras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\ObraExplorar.aspx.designer.cs">
-      <DependentUpon>ObraExplorar.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoObras.aspx.designer.cs">
+      <DependentUpon>ListadoObras.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

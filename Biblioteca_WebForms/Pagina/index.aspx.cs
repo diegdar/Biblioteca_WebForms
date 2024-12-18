@@ -27,7 +27,5 @@ namespace Biblioteca.Pagina
             DALEjemplar.Delete(5);
 
         }
-
-
     }
 }

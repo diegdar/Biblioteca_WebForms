@@ -5,7 +5,12 @@
     <br/>
     <br/>
     <section id="ABM-libro">
-            <div class="campo-form col-md-5 mb-4">
+        <div>
+            <asp:label runat="server" for="mensaje" style="color:red" ID="lbMensaje">mensaje:</asp:label>
+        </div>    
+        <div class="campo-form col-md-5 mb-4">
+                 
+                 <br />
                  <asp:label  runat="server" for="tituloLibro">Título del Libro:</asp:label>
                  <asp:TextBox runat="server" id="txtTitulo"  name="titulo" class="form-control" placeholder="Ingrese el título de la Obra"></asp:TextBox>
              </div>
