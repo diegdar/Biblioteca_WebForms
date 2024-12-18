@@ -126,7 +126,7 @@
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
     <Content Include="Pagina\index.aspx" />
-    <Content Include="Pagina\ObraAbm.aspx" />
+    <Content Include="Pagina\EditTitulo.aspx" />
     <Content Include="Pagina\ListadoTitulos.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -267,12 +267,12 @@
     <Compile Include="Pagina\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\ObraAbm.aspx.cs">
-      <DependentUpon>ObraAbm.aspx</DependentUpon>
+    <Compile Include="Pagina\EditTitulo.aspx.cs">
+      <DependentUpon>EditTitulo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\ObraAbm.aspx.designer.cs">
-      <DependentUpon>ObraAbm.aspx</DependentUpon>
+    <Compile Include="Pagina\EditTitulo.aspx.designer.cs">
+      <DependentUpon>EditTitulo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\ListadoTitulos.aspx.cs">
       <DependentUpon>ListadoTitulos.aspx</DependentUpon>
