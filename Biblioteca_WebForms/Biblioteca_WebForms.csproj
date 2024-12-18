@@ -125,9 +125,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
+    <Content Include="Pagina\EjemplarAbm.aspx" />
     <Content Include="Pagina\index.aspx" />
-    <Content Include="Pagina\EditTitulo.aspx" />
-    <Content Include="Pagina\ListadoTitulos.aspx" />
+    <Content Include="Pagina\ObraAbm.aspx" />
+    <Content Include="Pagina\ListadoEjemplares.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -260,6 +261,13 @@
     <Compile Include="Ms.Master.designer.cs">
       <DependentUpon>Ms.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pagina\EjemplarAbm.aspx.cs">
+      <DependentUpon>EjemplarAbm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EjemplarAbm.aspx.designer.cs">
+      <DependentUpon>EjemplarAbm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pagina\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -267,19 +275,19 @@
     <Compile Include="Pagina\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
+    <Compile Include="Pagina\ObraAbm.aspx.cs">
+      <DependentUpon>ObraAbm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.designer.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
+    <Compile Include="Pagina\ObraAbm.aspx.designer.cs">
+      <DependentUpon>ObraAbm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoEjemplares.aspx.cs">
+      <DependentUpon>ListadoEjemplares.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.designer.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoEjemplares.aspx.designer.cs">
+      <DependentUpon>ListadoEjemplares.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

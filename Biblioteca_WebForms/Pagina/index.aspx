@@ -13,10 +13,11 @@
         <ul>
             <li><a href="#buscar-libro-contenido" onclick="mostrarBuscarLibro()">Buscar Libro</a></li>
             <li><a href="#prestar-libro">Prestar Libro</a></li>
+            <li><a href="ListadoEjemplares.aspx">Gestionar Ejemplares</a></li>
             <li><a href="#devolver-libro">Devolver Libro</a></li>
             <li><a href="#gestion-libro">Gestionar Libros</a>
                 <ul class="submenu">
-                    <li><a href="ListadoTitulos.aspx">Ver Libros</a></li>
+                    <li><a href="ListadoObras.aspx">Gestionar Obras</a></li>
                     <li><a href="#estadistica-libros">Estadisticas</a></li>
                     <li><a href="#ubicar-libros">Ubicar Libros</a></li>
                 </ul>

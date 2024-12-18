@@ -9,12 +9,12 @@ using System.Web.UI.WebControls;
 
 namespace Biblioteca.Pagina
 {
-    public partial class ListadoTitulos : System.Web.UI.Page
+    public partial class ListadoEjemplares : System.Web.UI.Page
     {
         private CommonMethods comMethods;
         private DALEjemplar dALEjemplar;
 
-        public ListadoTitulos()
+        public ListadoEjemplares()
         {
             comMethods = new CommonMethods();
             dALEjemplar = new DALEjemplar();
@@ -25,7 +25,7 @@ namespace Biblioteca.Pagina
             if (!IsPostBack)
             {
                 Ms masterPage = (Ms)this.Master;
-                masterPage.Titulo = "Explorar todas las Obras Literarias";
+                masterPage.Titulo = "Listado Titulos";
                 BindGrid();
             }
         }
@@ -33,6 +33,7 @@ namespace Biblioteca.Pagina
         {
             //var listEjemps = GetEjempListForView();
             GridView1.DataSource = dALEjemplar.GetList();
+            //var listejmp = dALEjemplar.GetList();
             GridView1.DataBind();
         }
 
@@ -41,7 +42,7 @@ namespace Biblioteca.Pagina
         {
             string opcion = "C";
             string id = "-1";
-            Response.Redirect($"EditTitulo.aspx?id={id}&opcion={opcion}");
+            Response.Redirect($"EjemplarAbm.aspx?id={id}&opcion={opcion}");
             BindGrid();
         }
 
@@ -83,7 +84,7 @@ namespace Biblioteca.Pagina
                 {
                     string id = args[0];
                     string opcion = args[1];
-                    Response.Redirect($"EditTitulo.aspx?id={id}&opcion={opcion}");
+                    Response.Redirect($"EjemplarAbm.aspx?id={id}&opcion={opcion}");
                 }
             }
         }

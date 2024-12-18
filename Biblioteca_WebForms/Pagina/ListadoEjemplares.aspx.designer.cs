@@ -11,7 +11,7 @@ namespace Biblioteca.Pagina
 {
 
 
-    public partial class ListadoTitulos
+    public partial class ListadoEjemplares
     {
 
         /// <summary>

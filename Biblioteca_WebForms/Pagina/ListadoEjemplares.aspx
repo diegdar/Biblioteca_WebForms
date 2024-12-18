@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="ListadoTitulos.aspx.cs" Inherits="Biblioteca.Pagina.ListadoTitulos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="ListadoEjemplares.aspx.cs" Inherits="Biblioteca.Pagina.ListadoEjemplares" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -12,7 +12,7 @@
             <br />
             <asp:Label ID="txtmensaje" runat="server" Text="" Style="color: red"></asp:Label>
             <div class="botones-form mb-4 mt-2">
-                <!-- Botón Crear -->
+            <!-- Botón Crear -->
                 <asp:Button type="submit" ID="BtnCrear" runat="server" class="btn btn-primary" Text="Crear" OnClick="BtnCrear_Click" />
             </div>
 
@@ -25,8 +25,7 @@
                     <asp:BoundField DataField="CodigoBarras" HeaderText="Cod. Barras" />
                     <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
                     <asp:BoundField DataField="AnioPublicacion" HeaderText="Año publicacion" />
-                    <%--<asp:BoundField DataField="EstaBuenEstado" HeaderText="Estado titulo" />--%>
-                    <asp:TemplateField HeaderText="Estado titulo">
+                    <asp:TemplateField HeaderText="Estado Ejemplar">
                         <ItemTemplate>
                             <%# Eval("EstaBuenEstado") != null && (bool)Eval("EstaBuenEstado") ? "Bueno" : "Malo" %>
                         </ItemTemplate>
@@ -52,19 +51,21 @@
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdEjemplar") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
+            <%--Botones Editar y Borrar--%>
+                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" 
+                                CommandArgument='<%# Eval("IdEjemplar") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdEjemplar") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdEjemplar") + "?\");" %>' />
+                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" 
+                                CommandArgument='<%# Eval("IdEjemplar") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdEjemplar") + "?\");" %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
                 <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
                 <HeaderStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                <%--<RowStyle BackColor="#FFFBD6" ForeColor="#333333" />--%>
                 <SelectedRowStyle BackColor="#FFCC66" Font-Bold="False" ForeColor="Navy" />
                 <SortedAscendingCellStyle BackColor="#FDF5AC" />
                 <SortedAscendingHeaderStyle BackColor="#4D0000" />
