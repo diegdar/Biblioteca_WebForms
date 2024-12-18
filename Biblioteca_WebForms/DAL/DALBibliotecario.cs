@@ -65,7 +65,7 @@ namespace Biblioteca_WebForms.DAL
                 bibliotecario.Apellido = newBibliotecario.Apellido;
                 bibliotecario.Nombre = newBibliotecario.Nombre;
                 bibliotecario.Email = newBibliotecario.Email;
-                bibliotecario.Contraseniea = newBibliotecario.Contrasenia;
+                bibliotecario.Contrasenia = newBibliotecario.Contrasenia;
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -118,7 +118,7 @@ namespace Biblioteca_WebForms.DAL
                 bibliotecario.Apellido = bibliotecarioById.Apellido;
                 bibliotecario.Nombre = bibliotecarioById.Nombre;
                 bibliotecario.Email = bibliotecarioById.Email;
-                bibliotecario.Contraseniea = bibliotecarioById.Contrasenia;
+                bibliotecario.Contrasenia = bibliotecarioById.Contrasenia;
             }
             catch (Exception ex)
             {
@@ -128,7 +128,7 @@ namespace Biblioteca_WebForms.DAL
 
             return bibliotecario;
         }
-        public Bibliotecario GetByEmail(int email)
+        public Bibliotecario GetByEmail(string email)
         {
             // La usaremos con el login, el campo email es único
             // y no puede tomar un valor nulo para cada bibliotecario
@@ -149,7 +149,7 @@ namespace Biblioteca_WebForms.DAL
                 bibliotecario.Apellido = bibliotecarioById.Apellido;
                 bibliotecario.Nombre = bibliotecarioById.Nombre;
                 bibliotecario.Email = bibliotecarioById.Email;
-                bibliotecario.Contraseniea = bibliotecarioById.Contrasenia;
+                bibliotecario.Contrasenia = bibliotecarioById.Contrasenia;
             }
             catch (Exception ex)
             {

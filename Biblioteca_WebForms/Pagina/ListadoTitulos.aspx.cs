@@ -1,4 +1,5 @@
 ﻿using Biblioteca_WebForms;
+using Biblioteca_WebForms.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,16 @@ using System.Web.UI.WebControls;
 
 namespace Biblioteca.Pagina
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class ListadoTitulos : System.Web.UI.Page
     {
-        private static List<Item> items = new List<Item>
+        private CommonMethods comMethods;
+        private DALEjemplar dALEjemplar;
+
+        public ListadoTitulos()
         {
-            new Item { Id = 1, Nombre = "Item 1" },
-            new Item { Id = 2, Nombre = "Item 2" },
-            new Item { Id = 3, Nombre = "Item 3" }
-        };
+            comMethods = new CommonMethods();
+            dALEjemplar = new DALEjemplar();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +31,8 @@ namespace Biblioteca.Pagina
         }
         private void BindGrid()
         {
-            GridView1.DataSource = items;
+            //var listEjemps = GetEjempListForView();
+            GridView1.DataSource = dALEjemplar.GetList();
             GridView1.DataBind();
         }
 
@@ -37,7 +41,7 @@ namespace Biblioteca.Pagina
         {
             string opcion = "C";
             string id = "-1";
-            Response.Redirect($"ObraAbm.aspx?id={id}&opcion={opcion}");
+            Response.Redirect($"EditTitulo.aspx?id={id}&opcion={opcion}");
             BindGrid();
         }
 
@@ -61,7 +65,9 @@ namespace Biblioteca.Pagina
             //else if (e.CommandName == "Borrar")
             //{
             //    // Lógica para borrar
-            //    items.RemoveAll(i => i.Id == id);
+            //    //items.RemoveAll(i => i.Id == id);
+            //    //DeleteEjemplar(id);
+
             //    BindGrid();
             //}
         }
@@ -70,30 +76,49 @@ namespace Biblioteca.Pagina
         {
             if (e.CommandName == "Editar")
             {
-                string[] args = e.CommandArgument.ToString().Split(','); 
-                
+                string[] args = e.CommandArgument.ToString().Split(',');
+
 
                 if (args.Length == 2)
                 {
                     string id = args[0];
                     string opcion = args[1];
-                    Response.Redirect($"ObraAbm.aspx?id={id}&opcion={opcion}");
+                    Response.Redirect($"EditTitulo.aspx?id={id}&opcion={opcion}");
                 }
             }
         }
+
+
         protected void lnkBorrar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Borrar")
             {
-                string[] args = e.CommandArgument.ToString().Split(','); 
+                string[] args = e.CommandArgument.ToString().Split(',');
                 if (args.Length == 2)
                 {
-                    string id = args[0];
-                    string opcion = args[1];
-                    Response.Redirect($"ObraAbm.aspx?id={id}&opcion={opcion}");
+                    int id = int.Parse(args[0]);
+                    DeleteEjemplar(id);
                 }
             }
         }
+
+        private void DeleteEjemplar(int ejemplarId)
+        {
+            if (!comMethods.IsEjemplarRented(ejemplarId))
+            {
+                dALEjemplar.Delete(ejemplarId);
+                BindGrid();
+                txtmensaje.Text = $"El libro con id {ejemplarId}" +
+                    $" ha sido eliminado!";
+
+            }
+            else
+            {
+                txtmensaje.Text = $"No se puede eliminar el libro {ejemplarId}" +
+                    $" pues esta actualmente alquilado!";
+            }
+        }
+
         protected void regresar_Click(object sender, EventArgs e)
         {
 

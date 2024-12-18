@@ -126,8 +126,8 @@
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
     <Content Include="Pagina\index.aspx" />
-    <Content Include="Pagina\ObraAbm.aspx" />
-    <Content Include="Pagina\ObraExplorar.aspx" />
+    <Content Include="Pagina\EditTitulo.aspx" />
+    <Content Include="Pagina\ListadoTitulos.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -219,10 +219,16 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\DALAlquiler.cs" />
+    <Compile Include="DAL\DALAlquilerEjemplar.cs" />
     <Compile Include="DAL\DALAutor.cs" />
+    <Compile Include="DAL\DALBibliotecario.cs" />
+    <Compile Include="DAL\DALEditorial.cs" />
     <Compile Include="DAL\DALEjemplar.cs" />
     <Compile Include="DAL\DALGenero.cs" />
+    <Compile Include="DAL\DALIdioma.cs" />
     <Compile Include="DAL\DALObra.cs" />
+    <Compile Include="DAL\DALSocio.cs" />
+    <Compile Include="DAL\DALUbicacion.cs" />
     <Compile Include="DAL\DataLinQ_Biblioteca.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -261,19 +267,19 @@
     <Compile Include="Pagina\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\ObraAbm.aspx.cs">
-      <DependentUpon>ObraAbm.aspx</DependentUpon>
+    <Compile Include="Pagina\EditTitulo.aspx.cs">
+      <DependentUpon>EditTitulo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\ObraAbm.aspx.designer.cs">
-      <DependentUpon>ObraAbm.aspx</DependentUpon>
+    <Compile Include="Pagina\EditTitulo.aspx.designer.cs">
+      <DependentUpon>EditTitulo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\ObraExplorar.aspx.cs">
-      <DependentUpon>ObraExplorar.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoTitulos.aspx.cs">
+      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\ObraExplorar.aspx.designer.cs">
-      <DependentUpon>ObraExplorar.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoTitulos.aspx.designer.cs">
+      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

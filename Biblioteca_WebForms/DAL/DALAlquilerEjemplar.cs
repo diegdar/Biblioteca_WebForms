@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using Biblioteca.Models;
 
 namespace Biblioteca_WebForms.DAL
 {
@@ -61,11 +60,11 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 var alEjemplar = (from al in dataDB.AlquilerEjemplars
-                                  where al.IdAquilerEjemplar == newAlEjemplar.IdAlquilerEjemplar
+                                  where al.IdAlquilerEjemplar == newAlEjemplar.IdAlquilerEjemplar
                                   select al).FirstOrDefault();
 
                 alEjemplar.FKAlquiler = newAlEjemplar.FKAlquiler;
-                alEjemplar.FkEjemplar = newAlEjemplar.FKEjemplar;
+                alEjemplar.FKEjemplar = newAlEjemplar.FKEjemplar;
                 alEjemplar.FechaDevReal = newAlEjemplar.FechaDevReal;
                 dataDB.SubmitChanges();
             }
@@ -139,12 +138,12 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 var alEjemplarById = (from al in dataDB.AlquilerEjemplars
-                                      where al.IdAquilerEjemplar == IdAlEjemplar
+                                      where al.IdAlquilerEjemplar == idAlEjemplar
                                       select al).FirstOrDefault();
 
                 alEjemplar.IdAlquilerEjemplar = alEjemplarById.IdAlquilerEjemplar;
                 alEjemplar.FKAlquiler = alEjemplarById.FKAlquiler;
-                alEjemplar.FkEjemplar = alEjemplarById.FKEjemplar;
+                alEjemplar.FKEjemplar = alEjemplarById.FKEjemplar;
                 alEjemplar.FechaDevReal = alEjemplarById.FechaDevReal;
             }
             catch (Exception ex)

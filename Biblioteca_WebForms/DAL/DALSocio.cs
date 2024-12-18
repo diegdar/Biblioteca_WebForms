@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using Biblioteca.Models;
 
 namespace Biblioteca_WebForms.DAL
 {
@@ -52,7 +51,7 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public bool Update(Socios newSocio)
+        public bool Update(Socio newSocio)
         {
             // Devuelve true si se ha modificado el objeto o false si no se
             // ha conseguido
@@ -78,7 +77,7 @@ namespace Biblioteca_WebForms.DAL
 
             return true;
         }
-        public List<Socios> GetList()
+        public List<Socio> GetList()
         {
             // Devuelve null si se ha producido un error o la lista de
             // de objetos si no se ha producido
@@ -103,7 +102,7 @@ namespace Biblioteca_WebForms.DAL
 
             return listaSocio;
         }
-        public Socios GetById(int idSocio)
+        public Socio GetById(int idSocio)
         {
             // Devuelve null si se ha producido un error o el objeto
             // buscado si no se ha producido
@@ -129,7 +128,7 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return Socios;
+            return socio;
         }
     }
 }
