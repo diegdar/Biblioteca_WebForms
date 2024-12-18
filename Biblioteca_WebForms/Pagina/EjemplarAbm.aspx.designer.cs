@@ -78,22 +78,22 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.TextBox txtUbicacion;
 
         /// <summary>
-        /// Control chkEstado.
+        /// Control ddEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkEstado;
+        protected global::System.Web.UI.WebControls.DropDownList ddEstado;
 
         /// <summary>
-        /// Control chkActivo.
+        /// Control ddActivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkActivo;
+        protected global::System.Web.UI.WebControls.DropDownList ddActivo;
 
         /// <summary>
         /// Control btnGrabar.
