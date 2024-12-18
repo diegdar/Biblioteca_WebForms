@@ -23,8 +23,11 @@ namespace Biblioteca.Pagina
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DALEjemplar DALEjemplar = new DALEjemplar();
-            DALEjemplar.Delete(5);
+            //DALEjemplar DALEjemplar = new DALEjemplar();
+            //Ejemplar ejemp = new Ejemplar();
+            //ejemp.IdEjemplar = 15;
+            //ejemp.AnioPublicacion = 2000;
+            //DALEjemplar.Update(ejemp);
 
         }
     }
