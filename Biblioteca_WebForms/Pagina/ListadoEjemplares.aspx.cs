@@ -9,12 +9,12 @@ using System.Web.UI.WebControls;
 
 namespace Biblioteca.Pagina
 {
-    public partial class ListadoTitulos : System.Web.UI.Page
+    public partial class ListadoEjemplares : System.Web.UI.Page
     {
         private CommonMethods comMethods;
         private DALEjemplar dALEjemplar;
         
-        public ListadoTitulos()
+        public ListadoEjemplares()
         {
             comMethods = new CommonMethods();
             dALEjemplar = new DALEjemplar();
@@ -41,7 +41,7 @@ namespace Biblioteca.Pagina
         {
             string opcion = "C";
             string id = "-1";
-            Response.Redirect($"EditTitulo.aspx?id={id}&opcion={opcion}");
+            Response.Redirect($"EjemplarAbm.aspx?id={id}&opcion={opcion}");
             BindGrid();
         }
 
@@ -83,7 +83,7 @@ namespace Biblioteca.Pagina
                 {
                     string id = args[0];
                     string opcion = args[1];
-                    Response.Redirect($"EditTitulo.aspx?id={id}&opcion={opcion}");
+                    Response.Redirect($"EjemplarAbm.aspx?id={id}&opcion={opcion}");
                 }
             }
         }
@@ -132,13 +132,13 @@ namespace Biblioteca.Pagina
                 LinkButton lnkEditar = (LinkButton)e.Row.FindControl("lnkEditar");
                 LinkButton lnkBorrar = (LinkButton)e.Row.FindControl("lnkBorrar");
 
-                if (Session["bibliotecarioAct"] == null || Session["bibliotecarioAct"].ToString() == "")
-                { 
-                    // Deshabilita las opciones LinkButton
-                    lnkEditar.Visible = false;
-                    lnkBorrar.Visible = false;
-                    BtnCrear.Visible = false;
-                }
+                //if (Session["bibliotecarioAct"] == null || Session["bibliotecarioAct"].ToString() == "")
+                //{ 
+                //    // Deshabilita las opciones LinkButton
+                //    lnkEditar.Visible = false;
+                //    lnkBorrar.Visible = false;
+                //    BtnCrear.Visible = false;
+                //}
             }
         }
 

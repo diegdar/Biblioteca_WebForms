@@ -126,10 +126,10 @@
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
     <Content Include="Pagina\BibliotecarioABM.aspx" />
+    <Content Include="Pagina\EjemplarAbm.aspx" />
     <Content Include="Pagina\index.aspx" />
-    <Content Include="Pagina\EditTitulo.aspx" />
     <Content Include="Pagina\ListadoBibliotecarios.aspx" />
-    <Content Include="Pagina\ListadoTitulos.aspx" />
+    <Content Include="Pagina\ListadoEjemplares.aspx" />
     <Content Include="Pagina\ListadoObras.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Pagina\ObraABM.aspx" />
@@ -271,19 +271,19 @@
     <Compile Include="Pagina\BibliotecarioABM.aspx.designer.cs">
       <DependentUpon>BibliotecarioABM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pagina\EjemplarAbm.aspx.cs">
+      <DependentUpon>EjemplarAbm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EjemplarAbm.aspx.designer.cs">
+      <DependentUpon>EjemplarAbm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pagina\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pagina\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.designer.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\ListadoBibliotecarios.aspx.cs">
       <DependentUpon>ListadoBibliotecarios.aspx</DependentUpon>
@@ -292,12 +292,12 @@
     <Compile Include="Pagina\ListadoBibliotecarios.aspx.designer.cs">
       <DependentUpon>ListadoBibliotecarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoEjemplares.aspx.cs">
+      <DependentUpon>ListadoEjemplares.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.designer.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoEjemplares.aspx.designer.cs">
+      <DependentUpon>ListadoEjemplares.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\ListadoObras.aspx.cs">
       <DependentUpon>ListadoObras.aspx</DependentUpon>
@@ -320,6 +320,7 @@
     <Compile Include="Pagina\ObraABM.aspx.designer.cs">
       <DependentUpon>ObraABM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pagina\ObraExplorar.aspx.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
