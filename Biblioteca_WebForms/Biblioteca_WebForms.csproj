@@ -125,6 +125,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
+    <Content Include="Pagina\Alquiler.aspx" />
     <Content Include="Pagina\ListadoSocios.aspx" />
     <Content Include="Pagina\BibliotecarioABM.aspx" />
     <Content Include="Pagina\EjemplarAbm.aspx" />
@@ -265,6 +266,13 @@
     </Compile>
     <Compile Include="Ms.Master.designer.cs">
       <DependentUpon>Ms.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\Alquiler.aspx.cs">
+      <DependentUpon>Alquiler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\Alquiler.aspx.designer.cs">
+      <DependentUpon>Alquiler.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\ListadoSocios.aspx.cs">
       <DependentUpon>ListadoSocios.aspx</DependentUpon>

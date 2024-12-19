@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
          <div class="mt-3">
-             <asp:TextBox ID="txtBuscar" runat="server" placeholder="Introduce nombre usuario..." Cssclass="busqueda-input"></asp:TextBox>
+             <asp:TextBox ID="txtBuscar" runat="server" placeholder="Introduce el apellido del usuario..." Cssclass="busqueda-input"></asp:TextBox>
              <asp:Button ID="btBuscar" runat="server" Text="Buscar" CssClass="busqueda-btn" OnClick="btBuscar_Click" />
          </div>
         <div class="botones-form mb-4 mt-4">

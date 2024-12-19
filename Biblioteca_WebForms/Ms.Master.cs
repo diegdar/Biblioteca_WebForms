@@ -23,7 +23,8 @@ namespace Biblioteca_WebForms
                 return lbTitulo.Text; 
             } 
            set 
-            { lbTitulo.Text = value; 
+            { 
+                lbTitulo.Text = value; 
             } 
         }
     }

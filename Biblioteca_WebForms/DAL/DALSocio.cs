@@ -85,7 +85,9 @@ namespace Biblioteca_WebForms.DAL
             List<Socio> listaSocio = new List<Socio>();
             try
             {
-                return dataDB.Socio.ToList();
+                return dataDB.Socio
+                        .OrderBy(so=>so.Apellido)
+                        .ToList();
 
             }
             catch (Exception ex)
