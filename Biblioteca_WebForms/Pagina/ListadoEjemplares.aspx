@@ -27,13 +27,15 @@
                     <asp:BoundField DataField="AnioPublicacion" HeaderText="Año publicacion" />
                     <asp:TemplateField HeaderText="Estado Ejemplar">
                         <ItemTemplate>
-                            <%# Eval("EstaBuenEstado") != null && (bool)Eval("EstaBuenEstado") ? "Bueno" : "Malo" %>
+                            <%# Eval("EstaBuenEstado") != null && (bool)Eval("EstaBuenEstado") 
+                                    ? "Bueno" : "Malo" %>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="NumPaginas" HeaderText="Num. Paginas" />
                     <asp:TemplateField HeaderText="Esta alquilado?">
                         <ItemTemplate>
-                            <%# Eval("EstaAlquilado") != null && (bool)Eval("EstaAlquilado") ? "Si" : "No" %>
+                            <%# Eval("EstaAlquilado") != null && (bool)Eval("EstaAlquilado") 
+                                    ? "Si" : "No" %>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Editorial.Descripcion" HeaderText="Editorial" />

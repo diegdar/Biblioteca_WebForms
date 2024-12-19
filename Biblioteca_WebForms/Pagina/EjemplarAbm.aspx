@@ -47,7 +47,7 @@
             <!-- Dropdown para Obra -->
             <%--<div class="campo-form col-md-1 m-4">--%>
             <div class="col-3">
-                <asp:Label runat="server" for="ddObra">Editorial:</asp:Label>
+                <asp:Label runat="server" for="ddObra">Obra:</asp:Label>
                 <asp:DropDownList runat="server" ID="ddObra" CssClass="form-control">
                     <asp:ListItem Text="Seleccione una Editorial" Value="" />
                 </asp:DropDownList>

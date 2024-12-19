@@ -59,7 +59,7 @@ namespace Biblioteca_WebForms.Pagina
                             masterPage.Titulo = "Crear un nuevo Ejemplar";
                             break;
                         case "U":
-                            GetAnEjemplar();
+                            GetSelectedEjemplar();
                             //ShowEjempFields();
                             masterPage.Titulo = "Modificar un Ejemplar";
                             break;
@@ -87,22 +87,24 @@ namespace Biblioteca_WebForms.Pagina
 
         }
 
-        private void GetAnEjemplar()
+        private void GetSelectedEjemplar()
         {
             Ejemplar = DEjemplar.GetById(int.Parse(sId));
+            txtCodBarras.Text = Ejemplar.CodigoBarras;
+            txtAnioPublicacion.Text = Ejemplar.AnioPublicacion.ToString();
+            txtNumPaginas.Text = Ejemplar.NumPaginas.ToString();
+            ddEditorial.SelectedValue = Ejemplar.FKEditorial.ToString();
+            ddObra.SelectedValue = Ejemplar.FKObra.ToString();
+            ddIdioma.SelectedValue = Ejemplar.FkIdioma.ToString();
+            txtUbicacion.Text = "E:" + Ejemplar.Ubicacion.Estanteria.ToString() + " "
+                               + "F:" + Ejemplar.Ubicacion.Fila.ToString() + " "
+                               + "C:" + Ejemplar.Ubicacion.Columna.ToString();
+            ddEstado.SelectedValue = Ejemplar.EstaBuenEstado
+                                     ? "1" : "0";//devuelve el valor 1 para true y 0 para false
+            ddActivo.SelectedValue = (bool)Ejemplar.EstaActivo
+                                     ? "1" : "0";
+
         }
-
-
-        //private void ShowEjempFields()
-        //{
-        //    codBarras.Text = Ejemplar.CodigoBarras;
-        //    txtAnioPublicacion.Text = Ejemplar.AnioPublicacion.ToString();
-        //    txtNumPaginas.Text = Ejemplar.NumPaginas.ToString();
-        //    ddlEditorial.SelectedValue = Ejemplar.FKEditorial.ToString();
-
-
-        //    ddGenero.SelectedValue = obra.FKGenero.ToString();
-        //}
 
         //private void CargarCombos()
         //{
