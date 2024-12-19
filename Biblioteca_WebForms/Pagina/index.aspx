@@ -20,7 +20,7 @@
                 <ul class="submenu">
                     <li><a href="#autores">Autores</a></li>
                     <li><a href="#genero">Género</a></li>
-                    <li><a href="#obra-literaria">Obra Literaria</a></li>
+                    <li><a href="ListadoSocios.aspx">Socio</a></li>
                     <li><a href="#ejemplares">Ejemplares</a></li>
                     <li><a href="#editorial">Editorial</a></li>
                     <li><a href="#ubicaciones">Ubicaciones</a></li>

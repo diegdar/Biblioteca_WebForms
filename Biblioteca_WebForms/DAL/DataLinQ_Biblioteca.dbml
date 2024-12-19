@@ -103,7 +103,7 @@
       <Association Name="Genero_Obra" Member="Genero" ThisKey="FKGenero" OtherKey="IdGenero" Type="Genero" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Socio" Member="Socios">
+  <Table Name="dbo.Socio" Member="Socio">
     <Type Name="Socio">
       <Column Name="IdSocio" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Apellido" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
@@ -111,7 +111,7 @@
       <Column Name="Email" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
       <Column Name="Domicilio" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
       <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Socio_Alquiler" Member="Alquilers" ThisKey="IdSocio" OtherKey="FKSocio" Type="Alquiler" />
+      <Association Name="Socio_Alquiler" Member="Alquiler" ThisKey="IdSocio" OtherKey="FKSocio" Type="Alquiler" />
     </Type>
   </Table>
 </Database>
