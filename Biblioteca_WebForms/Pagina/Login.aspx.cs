@@ -44,7 +44,7 @@ namespace Biblioteca_WebForms.Pagina
                     {
                         // Contraseña correcta
                         lblMensaje.Text = "Contraseña correcta";
-                        Session["nombreBibliotecario"] = bibliotecario.Nombre + " " + 
+                        Session["nombreBibliotecario"] = bibliotecario.Nombre + " " +
                             bibliotecario.Apellido;
                         txtUsuario.Text = string.Empty;
                         Response.Redirect("index.aspx");

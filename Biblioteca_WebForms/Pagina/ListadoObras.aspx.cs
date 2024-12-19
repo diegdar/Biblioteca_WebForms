@@ -7,34 +7,28 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Biblioteca.Pagina
+namespace Biblioteca_WebForms.Pagina
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class ListaObras : System.Web.UI.Page
     {
-        private CommonMethods comMethods;
-        private DALEjemplar dALEjemplar;
-
-        public WebForm1()
-        {
-            comMethods = new CommonMethods();
-            dALEjemplar = new DALEjemplar();
-        }
+        private DALObra obra = new DALObra();
+        CommonMethods comMethods = new CommonMethods();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Ms masterPage = (Ms)this.Master;
-                masterPage.Titulo = "Explorar todas las Obras Literarias";
+                masterPage.Titulo = "Listar Obras";
                 BindGrid();
             }
         }
 
-
         private void BindGrid()
         {
-            GridView1.DataSource = items;
-            GridView1.DataBind();
+
+            dgvObra.DataSource = obra.GetList();
+            dgvObra.DataBind();
         }
 
         // Evento del botón "Crear"
@@ -42,14 +36,13 @@ namespace Biblioteca.Pagina
         {
             string opcion = "C";
             string id = "-1";
-            Response.Redirect($"ObraAbm.aspx?id={id}&opcion={opcion}");
-            BindGrid();
+            Response.Redirect($"ObraABM.aspx?id={id}&opcion={opcion}");
         }
 
         // Evento para paginación
         protected void GridView1_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
-            GridView1.PageIndex = e.NewPageIndex;
+            dgvObra.PageIndex = e.NewPageIndex;
             BindGrid();
         }
 
@@ -72,6 +65,34 @@ namespace Biblioteca.Pagina
             //    BindGrid();
             //}
         }
+        
+        private void Delete(int idObra)
+        {
+            if (!obra.VerifyExist(idObra))
+            {
+                obra.Delete(idObra);
+
+                BindGrid();
+                lbMensaje.Text = $"La obra con id {idObra}" +
+                                 $" ha sido eliminada!";
+            }
+            else
+            {
+                lbMensaje.Text = $"No se puede eliminar la obra {idObra}" +
+                    $" esta actualmente alquilada!";
+            }
+        }
+
+        protected void regresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
+
+        protected void btBuscar_Click(object sender, EventArgs e)
+        {
+            dgvObra.DataSource = obra.FilterObra(txtBuscar.Text);
+            dgvObra.DataBind();
+        }
 
         protected void lnkEditar_Command(object sender, CommandEventArgs e)
         {
@@ -89,7 +110,6 @@ namespace Biblioteca.Pagina
             }
         }
 
-
         protected void lnkBorrar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Borrar")
@@ -98,38 +118,10 @@ namespace Biblioteca.Pagina
                 if (args.Length == 2)
                 {
                     int id = int.Parse(args[0]);
-                    DeleteEjemplar(id);
+                    Delete(id);
                 }
             }
         }
-
-        private void DeleteEjemplar(int ejemplarId)
-        {
-            if (!comMethods.IsEjemplarRented(ejemplarId))
-            {
-                dALEjemplar.Delete(ejemplarId);
-                BindGrid();
-                txtmensaje.Text = $"El libro con id {ejemplarId}" +
-                    $" ha sido eliminado!";
-
-            }
-            else
-            {
-                txtmensaje.Text = $"No se puede eliminar el libro {ejemplarId}" +
-                    $" pues esta actualmente alquilado!";
-            }
-        }
-
-        protected void regresar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("index.aspx");
-        }
     }
 
-    // Clase de ejemplo para los datos
-    public class Item
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-    }
 }

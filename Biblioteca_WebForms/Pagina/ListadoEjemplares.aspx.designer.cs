@@ -7,92 +7,65 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Biblioteca
+namespace Biblioteca.Pagina
 {
 
 
-    public partial class ObraAbm
+    public partial class ListadoEjemplares
     {
 
         /// <summary>
-        /// Control lbMensaje.
+        /// Control txtBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMensaje;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
 
         /// <summary>
-        /// Control txtTitulo.
+        /// Control btBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitulo;
+        protected global::System.Web.UI.WebControls.Button btBuscar;
 
         /// <summary>
-        /// Control txtSinopsis.
+        /// Control txtmensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSinopsis;
+        protected global::System.Web.UI.WebControls.Label txtmensaje;
 
         /// <summary>
-        /// Control ddAutor.
+        /// Control BtnCrear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddAutor;
+        protected global::System.Web.UI.WebControls.Button BtnCrear;
 
         /// <summary>
-        /// Control ddGenero.
+        /// Control dgvEjemplar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddGenero;
+        protected global::System.Web.UI.WebControls.GridView dgvEjemplar;
 
         /// <summary>
-        /// Control grabar.
+        /// Control regresar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button grabar;
-
-        /// <summary>
-        /// Control actualizar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button actualizar;
-
-        /// <summary>
-        /// Control borrar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button borrar;
-
-        /// <summary>
-        /// Control retornar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button retornar;
+        protected global::System.Web.UI.WebControls.Button regresar;
     }
 }
