@@ -33,6 +33,15 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.TextBox txtCodBarras;
 
         /// <summary>
+        /// Control txtIsbn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIsbn;
+
+        /// <summary>
         /// Control txtAnioPublicacion.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace Biblioteca_WebForms.Pagina
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAnioPublicacion;
+
+        /// <summary>
+        /// Control ddEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddEstado;
 
         /// <summary>
         /// Control txtNumPaginas.
@@ -51,22 +69,31 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.TextBox txtNumPaginas;
 
         /// <summary>
-        /// Control ddlEditorial.
+        /// Control ddAlquilado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditorial;
+        protected global::System.Web.UI.WebControls.DropDownList ddAlquilado;
 
         /// <summary>
-        /// Control ddlIdioma.
+        /// Control ddEditorial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIdioma;
+        protected global::System.Web.UI.WebControls.DropDownList ddEditorial;
+
+        /// <summary>
+        /// Control ddObra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddObra;
 
         /// <summary>
         /// Control txtUbicacion.
@@ -78,31 +105,31 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.TextBox txtUbicacion;
 
         /// <summary>
-        /// Control chkEstado.
+        /// Control ddIdioma.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkEstado;
+        protected global::System.Web.UI.WebControls.DropDownList ddIdioma;
 
         /// <summary>
-        /// Control chkActivo.
+        /// Control ddActivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkActivo;
+        protected global::System.Web.UI.WebControls.DropDownList ddActivo;
 
         /// <summary>
-        /// Control btnGrabar.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGrabar;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
 
         /// <summary>
         /// Control btnRetornar.
