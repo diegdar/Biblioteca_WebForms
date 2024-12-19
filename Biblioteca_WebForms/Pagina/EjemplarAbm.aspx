@@ -27,7 +27,7 @@
                 <asp:Label CssClass="form-label" runat="server" AssociatedControlID="txtAnioPublicacion" Text="Año de Publicación:" ></asp:Label>
                 <div class="input-group">
                     <button class="btn btn-outline-secondary" type="button" onclick="adjustValue('txtAnioPublicacion', -1)">-</button>
-                    <asp:TextBox runat="server" ID="txtAnioPublicacion" CssClass="form-control text-center"  />
+                    <asp:TextBox runat="server" ID="txtAnioPublicacion" CssClass="form-control text-center" />
                     <button class="btn btn-outline-secondary" type="button" onclick="adjustValue('txtAnioPublicacion', 1)">+</button>
                 </div>
             </div>
@@ -65,8 +65,8 @@
             <!-- Dropdown para Editorial -->
             <div class="col-3">
                 <asp:Label runat="server" for="ddEditorial">Editorial:</asp:Label>
-                <asp:DropDownList CssClass="form-control mt-2" runat="server" ID="ddEditorial" >
-                </asp:DropDownList>
+                    <asp:DropDownList CssClass="form-control mt-2" runat="server" ID="ddEditorial">
+                    </asp:DropDownList>
             </div>
             <!-- Dropdown para Obra -->
             <div class="col-3">
@@ -77,10 +77,11 @@
 
     <%-- Fila 3: --%>
         <div class="row mt-4">
-            <!-- Campo para Ubicación -->
+            <!-- Dropdown para Ubicacion -->
             <div class="col-3">
-                <asp:Label runat="server" for="ubicacion">Ubicación (Estantería, Fila, Columna):</asp:Label>
-                <asp:TextBox class="form-control mt-2" runat="server" ID="txtUbicacion" placeholder="Ej: E:5 F:3 C:2"></asp:TextBox>
+                <asp:Label runat="server" for="ddUbicacion">Obra:</asp:Label>
+                <asp:DropDownList CssClass="form-control mt-2" runat="server" ID="ddUbicacion" >
+                </asp:DropDownList>
             </div>
             <!-- Dropdown para Idioma -->
             <div class="col-3">
