@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 15.875" name="DataLinQ_Biblioteca">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 16.375" name="DataLinQ_Biblioteca">
   <DataContextMoniker Name="/DataLinQ_BibliotecaDataContext" />
   <nestedChildShapes>
     <classShape Id="457e6fe4-242e-448e-915b-e0c16a013f94" absoluteBounds="6.25, 12.375, 2, 1.7708968098958344">
@@ -62,55 +62,49 @@
         <elementListCompartment Id="f4f40a1b-8322-4b36-8778-e2b34644c9cf" absoluteBounds="3.515, 2.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="874c2af9-3789-45d3-84b2-33e906776092" absoluteBounds="3.5, 13.625, 2, 1.9631982421874987">
-      <DataClassMoniker Name="/DataLinQ_BibliotecaDataContext/Socio" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4ec40dcb-bc60-45d9-adff-589f83ae1f6d" absoluteBounds="3.515, 14.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(8.25 : 13.2604484049479); (10 : 13.2604484049479); (10 : 3.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 13.2604484049479); (10 : 13.2604484049479); (10 : 3.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Alquiler/Alquiler_AlquilerEjemplar" />
       <nodes>
         <classShapeMoniker Id="457e6fe4-242e-448e-915b-e0c16a013f94" />
         <classShapeMoniker Id="bc65f47e-771d-469f-a267-a646f65bdcdd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 12.5729484049479); (6.25 : 12.5729484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 12.5729484049479); (6.25 : 12.5729484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Bibliotecario/Bibliotecario_Alquiler" />
       <nodes>
         <classShapeMoniker Id="3686582f-4f7b-4d66-9536-447d1f1525d9" />
         <classShapeMoniker Id="457e6fe4-242e-448e-915b-e0c16a013f94" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 2.53929768880208); (9 : 2.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 2.53929768880208); (9 : 2.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Ejemplar/Ejemplar_AlquilerEjemplar" />
       <nodes>
         <classShapeMoniker Id="62eb91e4-baa5-45dc-9a40-e925f8b6b7b9" />
         <classShapeMoniker Id="bc65f47e-771d-469f-a267-a646f65bdcdd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.09699625651042); (6.63541416666667 : 5.09699625651042 : JumpStart); (6.80208083333333 : 5.09699625651042 : JumpEnd); (7.25 : 5.09699625651042); (7.25 : 4.1170068359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 5.09699625651042); (6.63541416666667 : 5.09699625651042 : JumpStart); (6.80208083333333 : 5.09699625651042 : JumpEnd); (7.25 : 5.09699625651042); (7.25 : 4.1170068359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Editorial/Editorial_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="b2f9b9a4-9d55-4389-bf77-7a6c8248c480" />
         <classShapeMoniker Id="62eb91e4-baa5-45dc-9a40-e925f8b6b7b9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.16429768880208); (6.7187475 : 9.16429768880208); (6.7187475 : 4.1170068359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 9.16429768880208); (6.7187475 : 9.16429768880208); (6.7187475 : 4.1170068359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Ubicacion/Ubicacion_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="eed3da67-f4d0-47da-9fb6-ca594807ee9f" />
         <classShapeMoniker Id="62eb91e4-baa5-45dc-9a40-e925f8b6b7b9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.97199625651042); (6.63541416666667 : 6.97199625651042 : JumpStart); (6.80208083333333 : 6.97199625651042 : JumpEnd); (7.7812525 : 6.97199625651042); (7.7812525 : 4.1170068359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 6.97199625651042); (6.63541416666667 : 6.97199625651042 : JumpStart); (6.80208083333333 : 6.97199625651042 : JumpEnd); (7.7812525 : 6.97199625651042); (7.7812525 : 4.1170068359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Idioma/Idioma_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="1767612e-9c26-4775-bced-c6d22c7a1f29" />
         <classShapeMoniker Id="62eb91e4-baa5-45dc-9a40-e925f8b6b7b9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.51044840494792); (6.25 : 2.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.51044840494792); (6.25 : 2.51044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Obra/Obra_Ejemplar" />
       <nodes>
         <classShapeMoniker Id="64b648f8-212c-4929-aa9d-9c475caa0ef2" />
@@ -131,10 +125,16 @@
         <classShapeMoniker Id="64b648f8-212c-4929-aa9d-9c475caa0ef2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 13.8854484049479); (6.25 : 13.8854484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="716fa2eb-a7f7-4a30-8841-8af7f1d0a693" absoluteBounds="3.625, 14.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DataLinQ_BibliotecaDataContext/Socio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="301c118e-c607-44e1-b0a8-1b822bb1e790" absoluteBounds="3.64, 14.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.625 : 14.125); (4.625 : 13.2604484049479); (6.25 : 13.2604484049479)]" fixedFrom="Algorithm" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataLinQ_BibliotecaDataContext/Socio/Socio_Alquiler" />
       <nodes>
-        <classShapeMoniker Id="874c2af9-3789-45d3-84b2-33e906776092" />
+        <classShapeMoniker Id="716fa2eb-a7f7-4a30-8841-8af7f1d0a693" />
         <classShapeMoniker Id="457e6fe4-242e-448e-915b-e0c16a013f94" />
       </nodes>
     </associationConnector>

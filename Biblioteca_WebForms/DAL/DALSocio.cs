@@ -18,7 +18,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                dataDB.Socios.InsertOnSubmit(socio);
+                dataDB.Socio.InsertOnSubmit(socio);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -36,11 +36,11 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                var socio = (from so in dataDB.Socios
+                var socio = (from so in dataDB.Socio
                              where so.IdSocio == idSocio
                              select so).FirstOrDefault();
 
-                dataDB.Socios.DeleteOnSubmit(socio);
+                dataDB.Socio.DeleteOnSubmit(socio);
                 dataDB.SubmitChanges();
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                var socio = (from so in dataDB.Socios
+                var socio = (from so in dataDB.Socio
                              where so.IdSocio == newSocio.IdSocio
                              select so).FirstOrDefault();
 
@@ -83,16 +83,10 @@ namespace Biblioteca_WebForms.DAL
             // de objetos si no se ha producido
 
             List<Socio> listaSocio = new List<Socio>();
-
             try
             {
-                var lstSocio = from socio in dataDB.Socios
-                               select socio;
+                return dataDB.Socio.ToList();
 
-                foreach (var socio in lstSocio)
-                {
-                    listaSocio.Add(socio);
-                }
             }
             catch (Exception ex)
             {
@@ -111,7 +105,7 @@ namespace Biblioteca_WebForms.DAL
 
             try
             {
-                var socioById = (from so in dataDB.Socios
+                var socioById = (from so in dataDB.Socio
                                  where so.IdSocio == idSocio
                                  select so).FirstOrDefault();
 
@@ -129,6 +123,22 @@ namespace Biblioteca_WebForms.DAL
             }
 
             return socio;
+        }
+        public List<Socio> GetFilter(string texto)
+        {
+            return dataDB.Socio.Where(bi => bi.Apellido.StartsWith(texto))
+                                .OrderBy(bi => bi.Apellido)
+                                .ToList();
+        }
+
+        public bool VerifyExist(int idSocio)
+        {
+            var resul = dataDB.Alquilers.Where(ob => ob.FKSocio == idSocio).ToList();
+            if (resul.Count() > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

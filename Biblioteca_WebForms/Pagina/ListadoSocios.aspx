@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="ListadoBibliotecarios.aspx.cs" Inherits="Biblioteca_WebForms.Pagina.ListadoSocios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="ListadoSocios.aspx.cs" Inherits="Biblioteca_WebForms.Pagina.ListadoSocios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -22,7 +22,7 @@
         </div>
         <br />
         <!-- GridView con enlaces para Editar y Borrar -->
-        <asp:GridView ID="dgvBibliotecario" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
+        <asp:GridView ID="dgvSocio" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
             AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None" Width="700px">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
@@ -30,10 +30,12 @@
                 <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Email" HeaderText="Email" />
+                <asp:BoundField DataField="Domicilio" HeaderText="Domicilio" />
+                <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdBibliotecario") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
-                        <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdBibliotecario") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdBibliotecario") + "?\");" %>'></asp:LinkButton>
+                        <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdSocio") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
+                        <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdSocio") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdSocio") + "?\");" %>'></asp:LinkButton>
                         <%--OnClientClick="return confirm('¿Estás seguro de que deseas borrar este elemento?');"></asp:LinkButton>--%>
                     </ItemTemplate>
                 </asp:TemplateField>
