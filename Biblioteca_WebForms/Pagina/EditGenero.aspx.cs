@@ -15,7 +15,7 @@ namespace Biblioteca
         public static string gId;
         public static string gOpcion;
 
-        Genero genero;
+        public static Genero generoAct;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,27 +55,25 @@ namespace Biblioteca
                 }
             }
         }
-
         private void TraerUnGenero()
         {
             DALGenero dGenero = new DALGenero();
-            Genero genero = dGenero.GetById(int.Parse(gId));
+            generoAct = dGenero.GetById(int.Parse(gId));
         }
         private void MostrarUnGenero()
         {
-            txtDescripcion.Text = genero.Descripcion;
-        }
-        
+            txtDescripcion.Text = generoAct.Descripcion;
+        }        
         protected void retornar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("index.aspx");
+            Response.Redirect("ListadoGenero.aspx");
         }
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALGenero dGenero = new DALGenero();
-            genero.Descripcion = txtDescripcion.Text.ToString();
+            generoAct.Descripcion = txtDescripcion.Text.ToString();
 
-            if (dGenero.Update(genero))
+            if (dGenero.Update(generoAct))
             {
                 Response.Redirect("index.aspx");
             }
@@ -84,13 +82,11 @@ namespace Biblioteca
                 lbMensaje.Text = "No se pudo realizar la grabacion del registro";
             }
         }
-
         protected void grabar_Click(object sender, EventArgs e)
         {
             DALGenero dGenero = new DALGenero();
-            genero = new Genero();
+            Genero genero = new Genero();
             genero.Descripcion = txtDescripcion.Text.ToString();
-            genero.IdGenero = 0;
 
             if (dGenero.Insert(genero))
             {
@@ -105,7 +101,7 @@ namespace Biblioteca
         {
             DALGenero dGenero = new DALGenero();
 
-            if (dGenero.Delete(genero.IdGenero))
+            if (dGenero.Delete(generoAct.IdGenero))
             {
                 Response.Redirect("index.aspx");
             }

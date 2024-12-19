@@ -15,7 +15,7 @@ namespace Biblioteca
         public static string iId;
         public static string iOpcion;
 
-        Idioma idioma;
+        public static Idioma idiomaAct;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -63,21 +63,21 @@ namespace Biblioteca
         }
         private void MostrarUnIdioma()
         {
-            txtDescripcion.Text = idioma.Descripcion;
+            txtDescripcion.Text = idiomaAct.Descripcion;
         }
 
         protected void retornar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("index.aspx");
+            Response.Redirect("ListadoIdioma.aspx");
         }
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALIdioma dIdioma = new DALIdioma();
-            idioma.Descripcion = txtDescripcion.Text.ToString();
+            idiomaAct.Descripcion = txtDescripcion.Text.ToString();
 
-            if (dIdioma.Update(idioma))
+            if (dIdioma.Update(idiomaAct))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoIdioma.aspx");
             }
             else
             {
@@ -88,13 +88,12 @@ namespace Biblioteca
         protected void grabar_Click(object sender, EventArgs e)
         {
             DALIdioma dIdioma = new DALIdioma();
-            idioma = new Idioma();
+            Idioma idioma = new Idioma();
             idioma.Descripcion = txtDescripcion.Text.ToString();
-            idioma.IdIdioma = 0;
 
             if (dIdioma.Insert(idioma))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoIdioma.aspx");
             }
             else
             {
@@ -105,9 +104,9 @@ namespace Biblioteca
         {
             DALIdioma dIdioma = new DALIdioma();
 
-            if (dIdioma.Delete(idioma.IdIdioma))
+            if (dIdioma.Delete(idiomaAct.IdIdioma))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoIdioma.aspx");
             }
             else
             {

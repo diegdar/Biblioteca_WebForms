@@ -12,6 +12,7 @@
                  <br />
                  <asp:label  runat="server" for="apellido1Autor">Apellido1:</asp:label>
                  <asp:TextBox runat="server" id="txtApellido1"  name="apellido1" class="form-control" placeholder="Ingrese el primer apellido del Autor"></asp:TextBox>
+                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtApellido1" ErrorMessage="El primer apellido es obligatorio" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
              </div>
 
              <div class="campo-form col-md-5 mb-4">
@@ -29,7 +30,7 @@
                  <asp:Button id="grabar" runat="server" type="submit" class="btn-grabar" Text="Grabar" onclick="grabar_Click" Visible="false"/>
                  <asp:Button id="actualizar" runat="server" type="submit" class="btn-grabar" Text="Actualizar" OnClick="actualizar_Click" Visible="false" />
                  <asp:Button id="borrar" runat="server" type="submit" class="btn-grabar" Text="Borrar" OnClick="borrar_Click" Visible="false"/>
-                 <asp:Button id="retornar" runat="server" type="submit" class="btn-retornar" Text="Retornar" onclick="retornar_Click" Visible="true"/>
+                 <asp:Button id="retornar" runat="server" type="submit" class="btn-retornar" Text="Retornar" onclick="retornar_Click" Visible="true" CausesValidation ="false"/>
                  <%--<asp:button runat="server" type="button" class="btn-retornar" onclick="window.history.back();">Retornar</asp:button>--%>
              </div>
     </section>

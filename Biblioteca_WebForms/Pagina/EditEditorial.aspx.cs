@@ -15,7 +15,7 @@ namespace Biblioteca
         public static string eId;
         public static string eOpcion;
 
-        Editorial editorial;
+        public static Editorial editorialAct;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -59,25 +59,25 @@ namespace Biblioteca
         private void TraerUnaEditorial()
         {
             DALEditorial dEditorial = new DALEditorial();
-            Editorial editorial = dEditorial.GetById(int.Parse(eId));
+            editorialAct = dEditorial.GetById(int.Parse(eId));
         }
         private void MostrarUnaEditorial()
         {
-            txtDescripcion.Text = editorial.Descripcion;
+            txtDescripcion.Text = editorialAct.Descripcion;
         }
         protected void retornar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("index.aspx");
+            Response.Redirect("ListadoEditorial.aspx");
         }
 
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALEditorial dEditorial = new DALEditorial();
-            editorial.Descripcion = txtDescripcion.Text.ToString();
+            editorialAct.Descripcion = txtDescripcion.Text.ToString();
 
-            if (dEditorial.Update(editorial))
+            if (dEditorial.Update(editorialAct))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoEditorial.aspx");
             }
             else
             {
@@ -87,13 +87,12 @@ namespace Biblioteca
         protected void grabar_Click(object sender, EventArgs e)
         {
             DALEditorial dEditorial = new DALEditorial();
-            editorial = new Editorial();
+            Editorial editorial = new Editorial();
             editorial.Descripcion = txtDescripcion.Text.ToString();
-            editorial.IdEditorial = 0;
 
             if (dEditorial.Insert(editorial))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoEditorial.aspx");
             }
             else
             {
@@ -104,9 +103,9 @@ namespace Biblioteca
         {
             DALEditorial dEditorial = new DALEditorial();
 
-            if (dEditorial.Delete(editorial.IdEditorial))
+            if (dEditorial.Delete(editorialAct.IdEditorial))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoEditorial.aspx");
             }
             else
             {

@@ -130,7 +130,10 @@
     <Content Include="Pagina\EditEditorial.aspx" />
     <Content Include="Pagina\EditAutor.aspx" />
     <Content Include="Pagina\index.aspx" />
-    <Content Include="Pagina\EditTitulo.aspx" />
+    <Content Include="Pagina\ListadoAutor.aspx" />
+    <Content Include="Pagina\ListadoEditorial.aspx" />
+    <Content Include="Pagina\ListadoGenero.aspx" />
+    <Content Include="Pagina\ListadoIdioma.aspx" />
     <Content Include="Pagina\ListadoTitulos.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -299,12 +302,33 @@
     <Compile Include="Pagina\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoAutor.aspx.cs">
+      <DependentUpon>ListadoAutor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.designer.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoAutor.aspx.designer.cs">
+      <DependentUpon>ListadoAutor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoEditorial.aspx.cs">
+      <DependentUpon>ListadoEditorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoEditorial.aspx.designer.cs">
+      <DependentUpon>ListadoEditorial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoGenero.aspx.cs">
+      <DependentUpon>ListadoGenero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoGenero.aspx.designer.cs">
+      <DependentUpon>ListadoGenero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoIdioma.aspx.cs">
+      <DependentUpon>ListadoIdioma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoIdioma.aspx.designer.cs">
+      <DependentUpon>ListadoIdioma.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\ListadoTitulos.aspx.cs">
       <DependentUpon>ListadoTitulos.aspx</DependentUpon>

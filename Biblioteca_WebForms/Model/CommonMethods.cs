@@ -37,5 +37,77 @@ namespace Biblioteca_WebForms
                 return false;   
             }
         }
+        public bool IsAutorInBook(int autorId)
+        {
+            try
+            {
+                var autorFound = dataDB.Obras.Where
+                            (ob => ob.FKAutor == autorId).FirstOrDefault();
+
+                if (autorFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsEditorialInEjemplar(int editorialId)
+        {
+            try
+            {
+                var editorialFound = dataDB.Ejemplars.Where
+                            (ed => ed.FKEditorial == editorialId).FirstOrDefault();
+
+                if (editorialFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsGeneroInBook(int generoId)
+        {
+            try
+            {
+                var generoFound = dataDB.Obras.Where
+                            (gn => gn.FKGenero == generoId).FirstOrDefault();
+
+                if (generoFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsIdiomaInEjemplar(int idiomaId)
+        {
+            try
+            {
+                var idiomaFound = dataDB.Ejemplars.Where
+                            (ej => ej.FkIdioma == idiomaId).FirstOrDefault();
+
+                if (idiomaFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
     }
 }

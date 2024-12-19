@@ -15,7 +15,7 @@ namespace Biblioteca
         public static string aId;
         public static string aOpcion;
 
-        Autor autor;
+        public static Autor autorAct;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,11 +40,6 @@ namespace Biblioteca
                             masterPage.Titulo = "Crear un Autor Nuevo";
                             grabar.Visible = true;
                             break;
-                        case "D":
-                            masterPage.Titulo = "Borrar un Autor";
-                            borrar.Visible = true;
-                            TraerUnAutor();
-                            break;
                         case "U":
                             TraerUnAutor();
                             MostrarUnAutor();
@@ -56,33 +51,55 @@ namespace Biblioteca
             }
         }
 
+        private string ObtenerCadenaAMostrar(string cadenaIni)
+        {
+            if (string.IsNullOrEmpty(cadenaIni))
+                return "";
+
+            return cadenaIni;
+        }
+        private string ObtenerCadenaAGuardar(string cadenaIni)
+        {
+            if (string.IsNullOrEmpty(cadenaIni))
+                return null;
+
+            cadenaIni = cadenaIni.Trim();
+
+            if (cadenaIni.Length == 0)
+                return null;
+
+            return cadenaIni;
+        }
         private void TraerUnAutor()
         {
             DALAutor dAutor = new DALAutor();
-            autor = dAutor.GetById(int.Parse(aId));
+            autorAct = dAutor.GetById(int.Parse(aId));
         }
         private void MostrarUnAutor()
         {
-            txtNombre.Text = autor.Nombre;
-            txtApellido1.Text = autor.Apellido1;
-            txtApellido1.Text = autor.Apellido2;
+            txtNombre.Text = ObtenerCadenaAMostrar(autorAct.Nombre);
+            txtApellido1.Text = ObtenerCadenaAMostrar(autorAct.Apellido1);
+            txtApellido2.Text = ObtenerCadenaAMostrar(autorAct.Apellido2);
         }
 
         protected void retornar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Index.aspx");
+            Response.Redirect("ListadoAutor.aspx");
         }
 
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALAutor dAutor = new DALAutor();
-            autor.Nombre = txtNombre.Text.ToString();
-            autor.Apellido1 = txtApellido1.ToString();
-            autor.Apellido2 = txtApellido2.ToString();
+            
+            Autor autor = new Autor();
+            autor.Nombre = ObtenerCadenaAGuardar(txtNombre.Text.ToString());
+            autor.Apellido1 = ObtenerCadenaAGuardar(txtApellido1.Text.ToString());
+            autor.Apellido2 = ObtenerCadenaAGuardar(txtApellido2.Text.ToString());
+            autor.IdAutor = autorAct.IdAutor;
 
             if (dAutor.Update(autor))
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("ListadoAutor.aspx");
             }
             else
             {
@@ -94,14 +111,14 @@ namespace Biblioteca
         {
             DALAutor dAutor = new DALAutor();
             Autor autor = new Autor();
-            autor.Nombre = txtNombre.Text;
-            autor.Apellido1 = txtApellido1.Text;
-            autor.Apellido2 = txtApellido2.Text;
-            autor.IdAutor = 0;
+
+            autor.Nombre = ObtenerCadenaAGuardar(txtNombre.Text.ToString());
+            autor.Apellido1 = ObtenerCadenaAGuardar(txtApellido1.Text.ToString());
+            autor.Apellido2 = ObtenerCadenaAGuardar(txtApellido2.Text.ToString());
 
             if (dAutor.Insert(autor))
             {
-                Response.Redirect("Index.aspx");
+                Response.Redirect("ListadoAutor.aspx");
             }
             else
             {
@@ -113,9 +130,9 @@ namespace Biblioteca
         {
             DALAutor dAutor = new DALAutor();
 
-            if (dAutor.Delete(autor.IdAutor))
+            if (dAutor.Delete(autorAct.IdAutor))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoAutor.aspx");
             }
             else
             {

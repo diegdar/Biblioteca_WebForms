@@ -28,11 +28,11 @@
             </li>
             <li><a href="#administracion">Administración</a>
                 <ul class="submenu">
-                    <li><a href="#autores">Autores</a></li>
-                    <li><a href="#genero">Género</a></li>
+                    <li><a href="ListadoAutor.aspx">Autores</a></li>
+                    <li><a href="ListadoGenero">Género</a></li>
                     <li><a href="#obra-literaria">Obra Literaria</a></li>
                     <li><a href="#ejemplares">Ejemplares</a></li>
-                    <li><a href="#editorial">Editorial</a></li>
+                    <li><a href="ListadoEditorial.aspx">Editorial</a></li>
                     <li><a href="#ubicaciones">Ubicaciones</a></li>
                     <li><a href="#bibliotecario">Bibliotecario</a></li>
                 </ul>
