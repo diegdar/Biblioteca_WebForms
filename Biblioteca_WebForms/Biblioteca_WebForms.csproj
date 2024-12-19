@@ -125,6 +125,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
+    <Content Include="Pagina\EditIdioma.aspx" />
+    <Content Include="Pagina\EditGenero.aspx" />
+    <Content Include="Pagina\EditEditorial.aspx" />
+    <Content Include="Pagina\EditAutor.aspx" />
     <Content Include="Pagina\index.aspx" />
     <Content Include="Pagina\EditTitulo.aspx" />
     <Content Include="Pagina\ListadoTitulos.aspx" />
@@ -259,6 +263,34 @@
     </Compile>
     <Compile Include="Ms.Master.designer.cs">
       <DependentUpon>Ms.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditIdioma.aspx.cs">
+      <DependentUpon>EditIdioma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditIdioma.aspx.designer.cs">
+      <DependentUpon>EditIdioma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditGenero.aspx.cs">
+      <DependentUpon>EditGenero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditGenero.aspx.designer.cs">
+      <DependentUpon>EditGenero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditEditorial.aspx.cs">
+      <DependentUpon>EditEditorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditEditorial.aspx.designer.cs">
+      <DependentUpon>EditEditorial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditAutor.aspx.cs">
+      <DependentUpon>EditAutor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditAutor.aspx.designer.cs">
+      <DependentUpon>EditAutor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
