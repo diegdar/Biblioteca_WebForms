@@ -19,7 +19,7 @@ namespace Biblioteca_WebForms.Pagina
         private DALIdioma DIdioma;
         private DALObra DObra;
         private DALUbicacion DUbicacion;
-        private string TipoOperacion;
+        //public string TipoOperacion;
 
         public EjemplarAbm()
         {
@@ -51,11 +51,11 @@ namespace Biblioteca_WebForms.Pagina
                     {
                         case "C":
                             masterPage.Titulo = "Crear un nuevo Ejemplar";
-                            TipoOperacion = "creacion";
+                            Session["TipoOperacion"] = "creacion";
                             break;
                         case "U":
                             GetSelectedEjemplar();
-                            TipoOperacion = "edicion";
+                            Session["TipoOperacion"] = "edicion";
                             masterPage.Titulo = "Modificar un Ejemplar";
                             break;
                     }
@@ -125,50 +125,6 @@ namespace Biblioteca_WebForms.Pagina
             Response.Redirect("ListadoEjemplares.aspx");
         }
 
-
-        //protected void btnGuardar_Click(object sender, EventArgs e)
-        //{
-        //    Ejemplar.CodigoBarras = txtCodBarras.Text;
-        //    Ejemplar.ISBN = txtIsbn.Text.ToString();
-        //    Ejemplar.AnioPublicacion = (short?)int.Parse(txtAnioPublicacion.Text);
-        //    Ejemplar.EstaBuenEstado = (ddEstado.SelectedValue == "1");//Esto se evalúa a true si el valor seleccionado es "1", de lo contrario se evalúa a false.
-        //    Ejemplar.NumPaginas = (short?)int.Parse(txtNumPaginas.Text);
-        //    Ejemplar.EstaAlquilado = (ddAlquilado.SelectedValue == "1");
-        //    if (!int.TryParse(ddEditorial.SelectedValue, out var editorialId))
-        //    {
-        //        lbMensaje.Text = "Debe seleccionar una editorial válida.";
-        //        return; // Detén la ejecución si el valor es inválido
-        //    }
-        //    Ejemplar.FKEditorial = editorialId;
-        //    Ejemplar.FKObra = int.Parse(ddObra.SelectedValue);
-        //    Ejemplar.FkUbicacion = int.Parse(txtUbicacion.Text);
-        //    Ejemplar.FkIdioma = int.Parse(ddIdioma.SelectedValue);
-        //    Ejemplar.EstaActivo = (ddActivo.SelectedValue == "1");
-
-        //    if (TipoOperacion == "edicion")
-        //    {
-        //        if (DEjemplar.Update(Ejemplar))
-        //        {
-        //            Response.Redirect("ListadoEjemplares.aspx");
-        //        }
-        //        else
-        //        {
-        //            lbMensaje.Text = "No se pudo realizar la grabacion del registro";
-        //        };                
-        //    }
-        //    else
-        //    {
-        //        if (DEjemplar.Insert(Ejemplar))
-        //        {
-        //            Response.Redirect("ListadoEjemplares.aspx");
-        //        }
-        //        else
-        //        {
-        //            lbMensaje.Text = "No se pudo realizar la grabacion del registro";
-        //        };
-        //    }
-        //}
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             // Validar campos
@@ -182,7 +138,7 @@ namespace Biblioteca_WebForms.Pagina
             AsignarValoresAEjemplar();
 
             // Guardar según la operación
-            if (TipoOperacion == "edicion")
+            if ((string)Session["TipoOperacion"] == "edicion")
             {
                 if (DEjemplar.Update(Ejemplar))
                 {
@@ -287,6 +243,7 @@ namespace Biblioteca_WebForms.Pagina
 
         private void AsignarValoresAEjemplar()
         {
+            Ejemplar.IdEjemplar = int.Parse(sId);
             Ejemplar.CodigoBarras = txtCodBarras.Text;
             Ejemplar.ISBN = txtIsbn.Text;
             Ejemplar.AnioPublicacion = (short?)int.Parse(txtAnioPublicacion.Text);
