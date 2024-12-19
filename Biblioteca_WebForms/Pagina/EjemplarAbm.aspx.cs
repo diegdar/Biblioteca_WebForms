@@ -22,6 +22,7 @@ namespace Biblioteca_WebForms.Pagina
         private List<Obra> obras;
         private List<Ubicacion> ubicaciones;
         private List<Idioma> idiomas;
+        private string TipoOperacion;
 
         public EjemplarAbm()
         {
@@ -57,10 +58,11 @@ namespace Biblioteca_WebForms.Pagina
                     {
                         case "C":
                             masterPage.Titulo = "Crear un nuevo Ejemplar";
+                            TipoOperacion = "creacion";
                             break;
                         case "U":
                             GetSelectedEjemplar();
-                            //ShowEjempFields();
+                            TipoOperacion = "edicion";
                             masterPage.Titulo = "Modificar un Ejemplar";
                             break;
                     }
@@ -124,31 +126,37 @@ namespace Biblioteca_WebForms.Pagina
             Ejemplar.CodigoBarras = txtCodBarras.Text;
             Ejemplar.ISBN = txtIsbn.Text.ToString();
             Ejemplar.AnioPublicacion = (short?)int.Parse(txtAnioPublicacion.Text);
-            Ejemplar.EstaBuenEstado = bool.Parse(ddEstado.Text);
+            Ejemplar.EstaBuenEstado = (ddEstado.SelectedValue == "1");//Esto se evalúa a true si el valor seleccionado es "1", de lo contrario se evalúa a false.
             Ejemplar.NumPaginas = (short?)int.Parse(txtNumPaginas.Text);
-            Ejemplar.EstaAlquilado = bool.Parse(ddAlquilado.Text);
-            Ejemplar.FKEditorial = int.Parse(ddEditorial.Text);
-            Ejemplar.FKObra = int.Parse(ddObra.Text);
+            Ejemplar.EstaAlquilado = (ddAlquilado.SelectedValue == "1");
+            Ejemplar.FKEditorial = int.Parse(ddEditorial.SelectedValue);
+            Ejemplar.FKObra = int.Parse(ddObra.SelectedValue);
             Ejemplar.FkUbicacion = int.Parse(txtUbicacion.Text);
-            Ejemplar.FkIdioma = int.Parse(ddIdioma.Text);
-            Ejemplar.EstaActivo = bool.Parse(ddActivo.Text);
+            Ejemplar.FkIdioma = int.Parse(ddIdioma.SelectedValue);
+            Ejemplar.EstaActivo = (ddActivo.SelectedValue == "1");
 
-
-            //DALObra dobra = new DALObra();
-            //Obra obra = new Obra();
-            //obra.Titulo = txtTitulo.Text.ToString();
-            //obra.Sinopsis = txtSinopsis.Text.ToString();
-            //obra.FKAutor = int.Parse(ddAutor.SelectedValue.ToString());
-            //obra.FKGenero = int.Parse(ddGenero.SelectedValue.ToString()); ;
-            //obra.IdObra = int.Parse(sId);
-            //if (dobra.Update(obra))
-            //{
-            //    Response.Redirect("ListadoEjemplares.aspx");
-            //}
-            //else
-            //{
-            //    lbMensaje.Text = "No se pudo realizar la grabacion del registro";
-            //};
+            if (TipoOperacion == "edicion")
+            {
+                if (DEjemplar.Update(Ejemplar))
+                {
+                    Response.Redirect("ListadoEjemplares.aspx");
+                }
+                else
+                {
+                    lbMensaje.Text = "No se pudo realizar la grabacion del registro";
+                };                
+            }
+            else
+            {
+                if (DEjemplar.Insert(Ejemplar))
+                {
+                    Response.Redirect("ListadoEjemplares.aspx");
+                }
+                else
+                {
+                    lbMensaje.Text = "No se pudo realizar la grabacion del registro";
+                };
+            }
         }
 
 
