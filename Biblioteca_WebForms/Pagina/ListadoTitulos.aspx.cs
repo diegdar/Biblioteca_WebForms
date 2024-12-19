@@ -13,7 +13,7 @@ namespace Biblioteca.Pagina
     {
         private CommonMethods comMethods;
         private DALEjemplar dALEjemplar;
-
+        
         public ListadoTitulos()
         {
             comMethods = new CommonMethods();
@@ -25,15 +25,15 @@ namespace Biblioteca.Pagina
             if (!IsPostBack)
             {
                 Ms masterPage = (Ms)this.Master;
-                masterPage.Titulo = "Explorar todas las Obras Literarias";
+                masterPage.Titulo = "Listado de los Ejemplares";
                 BindGrid();
             }
         }
         private void BindGrid()
         {
             //var listEjemps = GetEjempListForView();
-            GridView1.DataSource = dALEjemplar.GetList();
-            GridView1.DataBind();
+            dgvEjemplar.DataSource = dALEjemplar.GetList();
+            dgvEjemplar.DataBind();
         }
 
         // Evento del botón "Crear"
@@ -48,7 +48,7 @@ namespace Biblioteca.Pagina
         // Evento para paginación
         protected void GridView1_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
-            GridView1.PageIndex = e.NewPageIndex;
+            dgvEjemplar.PageIndex = e.NewPageIndex;
             BindGrid();
         }
 
@@ -121,14 +121,31 @@ namespace Biblioteca.Pagina
 
         protected void regresar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("index.aspx");
         }
-    }
 
-    // Clase de ejemplo para los datos
-    public class Item
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Encuentra el LinkButton con ID "lnkEditar"
+                LinkButton lnkEditar = (LinkButton)e.Row.FindControl("lnkEditar");
+                LinkButton lnkBorrar = (LinkButton)e.Row.FindControl("lnkBorrar");
+
+                if (Session["bibliotecarioAct"] == null || Session["bibliotecarioAct"].ToString() == "")
+                { 
+                    // Deshabilita las opciones LinkButton
+                    lnkEditar.Visible = false;
+                    lnkBorrar.Visible = false;
+                    BtnCrear.Visible = false;
+                }
+            }
+        }
+
+        protected void btBuscar_Click(object sender, EventArgs e)
+        {
+            dgvEjemplar.DataSource = dALEjemplar.GetList();
+            dgvEjemplar.DataBind();
+        }
     }
 }

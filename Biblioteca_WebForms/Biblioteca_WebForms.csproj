@@ -125,8 +125,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
+    <Content Include="Pagina\BibliotecarioABM.aspx" />
     <Content Include="Pagina\index.aspx" />
     <Content Include="Pagina\EditTitulo.aspx" />
+    <Content Include="Pagina\ListadoBibliotecarios.aspx" />
     <Content Include="Pagina\ListadoTitulos.aspx" />
     <Content Include="Pagina\ListadoObras.aspx" />
     <Content Include="Pagina\Login.aspx" />
@@ -262,6 +264,13 @@
     <Compile Include="Ms.Master.designer.cs">
       <DependentUpon>Ms.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pagina\BibliotecarioABM.aspx.cs">
+      <DependentUpon>BibliotecarioABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\BibliotecarioABM.aspx.designer.cs">
+      <DependentUpon>BibliotecarioABM.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pagina\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +284,13 @@
     </Compile>
     <Compile Include="Pagina\EditTitulo.aspx.designer.cs">
       <DependentUpon>EditTitulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoBibliotecarios.aspx.cs">
+      <DependentUpon>ListadoBibliotecarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoBibliotecarios.aspx.designer.cs">
+      <DependentUpon>ListadoBibliotecarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\ListadoTitulos.aspx.cs">
       <DependentUpon>ListadoTitulos.aspx</DependentUpon>

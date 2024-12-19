@@ -12,7 +12,6 @@ namespace Biblioteca_WebForms.Pagina
     public partial class ListaObras : System.Web.UI.Page
     {
         private DALObra obra = new DALObra();
-        DALObra obra1 = new DALObra();
         CommonMethods comMethods = new CommonMethods();
 
         protected void Page_Load(object sender, EventArgs e)

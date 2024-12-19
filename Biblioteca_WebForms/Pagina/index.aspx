@@ -24,7 +24,7 @@
                     <li><a href="#ejemplares">Ejemplares</a></li>
                     <li><a href="#editorial">Editorial</a></li>
                     <li><a href="#ubicaciones">Ubicaciones</a></li>
-                    <li><a href="#bibliotecario">Bibliotecario</a></li>
+                    <li><a href="ListadoBibliotecarios.aspx">Bibliotecario</a></li>
                 </ul>
             </li>
         </ul>

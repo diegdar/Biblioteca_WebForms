@@ -39,11 +39,6 @@ namespace Biblioteca_WebForms.Pagina
                             masterPage.Titulo = "Crear una Obra Nueva";
                             grabar.Visible = true;
                             break;
-                        case "D":
-                            masterPage.Titulo = "Borrar una Obra";
-                            borrar.Visible = true;
-                            TraerUnaObra();
-                            break;
                         case "U":
                             TraerUnaObra();
                             MostrarUnaObra();
@@ -84,12 +79,7 @@ namespace Biblioteca_WebForms.Pagina
             ddGenero.DataBind();
         }
 
-
-        protected void retornar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ListadoObras.aspx");
-        }
-
+               
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALObra dobra = new DALObra();
@@ -132,6 +122,10 @@ namespace Biblioteca_WebForms.Pagina
         {
 
         }
-    
+
+        protected void retornar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoObras.aspx");
+        }
     }
 }
