@@ -19,10 +19,6 @@ namespace Biblioteca_WebForms.Pagina
         private DALIdioma DIdioma;
         private DALObra DObra;
         private DALUbicacion DUbicacion;
-        private List<Editorial> editoriales;
-        private List<Obra> obras;
-        private List<Ubicacion> ubicaciones;
-        private List<Idioma> idiomas;
         private string TipoOperacion;
 
         public EjemplarAbm()
@@ -33,11 +29,6 @@ namespace Biblioteca_WebForms.Pagina
             DIdioma = new DALIdioma();
             DObra = new DALObra();
             DUbicacion = new DALUbicacion();
-
-            editoriales = new List<Editorial>();
-            obras = new List<Obra>();
-            ubicaciones = new List<Ubicacion>();
-            idiomas = new List<Idioma>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -320,12 +311,5 @@ namespace Biblioteca_WebForms.Pagina
             var var2 = resultado > 0;
             return int.TryParse(valor, out resultado) && resultado > 0;
         }
-
-        protected void borrar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }
