@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Biblioteca
 {
-    public partial class EditTitulo : System.Web.UI.Page
+    public partial class ObraAbm : System.Web.UI.Page
     {
         public static string sId;
         public static string sOpcion;
@@ -88,7 +88,7 @@ namespace Biblioteca
 
         protected void retornar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ListadoTitulos.aspx");
+            Response.Redirect("ListadoEjemplares.aspx");
         }
 
         protected void actualizar_Click(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace Biblioteca
             obra.IdObra = int.Parse(sId);
             if (dobra.Update(obra))
             {
-                Response.Redirect("ListadoTitulos.aspx");
+                Response.Redirect("ListadoEjemplares.aspx");
             }
             else
             {
@@ -121,7 +121,7 @@ namespace Biblioteca
             obra.IdObra = int.Parse(sId);
             if (dobra.Insert(obra))
             {
-                Response.Redirect("ListadoTitulos.aspx");
+                Response.Redirect("ListadoEjemplares.aspx");
             }
             else
             {
