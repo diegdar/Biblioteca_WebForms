@@ -73,97 +73,84 @@ namespace Biblioteca_WebForms.Pagina
             ddEditorial.DataTextField = "Descripcion";
             ddEditorial.DataValueField = "IdEditorial";
             ddEditorial.DataBind();
-
+            // Agregar el elemento "Seleccione una Editorial" como el primero de la lista
+            ddEditorial.Items.Insert(0, new ListItem("Seleccione una Editorial...", ""));
 
             ddIdioma.DataSource = DIdioma.GetList();
             ddIdioma.DataTextField = "Descripcion";
             ddIdioma.DataValueField = "IdIdioma";
             ddIdioma.DataBind();
+            // Agregar el elemento "Seleccione un Idioma" como el primero de la lista
+            ddIdioma.Items.Insert(0, new ListItem("Seleccione un Idioma...", ""));
 
             ddObra.DataSource = DObra.GetList();
             ddObra.DataTextField = "Titulo";
             ddObra.DataValueField = "IdObra";
             ddObra.DataBind();
-
+            // Agregar el elemento "Seleccione ununa Obra" como el primero de la lista
+            ddObra.Items.Insert(0, new ListItem("Seleccione una Obra...", ""));
         }
 
         private void GetSelectedEjemplar()
         {
             Ejemplar = DEjemplar.GetById(int.Parse(sId));
+
             txtCodBarras.Text = Ejemplar.CodigoBarras;
-            txtAnioPublicacion.Text = Ejemplar.AnioPublicacion.ToString();
+            txtIsbn.Text = Ejemplar.ISBN;
+            ddEstado.SelectedValue = Ejemplar.EstaBuenEstado
+                                     ? "1" : "0";//devuelve el valor 1 para true y 0 para false
             txtNumPaginas.Text = Ejemplar.NumPaginas.ToString();
+            ddAlquilado.SelectedValue = Ejemplar.EstaAlquilado
+                                     ? "1" : "0";//devuelve el valor 1 para true y 0 para false
+            txtAnioPublicacion.Text = Ejemplar.AnioPublicacion.ToString();
             ddEditorial.SelectedValue = Ejemplar.FKEditorial.ToString();
             ddObra.SelectedValue = Ejemplar.FKObra.ToString();
             ddIdioma.SelectedValue = Ejemplar.FkIdioma.ToString();
             txtUbicacion.Text = "E:" + Ejemplar.Ubicacion.Estanteria.ToString() + " "
                                + "F:" + Ejemplar.Ubicacion.Fila.ToString() + " "
                                + "C:" + Ejemplar.Ubicacion.Columna.ToString();
-            ddEstado.SelectedValue = Ejemplar.EstaBuenEstado
-                                     ? "1" : "0";//devuelve el valor 1 para true y 0 para false
             ddActivo.SelectedValue = (bool)Ejemplar.EstaActivo
                                      ? "1" : "0";
-
         }
 
-        //private void CargarCombos()
-        //{
-        //    DALAutor daAutor = new DALAutor();
-        //    ddAutor.DataSource = daAutor.GetList();
-        //    ddAutor.DataTextField = "Apellido1";
-        //    ddAutor.DataValueField = "IdAutor";
-        //    ddAutor.DataBind();
-
-        //    DALGenero daGenero = new DALGenero();
-        //    ddGenero.DataSource = daGenero.GetList();
-        //    ddGenero.DataTextField = "Descripcion";
-        //    ddGenero.DataValueField = "IdGenero";
-        //    ddGenero.DataBind();
-        //}
+        protected void btnRetornar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoEjemplares.aspx");
+        }
 
 
-        //protected void retornar_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("ListadoEjemplares.aspx");
-        //}
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Ejemplar.CodigoBarras = txtCodBarras.Text;
+            Ejemplar.ISBN = txtIsbn.Text.ToString();
+            Ejemplar.AnioPublicacion = (short?)int.Parse(txtAnioPublicacion.Text);
+            Ejemplar.EstaBuenEstado = bool.Parse(ddEstado.Text);
+            Ejemplar.NumPaginas = (short?)int.Parse(txtNumPaginas.Text);
+            Ejemplar.EstaAlquilado = bool.Parse(ddAlquilado.Text);
+            Ejemplar.FKEditorial = int.Parse(ddEditorial.Text);
+            Ejemplar.FKObra = int.Parse(ddObra.Text);
+            Ejemplar.FkUbicacion = int.Parse(txtUbicacion.Text);
+            Ejemplar.FkIdioma = int.Parse(ddIdioma.Text);
+            Ejemplar.EstaActivo = bool.Parse(ddActivo.Text);
 
-        //protected void actualizar_Click(object sender, EventArgs e)
-        //{
-        //    DALObra dobra = new DALObra();
-        //    Obra obra = new Obra();
-        //    obra.Titulo = txtTitulo.Text.ToString();
-        //    obra.Sinopsis = txtSinopsis.Text.ToString();
-        //    obra.FKAutor = int.Parse(ddAutor.SelectedValue.ToString());
-        //    obra.FKGenero = int.Parse(ddGenero.SelectedValue.ToString()); ;
-        //    obra.IdObra = int.Parse(sId);
-        //    if (dobra.Update(obra))
-        //    {
-        //        Response.Redirect("ListadoEjemplares.aspx");
-        //    }
-        //    else
-        //    {
-        //        lbMensaje.Text = "No se pudo realizar la grabacion del registro";
-        //    };
-        //}
 
-        //protected void grabar_Click(object sender, EventArgs e)
-        //{
-        //    DALObra dobra = new DALObra();
-        //    Obra obra = new Obra();
-        //    obra.Titulo = txtTitulo.Text.ToString();
-        //    obra.Sinopsis = txtSinopsis.Text.ToString();
-        //    obra.FKAutor = 1;
-        //    obra.FKGenero = 1;
-        //    obra.IdObra = int.Parse(sId);
-        //    if (dobra.Insert(obra))
-        //    {
-        //        Response.Redirect("ListadoEjemplares.aspx");
-        //    }
-        //    else
-        //    {
-        //        lbMensaje.Text = "No se pudo realizar la grabacion del registro";
-        //    };
-        //}
+            //DALObra dobra = new DALObra();
+            //Obra obra = new Obra();
+            //obra.Titulo = txtTitulo.Text.ToString();
+            //obra.Sinopsis = txtSinopsis.Text.ToString();
+            //obra.FKAutor = int.Parse(ddAutor.SelectedValue.ToString());
+            //obra.FKGenero = int.Parse(ddGenero.SelectedValue.ToString()); ;
+            //obra.IdObra = int.Parse(sId);
+            //if (dobra.Update(obra))
+            //{
+            //    Response.Redirect("ListadoEjemplares.aspx");
+            //}
+            //else
+            //{
+            //    lbMensaje.Text = "No se pudo realizar la grabacion del registro";
+            //};
+        }
+
 
         protected void borrar_Click(object sender, EventArgs e)
         {
@@ -175,9 +162,5 @@ namespace Biblioteca_WebForms.Pagina
 
         }
 
-        protected void btnRetornar_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
