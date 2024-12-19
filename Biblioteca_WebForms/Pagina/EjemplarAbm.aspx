@@ -39,15 +39,23 @@
             <!-- Dropdown para Editorial -->
             <%--<div class="campo-form col-md-1 m-4">--%>
             <div class="col-3">
-                <asp:Label runat="server" for="editorial">Editorial:</asp:Label>
-                <asp:DropDownList runat="server" ID="ddlEditorial" CssClass="form-control">
+                <asp:Label runat="server" for="ddEditorial">Editorial:</asp:Label>
+                <asp:DropDownList runat="server" ID="ddEditorial" CssClass="form-control">
+                    <asp:ListItem Text="Seleccione una Editorial" Value="" />
+                </asp:DropDownList>
+            </div>
+            <!-- Dropdown para Obra -->
+            <%--<div class="campo-form col-md-1 m-4">--%>
+            <div class="col-3">
+                <asp:Label runat="server" for="ddObra">Editorial:</asp:Label>
+                <asp:DropDownList runat="server" ID="ddObra" CssClass="form-control">
                     <asp:ListItem Text="Seleccione una Editorial" Value="" />
                 </asp:DropDownList>
             </div>
             <!-- Dropdown para Idioma -->
             <div class="col-3">
                 <asp:Label runat="server" for="idioma">Idioma:</asp:Label>
-                <asp:DropDownList runat="server" ID="ddlIdioma" CssClass="form-control">
+                <asp:DropDownList runat="server" ID="ddIdioma" CssClass="form-control">
                     <asp:ListItem Text="Seleccione un Idioma" Value="" />
                 </asp:DropDownList>
             </div>
@@ -80,7 +88,7 @@
         <!-- Botones -->
         <div class="row botones-form mt-4">
             <div class="col-1">
-                <asp:Button ID="btnGrabar" runat="server" type="submit" class="btn-grabar" Text="Grabar" OnClick="btnGrabar_Click" />
+                <asp:Button ID="btnGrabar" runat="server" type="submit" class="btn-grabar" Text="Aceptar" OnClick="btnGrabar_Click" />
             </div>
             <div class="col-1">
                 <asp:Button ID="btnRetornar" runat="server" type="submit" class="btn-retornar" Text="Retornar" OnClick="btnRetornar_Click" />

@@ -51,22 +51,31 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.TextBox txtNumPaginas;
 
         /// <summary>
-        /// Control ddlEditorial.
+        /// Control ddEditorial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEditorial;
+        protected global::System.Web.UI.WebControls.DropDownList ddEditorial;
 
         /// <summary>
-        /// Control ddlIdioma.
+        /// Control ddObra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIdioma;
+        protected global::System.Web.UI.WebControls.DropDownList ddObra;
+
+        /// <summary>
+        /// Control ddIdioma.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddIdioma;
 
         /// <summary>
         /// Control txtUbicacion.
