@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Biblioteca_WebForms.Pagina
+namespace Biblioteca.Pagina
 {
 
 
-    public partial class ListadoBibliotecarios
+    public partial class ListadoEjemplares
     {
 
         /// <summary>
@@ -33,6 +33,15 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.Button btBuscar;
 
         /// <summary>
+        /// txtmensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtmensaje;
+
+        /// <summary>
         /// BtnCrear control.
         /// </summary>
         /// <remarks>
@@ -42,30 +51,21 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.Button BtnCrear;
 
         /// <summary>
-        /// lbMensaje control.
+        /// dgvEjemplar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMensaje;
+        protected global::System.Web.UI.WebControls.GridView dgvEjemplar;
 
         /// <summary>
-        /// dgvBibliotecario control.
+        /// regresar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvBibliotecario;
-
-        /// <summary>
-        /// btRegresar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btRegresar;
+        protected global::System.Web.UI.WebControls.Button regresar;
     }
 }

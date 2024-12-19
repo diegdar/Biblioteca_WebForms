@@ -94,7 +94,6 @@ namespace Biblioteca_WebForms.DAL
                 return null;
             }
 
-            return listaSocio;
         }
         public Socio GetById(int idSocio)
         {

@@ -1,16 +1,17 @@
-﻿using Biblioteca_WebForms.DAL;
+﻿using Biblioteca_WebForms;
+using Biblioteca_WebForms.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Biblioteca_WebForms.Pagina
+namespace Biblioteca
 {
-    public partial class ObraABM : System.Web.UI.Page
+    public partial class ObraAbm : System.Web.UI.Page
     {
-       
         public static string sId;
         public static string sOpcion;
 
@@ -38,6 +39,11 @@ namespace Biblioteca_WebForms.Pagina
                         case "C":
                             masterPage.Titulo = "Crear una Obra Nueva";
                             grabar.Visible = true;
+                            break;
+                        case "D":
+                            masterPage.Titulo = "Borrar una Obra";
+                            borrar.Visible = true;
+                            TraerUnaObra();
                             break;
                         case "U":
                             TraerUnaObra();
@@ -79,7 +85,12 @@ namespace Biblioteca_WebForms.Pagina
             ddGenero.DataBind();
         }
 
-               
+
+        protected void retornar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListadoEjemplares.aspx");
+        }
+
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALObra dobra = new DALObra();
@@ -91,7 +102,7 @@ namespace Biblioteca_WebForms.Pagina
             obra.IdObra = int.Parse(sId);
             if (dobra.Update(obra))
             {
-                Response.Redirect("ListadoObras.aspx");
+                Response.Redirect("ListadoEjemplares.aspx");
             }
             else
             {
@@ -110,7 +121,7 @@ namespace Biblioteca_WebForms.Pagina
             obra.IdObra = int.Parse(sId);
             if (dobra.Insert(obra))
             {
-                Response.Redirect("ListadoObras.aspx");
+                Response.Redirect("ListadoEjemplares.aspx");
             }
             else
             {
@@ -121,11 +132,6 @@ namespace Biblioteca_WebForms.Pagina
         protected void borrar_Click(object sender, EventArgs e)
         {
 
-        }
-
-        protected void retornar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ListadoObras.aspx");
         }
     }
 }
