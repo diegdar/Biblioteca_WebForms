@@ -72,19 +72,19 @@ namespace Biblioteca_WebForms.Pagina
 
         }
 
-        private void Delete(int idBiblio)
+        private void Delete(int idSocio)
         {
-            if (!socio.VerifyExist(idBiblio))
+            if (!socio.VerifyExist(idSocio))
             {
-                socio.Delete(idBiblio);
+                socio.Delete(idSocio);
 
                 BindGrid();
-                lbMensaje.Text = $"El socio con id {idBiblio}" +
+                lbMensaje.Text = $"El socio con id {idSocio}" +
                                  $" ha sido eliminada!";
             }
             else
             {
-                lbMensaje.Text = $"No se puede eliminar el socio {idBiblio}" +
+                lbMensaje.Text = $"No se puede eliminar el socio {idSocio}" +
                     $" porque hizo operaciones de alquile!";
             }
         }

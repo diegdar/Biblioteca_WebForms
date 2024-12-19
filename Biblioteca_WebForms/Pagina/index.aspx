@@ -12,7 +12,7 @@
     <nav class="menu">
         <ul>
             <li><a href="#buscar-libro-contenido" onclick="mostrarBuscarLibro()">Buscar Libro</a></li>
-            <li><a href="#prestar-libro">Prestar</a></li>
+            <li><a href="Alquiler.aspx">Prestar</a></li>
             <li><a href="#devolver-libro">Devolver Libro</a></li>
             <li><a href="ListadoEjemplares.aspx">Gestionar Ejemplar</a></li>
             <li><a href="ListadoObras.aspx">Gestionar Obra</a></li>

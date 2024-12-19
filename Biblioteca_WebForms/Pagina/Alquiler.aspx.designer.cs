@@ -11,17 +11,26 @@ namespace Biblioteca_WebForms.Pagina
 {
 
 
-    public partial class ListadoSocios
+    public partial class Alquiler
     {
 
         /// <summary>
-        /// txtBuscar control.
+        /// ddSocio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        protected global::System.Web.UI.WebControls.DropDownList ddSocio;
+
+        /// <summary>
+        /// txtBuscarEjemplar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarEjemplar;
 
         /// <summary>
         /// btBuscar control.
@@ -33,15 +42,6 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.Button btBuscar;
 
         /// <summary>
-        /// BtnCrear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCrear;
-
-        /// <summary>
         /// lbMensaje control.
         /// </summary>
         /// <remarks>
@@ -51,13 +51,22 @@ namespace Biblioteca_WebForms.Pagina
         protected global::System.Web.UI.WebControls.Label lbMensaje;
 
         /// <summary>
-        /// dgvSocio control.
+        /// dgvAlquiler control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvSocio;
+        protected global::System.Web.UI.WebControls.GridView dgvAlquiler;
+
+        /// <summary>
+        /// btGrabar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btGrabar;
 
         /// <summary>
         /// btRegresar control.
