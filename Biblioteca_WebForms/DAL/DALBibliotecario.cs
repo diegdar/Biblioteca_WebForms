@@ -62,6 +62,9 @@ namespace Biblioteca_WebForms.DAL
                                      where bi.IdBibliotecario == newBibliotecario.IdBibliotecario
                                      select bi).FirstOrDefault();
 
+                if (bibliotecario == null)
+                    return false;
+
                 bibliotecario.Apellido = newBibliotecario.Apellido;
                 bibliotecario.Nombre = newBibliotecario.Nombre;
                 bibliotecario.Email = newBibliotecario.Email;
@@ -114,6 +117,9 @@ namespace Biblioteca_WebForms.DAL
                                          where bi.IdBibliotecario == idBibliotecario
                                          select bi).FirstOrDefault();
 
+                if (bibliotecarioById == null)
+                    return null;
+
                 bibliotecario.IdBibliotecario = bibliotecarioById.IdBibliotecario;
                 bibliotecario.Apellido = bibliotecarioById.Apellido;
                 bibliotecario.Nombre = bibliotecarioById.Nombre;
@@ -144,6 +150,9 @@ namespace Biblioteca_WebForms.DAL
                 var bibliotecarioById = (from bi in dataDB.Bibliotecarios
                                          where bi.Email == email
                                          select bi).FirstOrDefault();
+
+                if (bibliotecarioById == null)
+                    return null;
 
                 bibliotecario.IdBibliotecario = bibliotecarioById.IdBibliotecario;
                 bibliotecario.Apellido = bibliotecarioById.Apellido;

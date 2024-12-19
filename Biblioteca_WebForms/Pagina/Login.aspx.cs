@@ -21,13 +21,13 @@ namespace Biblioteca_WebForms.Pagina
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    // No se muestra ningún mensaje
-            //    lblMensaje.Text = "";
+            if (!IsPostBack)
+            {
+                // No se muestra ningún mensaje
+                lblMensaje.Text = "";
             //    txtUsuario.Text = string.Empty;
             //    Session.Clear();
-            //}
+            }
         }
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
@@ -76,7 +76,10 @@ namespace Biblioteca_WebForms.Pagina
             }
 
             btnIniciarSesion.Text = "Seguir Anónimo";
+            txtUsuario.Enabled = false;
+            txtClave.Enabled = false;
             txtUsuario.Text = string.Empty;
+            txtClave.Text = string.Empty;
         }
     }
 }
