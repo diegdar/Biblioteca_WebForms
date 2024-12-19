@@ -231,9 +231,15 @@ namespace Biblioteca_WebForms.Pagina
                 return false;
             }
 
-            if (!short.TryParse(txtAnioPublicacion.Text, out _))
+            if (!short.TryParse(txtAnioPublicacion.Text, out short anioPublicacion))
             {
                 mensajeError = "El año de publicación debe ser un número válido.";
+                return false;
+            }
+
+            if (anioPublicacion <= 1800)
+            {
+                mensajeError = "El año de publicación debe ser mayor a 1800.";
                 return false;
             }
 

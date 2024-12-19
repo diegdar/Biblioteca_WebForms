@@ -27,7 +27,7 @@
                 <asp:Label CssClass="form-label" runat="server" AssociatedControlID="txtAnioPublicacion" Text="Año de Publicación:" ></asp:Label>
                 <div class="input-group">
                     <button class="btn btn-outline-secondary" type="button" onclick="adjustValue('txtAnioPublicacion', -1)">-</button>
-                    <asp:TextBox runat="server" ID="txtAnioPublicacion" CssClass="form-control text-center"  />
+                    <asp:TextBox runat="server" ID="txtAnioPublicacion" CssClass="form-control text-center" />
                     <button class="btn btn-outline-secondary" type="button" onclick="adjustValue('txtAnioPublicacion', 1)">+</button>
                 </div>
             </div>
