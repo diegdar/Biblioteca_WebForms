@@ -26,15 +26,16 @@ namespace Biblioteca_WebForms
                 var ejempFound = dataDB.Ejemplars.Where
                             (ej => ej.IdEjemplar == ejemplarId).FirstOrDefault();
 
-                return ejempFound.EstaAlquilado;
+                if (ejempFound != null)
+                    return ejempFound.EstaAlquilado;
+
+                return false;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
                 return false;   
             }
-
         }
-
     }
 }

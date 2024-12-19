@@ -62,6 +62,9 @@ namespace Biblioteca_WebForms.DAL
                               where id.IdIdioma == newIdioma.IdIdioma
                               select id).FirstOrDefault();
 
+                if (idioma == null)
+                    return false;
+
                 idioma.Descripcion = newIdioma.Descripcion;
                 dataDB.SubmitChanges();
             }
@@ -110,6 +113,9 @@ namespace Biblioteca_WebForms.DAL
                 var idiomaById = (from id in dataDB.Idiomas
                                      where id.IdIdioma == idIdioma
                                      select id).FirstOrDefault();
+
+                if (idiomaById == null)
+                    return null;
 
                 idioma.IdIdioma = idiomaById.IdIdioma;
                 idioma.Descripcion = idiomaById.Descripcion;

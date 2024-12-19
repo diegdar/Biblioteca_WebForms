@@ -62,6 +62,9 @@ namespace Biblioteca_WebForms.DAL
                                  where ed.IdEditorial == newEditorial.IdEditorial
                                  select ed).FirstOrDefault();
 
+                if (editorial == null)
+                    return false;
+
                 editorial.Descripcion = newEditorial.Descripcion;
                 dataDB.SubmitChanges();
             }
@@ -110,6 +113,9 @@ namespace Biblioteca_WebForms.DAL
                 var editorialById = (from ed in dataDB.Editorials
                                      where ed.IdEditorial == idEditorial
                                      select ed).FirstOrDefault();
+
+                if (editorialById == null)
+                    return null;
 
                 editorial.IdEditorial = editorialById.IdEditorial;
                 editorial.Descripcion = editorialById.Descripcion;

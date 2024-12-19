@@ -55,6 +55,10 @@ namespace Biblioteca_WebForms.DAL
             try
             {
                 var obraExistente = dataDB.Obras.Where(ob => ob.IdObra ==obra.IdObra).FirstOrDefault();
+
+                if (obraExistente == null)
+                    return false;
+
                 obraExistente.Titulo = obra.Titulo;
                 obraExistente.Sinopsis = obra.Sinopsis;
                 obraExistente.FKAutor = obra.FKAutor;

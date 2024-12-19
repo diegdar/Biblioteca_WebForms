@@ -52,6 +52,9 @@ namespace Biblioteca_WebForms.DAL
                 var ejemplar = dataDB.Ejemplars.Where
                     (ej => ej.IdEjemplar == ejemplarId).FirstOrDefault();
 
+                if (ejemplar == null)
+                    return false;
+
                 ejemplar.EstaActivo = false;
                 dataDB.SubmitChanges();
                 return true;
@@ -69,6 +72,9 @@ namespace Biblioteca_WebForms.DAL
             {
                 var ejempFound = dataDB.Ejemplars.Where
                         (ej => ej.IdEjemplar == ejempData.IdEjemplar).FirstOrDefault();
+
+                if (ejempFound == null)
+                    return false;
 
                 ejempFound.CodigoBarras = ejempData.CodigoBarras;
                 ejempFound.ISBN = ejempData.ISBN;

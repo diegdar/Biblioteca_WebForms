@@ -57,6 +57,9 @@ namespace Biblioteca_WebForms.DAL
             {
                 var autorExistente = dataDB.Autors.Where(au=>au.IdAutor == autor.IdAutor).FirstOrDefault();
 
+                if (autorExistente == null)
+                    return false;
+
                 autorExistente.Apellido1 = autor.Apellido1;
                 autorExistente.Apellido2 = autor.Apellido2;
                 autorExistente.Nombre = autor.Nombre;
