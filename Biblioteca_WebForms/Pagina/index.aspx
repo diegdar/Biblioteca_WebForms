@@ -18,6 +18,7 @@
                 </form></li>
             <li><a href="GestionAlquiler.aspx">Prestar</a></li>
             <li><a href="EjemplaresAlquilados.aspx">Ejemplares Alquilados</a></li>
+            <li><a href="GestionAlquiler.aspx">Gestion Alquiler</a></li>
             <li><a href="ListadoEjemplares.aspx">Gestionar Ejemplar</a></li>
             <li><a href="ListadoObras.aspx">Gestionar Obra</a></li>
             <li><a href="#administracion">Administración</a>
