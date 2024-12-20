@@ -16,7 +16,6 @@
             <li><form runat="server">
                 <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">Login</asp:LinkButton>
                 </form></li>
-            <li><a href="#buscar-libro-contenido" onclick="mostrarBuscarLibro()">Buscar Libro</a></li>
             <li><a href="GestionAlquiler.aspx">Prestar</a></li>
             <li><a href="EjemplaresAlquilados.aspx">Ejemplares Alquilados</a></li>
             <li><a href="ListadoEjemplares.aspx">Gestionar Ejemplar</a></li>
