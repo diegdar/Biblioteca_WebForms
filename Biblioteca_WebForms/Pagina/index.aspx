@@ -86,7 +86,6 @@
 	<p>La biblioteca está abierta a todos los miembros de la comunidad, desde niños hasta adultos mayores. Se enfoca especialmente en estudiantes, 
 	investigadores y familias, ofreciendo programas específicos para cada grupo. Además, se realizan actividades inclusivas para personas con 
 	discapacidades, garantizando que todos puedan disfrutar de los recursos y servicios.</p>
-	<div style="float: left">
 	<img src="../Imagen/books-5211309_1280.jpg" alt="Imagen de la Biblioteca Moderna Interior" width="200" height="200">
         <h2>6. Tipos de Libros Ofrecidos:</h2>
 	<p>Cuenta con una amplia y variada colección de libros para satisfacer los intereses y necesidades de su diverso público. 
