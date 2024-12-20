@@ -48,7 +48,7 @@
         <br />
          <div class="botones-form mb-4">
 <%--             <asp:Button id="btGrabar" runat="server" type="submit" class="btn-grabar" Text="Grabar" onclick="btGrabar_Click" Visible="true"/>--%>
-             <asp:Button type="submit" ID="btRegresar" runat="server" class="btn-retornar" Text="Regresar" OnClick="btRegresar_Click" />
+             <asp:Button type="submit" ID="btRegresar" runat="server" class="btn-retornar" Text="Regresar" OnClick="btRegresar_Click1" />
         </div>
     </div>
 </div>

@@ -94,20 +94,9 @@ namespace Biblioteca_WebForms.Pagina
 
         }
 
-
-
-        protected void lnkDevolver_Command(object sender, EventArgs e)
+        protected void btRegresar_Click1(object sender, EventArgs e)
         {
-
+            Response.Redirect("index.aspx");
         }
-        protected void btGrabar_Click(object sender, EventArgs e)
-        {
-
-        }
-        protected void btRegresar_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
