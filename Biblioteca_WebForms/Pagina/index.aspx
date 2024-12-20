@@ -27,11 +27,14 @@
 					<li><a href="ListadoEditorial.aspx">Editoriales</a></li>
                     <li><a href="ListadoGenero.aspx">Géneros</a></li>
 					<li><a href="ListadoIdioma.aspx">Idiomas</a></li>
-                    <li><a href="obra-literaria">Obra Literaria</a></li>
-                    <li><a href="#ejemplares">Ejemplares</a></li>
-                    <li><a href="#editorial">Editorial</a></li>
-                    <li><a href="#ubicaciones">Ubicaciones</a></li>
-                    <li><a href="#bibliotecario">Bibliotecario</a></li>
+                    <li><a href="ListadoEjemplar.aspx">Ejemplares</a></li>
+                    <li><a href="ListadoGenero.aspx">Genero</a></li>
+                    <li><a href="ListadoEditorial.aspx">Editorial</a></li>
+                    <li><a href="ListadoObras.aspx">Obras</a></li>
+                    <li><a href="ListadoUbicacion.aspx">Ubicacion</a></li>
+                    <li><a href="ListadoBibliotecarios.aspx">Bibliotecarios</a></li>
+                    <li><a href="ListadoSocios.aspx">Socios</a></li>
+                    <li><a href="ListadoAutor.aspx">Autores</a></li>
                 </ul>
             </li>
         </ul>
