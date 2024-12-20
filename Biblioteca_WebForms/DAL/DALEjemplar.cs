@@ -81,6 +81,7 @@ namespace Biblioteca_WebForms.DAL
                 ejempFound.FKObra = ejempData.FKObra;
                 ejempFound.FkUbicacion = ejempData.FkUbicacion;
                 ejempFound.FkIdioma = ejempData.FkIdioma;
+                ejempFound.EstaActivo = ejempData.EstaActivo;
 
                 dataDB.SubmitChanges();
 

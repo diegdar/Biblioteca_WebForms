@@ -79,7 +79,7 @@
         <div class="row mt-4">
             <!-- Dropdown para Ubicacion -->
             <div class="col-3">
-                <asp:Label runat="server" for="ddUbicacion">Obra:</asp:Label>
+                <asp:Label runat="server" for="ddUbicacion">Ubicacion:</asp:Label>
                 <asp:DropDownList CssClass="form-control mt-2" runat="server" ID="ddUbicacion" >
                 </asp:DropDownList>
             </div>
