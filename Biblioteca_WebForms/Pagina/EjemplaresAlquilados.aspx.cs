@@ -12,14 +12,14 @@ namespace Biblioteca_WebForms.Pagina
     public partial class EjemplaresAlquilados : System.Web.UI.Page
     {
         protected DALSocio DSocio;
-        protected DALEjemplar DEjemplar;
-        //protected List<Ejemplar> listadoEjemplares;
+        protected DALAlquilerEjemplar DEjempAlquileres;
+        protected List<v_ListadoAlquilere> listadoEjemplares;
 
         public EjemplaresAlquilados()
         {
             DSocio = new DALSocio();
-            DEjemplar = new DALEjemplar();
-            //listadoEjemplares = new List<Ejemplar>();
+            DEjempAlquileres = new DALAlquilerEjemplar();
+            listadoEjemplares = new List<v_ListadoAlquilere>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -28,9 +28,10 @@ namespace Biblioteca_WebForms.Pagina
             {
                 Ms masterPage = (Ms)this.Master;
                 masterPage.Titulo = "Ejemplares Alquilados";
+                listadoEjemplares = DEjempAlquileres.GetListadoAlquilados();
+                BindGrid();
+                CargarSocio();
             }
-            BindGrid();
-            CargarSocio();
         }
 
         private void CargarSocio()
@@ -45,15 +46,16 @@ namespace Biblioteca_WebForms.Pagina
             ddSocio.DataTextField = "Texto";
             ddSocio.DataValueField = "Valor";
             ddSocio.DataBind();
+            ddSocio.Items.Insert(0, new ListItem("Seleccione un socio...", "-1"));
+
+
         }
 
         private void BindGrid()
         {
-            dgvAlquiler.DataSource = DEjemplar.GetList();
+            dgvAlquiler.DataSource = listadoEjemplares;
             dgvAlquiler.DataBind();
         }
-
-
 
         protected void Gv_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
@@ -61,6 +63,18 @@ namespace Biblioteca_WebForms.Pagina
             BindGrid();
 
         }
+        protected void btBuscar_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(ddSocio.SelectedValue.ToString());
+            if (ddSocio.SelectedIndex == 0)
+                listadoEjemplares = DEjempAlquileres.GetListadoAlquilados();
+            else
+                listadoEjemplares = DEjempAlquileres.FilterByIdSocio(id);
+                
+            
+            BindGrid();
+        }
+
 
         protected void lnkDevolver_Command(object sender, CommandEventArgs e)
         {
@@ -94,5 +108,6 @@ namespace Biblioteca_WebForms.Pagina
         {
 
         }
+
     }
 }

@@ -10,6 +10,7 @@ namespace Biblioteca_WebForms.DAL
     public class DALAlquilerEjemplar
     {
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
+
         public string Mensaje { get; set; }
 
         public bool Insert(AlquilerEjemplar alEjemplar)
@@ -156,26 +157,18 @@ namespace Biblioteca_WebForms.DAL
             return alEjemplar;
         }
 
-        private void ObtenerEjemplaresAlquilados()
+        public List<v_ListadoAlquilere> GetListadoAlquilados()
         {
-            using (var db = dataDB) // Usar tu contexto LINQ to SQL
-            {
-                var ejemplaresAlquilados = from ejemplar in db.Ejemplars
-                                           join obra in db.Obras on ejemplar.FKObra equals obra.IdObra
-                                           join AlquilerEjemplar in db.AlquilerEjemplars on ejemplar.IdEjemplar equals alquiler.IdEjemplar
-                                           join socio in db.Socio on alquiler.IdSocio equals socio.IdSocio
-                                           where alquiler.FechaDevolucion == null // Solo ejemplares no devueltos
-                                           select new
-                                           {
-                                               IdEjemplar = ejemplar.IdEjemplar,
-                                               Titulo = obra.Titulo,
-                                               CodigoBarras = ejemplar.CodigoBarras,
-                                               NomSocio = socio.Apellido + ", " + socio.Nombre,
-                                               FechaDevProbable = alquiler.FechaDevProbable
-                                           };
-
-                return ejemplaresAlquilados.ToList();
-            }
+            return dataDB.v_ListadoAlquileres.ToList();
         }
+
+        public List<v_ListadoAlquilere> FilterByIdSocio(int IdSocio)
+        {
+            return dataDB.v_ListadoAlquileres.Where(bi => bi.IdSocio == IdSocio)
+                                   .OrderBy(bi => bi.FechaAlquiler)
+                                  .ToList();
+        }
+
+
     }
 }
