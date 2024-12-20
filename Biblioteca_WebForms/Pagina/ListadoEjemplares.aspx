@@ -23,7 +23,8 @@
 
             <!-- GridView con enlaces para Editar y Borrar -->
             <asp:GridView ID="dgvEjemplar" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand"
-                AllowPaging="True" PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="GridView1_RowDataBound">
+                AllowPaging="True" PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" 
+                CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="GridView1_RowDataBound">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:BoundField DataField="IdEjemplar" HeaderText="Id" />

@@ -114,4 +114,16 @@
       <Association Name="Socio_Alquiler" Member="Alquiler" ThisKey="IdSocio" OtherKey="FKSocio" Type="Alquiler" />
     </Type>
   </Table>
+  <Table Name="dbo.v_ListadoAlquileres" Member="v_ListadoAlquileres">
+    <Type Name="v_ListadoAlquilere">
+      <Column Name="IdEjemplar" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Titulo" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="CodigoBarras" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaAlquiler" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FechaDevProbable" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="IdSocio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

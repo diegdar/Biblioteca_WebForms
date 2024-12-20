@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 
 namespace Biblioteca_WebForms.DAL
@@ -10,6 +11,7 @@ namespace Biblioteca_WebForms.DAL
     public class DALAlquilerEjemplar
     {
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
+
         public string Mensaje { get; set; }
 
         public bool Insert(AlquilerEjemplar alEjemplar)
@@ -153,6 +155,7 @@ namespace Biblioteca_WebForms.DAL
             return alEjemplar;
         }
 
+
         public void InsertAll(List<AlquilerEjemplar> alquileres)
         {
             dataDB.AlquilerEjemplars.InsertAllOnSubmit(alquileres);
@@ -168,5 +171,18 @@ namespace Biblioteca_WebForms.DAL
                 dataDB.SubmitChanges();
             }
         }
+
+        public List<v_ListadoAlquilere> GetListadoAlquilados()
+        {
+            return dataDB.v_ListadoAlquileres.ToList();
+        }
+
+        public List<v_ListadoAlquilere> FilterByIdSocio(int IdSocio)
+        {
+            return dataDB.v_ListadoAlquileres.Where(bi => bi.IdSocio == IdSocio)
+                                   .OrderBy(bi => bi.FechaAlquiler)
+                                  .ToList();
+        }
+
     }
 }
