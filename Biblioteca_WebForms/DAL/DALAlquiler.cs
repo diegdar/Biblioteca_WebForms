@@ -11,7 +11,7 @@ namespace Biblioteca_WebForms.DAL
         private DataLinQ_BibliotecaDataContext dataDB = new DataLinQ_BibliotecaDataContext();
         public string Mensaje { get; set; }
 
-        public bool Insert(Alquiler alquiler)
+        public int Insert(Alquiler alquiler)
         {
             // Devuelve true si se ha insertado el objeto y false si no se
             // ha conseguido
@@ -20,14 +20,13 @@ namespace Biblioteca_WebForms.DAL
             {
                 dataDB.Alquilers.InsertOnSubmit(alquiler);
                 dataDB.SubmitChanges();
+                return alquiler.IdAlquiler;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
-                return false;
+                return 0;
             }
-
-            return true;
         }
 
         public bool Delete(int idAlquiler)
@@ -88,11 +87,6 @@ namespace Biblioteca_WebForms.DAL
             {
                 var lstAlquiler = from alquiler in dataDB.Alquilers
                                   select alquiler;
-
-                foreach (var alquiler in lstAlquiler)
-                {
-                    listaAlquiler.Add(alquiler);
-                }
             }
             catch (Exception ex)
             {
@@ -116,10 +110,6 @@ namespace Biblioteca_WebForms.DAL
                                   where alquiler.FKSocio == idSocio
                                   select alquiler;
 
-                foreach (var alquiler in lstAlquiler)
-                {
-                    listaAlquiler.Add(alquiler);
-                }
             }
             catch (Exception ex)
             {
@@ -136,7 +126,6 @@ namespace Biblioteca_WebForms.DAL
             // buscado si no se ha producido
 
             Alquiler alquiler = new Alquiler();
-
             try
             {
                 var alquilerById = (from al in dataDB.Alquilers

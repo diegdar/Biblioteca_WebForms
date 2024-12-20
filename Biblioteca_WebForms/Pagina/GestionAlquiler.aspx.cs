@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Biblioteca_WebForms.Pagina
 {
-    public partial class Alquiler : System.Web.UI.Page
+    public partial class GestionAlquiler : System.Web.UI.Page
     {
 
         private CommonMethods comMethods;
@@ -23,7 +23,7 @@ namespace Biblioteca_WebForms.Pagina
             if (!IsPostBack)
             {
                 Ms masterPage = (Ms)this.Master;
-                masterPage.Titulo = "Realizar una Alquiler de Libros";
+                masterPage.Titulo = "Realizar Alquiler de Libros";
                 Session["listaEjemplares"] = new List<Ejemplar>();
                 CargarSocio();
             }
@@ -57,23 +57,36 @@ namespace Biblioteca_WebForms.Pagina
         {
            string codigoBarra = txtBuscarEjemplar.Text;
            Ejemplar ejemplar=dEjemplar.GetByCodigoBarra(codigoBarra);
-
-            if(ejemplar!=null)
+            if (ejemplar.EstaActivo == false)
             {
-                if(!BuscarEjemplarRepetido(codigoBarra))
+                if (!ejemplar.EstaAlquilado == true)
                 {
-                    listaEjemplares.Add(ejemplar);
-                    Session["listaEjemplares"] = listaEjemplares;
-                    BindGrid();
+                    if (ejemplar != null)
+                    {
+                        if (!BuscarEjemplarRepetido(codigoBarra))
+                        {
+                            listaEjemplares.Add(ejemplar);
+                            Session["listaEjemplares"] = listaEjemplares;
+                            BindGrid();
+                        }
+                        else
+                        {
+                            lbMensaje.Text = "Este libro ya fue ingresado";
+                        }
+                    }
+                    else
+                    {
+                        lbMensaje.Text = "No existe el libro, vuela a intentar con otro codigo";
+                    }
                 }
                 else
                 {
-                    lbMensaje.Text = "Este libro ya fue ingresado";
+                    lbMensaje.Text = "Este libro ya fue alquilado";
                 }
             }
             else
             {
-                lbMensaje.Text = "No existe el libro, vuela a intentar con otro codigo";
+                lbMensaje.Text = "Este libro no se puede alquilar esta fuera de servicio";
             }
         }
 
@@ -118,12 +131,41 @@ namespace Biblioteca_WebForms.Pagina
             { 
                 return false; 
             }
-
         }
 
         protected void btGrabar_Click(object sender, EventArgs e)
         {
+            if (dgvAlquiler.Rows.Count > 0)
+            {
+                Alquiler alquiler = new Alquiler();
+                alquiler.FechaAlquiler = DateTime.Now;
+                alquiler.FKSocio = int.Parse(ddSocio.SelectedValue.ToString());
+                alquiler.FKBibliotecario = 1;
 
+                DALAlquiler dAlquiler = new DALAlquiler();
+                int idAlquiler = dAlquiler.Insert(alquiler);
+
+                List<AlquilerEjemplar> alqEjemplar = new List<AlquilerEjemplar>();
+
+                foreach (var item in listaEjemplares)
+                {
+                    AlquilerEjemplar alej = new AlquilerEjemplar();
+                    alej.FKAlquiler = item.IdEjemplar;
+                    alej.FKEjemplar = item.IdEjemplar;
+                    alej.FKAlquiler = idAlquiler;
+                    alqEjemplar.Add(alej);
+                }
+
+                DALAlquilerEjemplar dae = new DALAlquilerEjemplar();
+                dae.InsertAll(alqEjemplar);
+                dae.CambioEstadoAlquilado(alqEjemplar);
+
+                Response.Redirect("index.aspx");
+            }
+            else
+            {
+                lbMensaje.Text = "La lista de libros para alquilar está vacía";
+            }
         }
     }
 }

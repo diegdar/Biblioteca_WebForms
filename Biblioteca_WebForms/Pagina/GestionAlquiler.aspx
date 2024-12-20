@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="Alquiler.aspx.cs" Inherits="Biblioteca_WebForms.Pagina.Alquiler" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="GestionAlquiler.aspx.cs" Inherits="Biblioteca_WebForms.Pagina.GestionAlquiler" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -50,8 +50,11 @@
             <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
         <br />
-         <div class="botones-form mb-4">
-             <asp:Button id="btGrabar" runat="server" type="submit" class="btn-grabar" Text="Grabar" onclick="btGrabar_Click" Visible="true"/>
+        <br />
+         <div class="botones-form mb-4 mt-3">
+             <asp:Button ID="Button1" runat="server" Text="Grabar" class="btn-grabar" CommandArgument='<%# Eval("IdEjemplar") + ",U" %>' 
+                OnClientClick="return confirm('¿Está seguro de que desea grabar?');" 
+                OnClick="btGrabar_Click" />
              <asp:Button type="submit" ID="btRegresar" runat="server" class="btn-retornar" Text="Regresar" OnClick="btRegresar_Click" />
         </div>
     </div>
