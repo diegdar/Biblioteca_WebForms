@@ -64,6 +64,9 @@ namespace Biblioteca_WebForms.DAL
                                   where al.IdAlquilerEjemplar == newAlEjemplar.IdAlquilerEjemplar
                                   select al).FirstOrDefault();
 
+                if (alEjemplar == null)
+                    return false;
+
                 alEjemplar.FKAlquiler = newAlEjemplar.FKAlquiler;
                 alEjemplar.FKEjemplar = newAlEjemplar.FKEjemplar;
                 alEjemplar.FechaDevReal = newAlEjemplar.FechaDevReal;
@@ -132,6 +135,9 @@ namespace Biblioteca_WebForms.DAL
                 var alEjemplarById = (from al in dataDB.AlquilerEjemplars
                                       where al.IdAlquilerEjemplar == idAlEjemplar
                                       select al).FirstOrDefault();
+
+                if (alEjemplarById == null)
+                    return null;
 
                 alEjemplar.IdAlquilerEjemplar = alEjemplarById.IdAlquilerEjemplar;
                 alEjemplar.FKAlquiler = alEjemplarById.FKAlquiler;

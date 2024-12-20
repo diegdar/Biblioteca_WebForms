@@ -62,6 +62,9 @@ namespace Biblioteca_WebForms.DAL
                                 where al.IdAlquiler == newAlquiler.IdAlquiler
                                 select al).FirstOrDefault();
 
+                if (alquiler == null)
+                    return false;
+
                 alquiler.FechaAlquiler = newAlquiler.FechaAlquiler;
                 alquiler.FechaDevProbable = newAlquiler.FechaDevProbable;
                 alquiler.FKBibliotecario = newAlquiler.FKBibliotecario;
@@ -131,6 +134,9 @@ namespace Biblioteca_WebForms.DAL
                 var alquilerById = (from al in dataDB.Alquilers
                                     where al.IdAlquiler == idAlquiler
                                     select al).FirstOrDefault();
+
+                if (alquilerById == null)
+                    return null;
 
                 alquiler.IdAlquiler = alquilerById.IdAlquiler;
                 alquiler.FechaAlquiler = alquilerById.FechaAlquiler;

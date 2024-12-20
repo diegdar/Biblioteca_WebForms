@@ -62,6 +62,9 @@ namespace Biblioteca_WebForms.DAL
                                  where ub.IdUbicacion == newUbicacion.IdUbicacion
                                  select ub).FirstOrDefault();
 
+                if (ubicacion == null)
+                    return false;
+
                 ubicacion.Estanteria = newUbicacion.Estanteria;
                 ubicacion.Fila = newUbicacion.Fila;
                 ubicacion.Columna = newUbicacion.Columna;
@@ -112,6 +115,9 @@ namespace Biblioteca_WebForms.DAL
                 var ubicacionById = (from ub in dataDB.Ubicacions
                                      where ub.IdUbicacion == idUbicacion
                                      select ub).FirstOrDefault();
+
+                if (ubicacionById == null)
+                    return null;
 
                 ubicacion.IdUbicacion = ubicacionById.IdUbicacion;
                 ubicacion.Estanteria = ubicacionById.Estanteria;

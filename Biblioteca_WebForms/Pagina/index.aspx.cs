@@ -29,8 +29,26 @@ namespace Biblioteca.Pagina
             //ejemp.AnioPublicacion = 2000;
             //DALEjemplar.Update(ejemp);
 
+            if (Session["bibliotecarioAct"] != null && !IsPostBack)
+            {
+                Bibliotecario bi = (Bibliotecario)Session["bibliotecarioAct"];
+                LblLogin.Text = bi.Email;
+                btnLogout.Text = "Logout";
+            }
         }
 
-
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (Session["bibliotecarioAct"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Session["bibliotecarioAct"] = null;
+                LblLogin.Text = "Si eres bibliotecario haz login";
+                btnLogout.Text = "Login";
+            }
+        }
     }
 }

@@ -25,13 +25,22 @@ namespace Biblioteca_WebForms.Pagina
             {
                 // No se muestra ningún mensaje
                 lblMensaje.Text = "";
-                txtUsuario.Text = string.Empty;
+            //    txtUsuario.Text = string.Empty;
+            //    Session.Clear();
             }
         }
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
             DALBibliotecario dalBibliotecario = new DALBibliotecario();
+
+            if (btnIniciarSesion.Text == "Seguir Anónimo")
+            {
+                Session["bibliotecarioAct"] = null;
+                txtUsuario.Text = string.Empty;
+                Response.Redirect("index.aspx");
+
+            }
 
             if (txtUsuario.Text.Length > 0 && txtClave.Text.Length > 0)
             {
@@ -44,8 +53,7 @@ namespace Biblioteca_WebForms.Pagina
                     {
                         // Contraseña correcta
                         lblMensaje.Text = "Contraseña correcta";
-                        Session["nombreBibliotecario"] = bibliotecario.Nombre + " " +
-                            bibliotecario.Apellido;
+                        Session["bibliotecarioAct"] = bibliotecario;
                         txtUsuario.Text = string.Empty;
                         Response.Redirect("index.aspx");
                     }
@@ -67,7 +75,11 @@ namespace Biblioteca_WebForms.Pagina
                 lblMensaje.Text = "No se puede entrar anónimamente";
             }
 
+            btnIniciarSesion.Text = "Seguir Anónimo";
+            txtUsuario.Enabled = false;
+            txtClave.Enabled = false;
             txtUsuario.Text = string.Empty;
+            txtClave.Text = string.Empty;
         }
     }
 }

@@ -13,12 +13,10 @@ namespace Biblioteca_WebForms
         private DataLinQ_BibliotecaDataContext dataDB;
         public string Mensaje { get; set; }
 
-
         public CommonMethods()
         {
             dataDB = new DataLinQ_BibliotecaDataContext();
         }
-
         public bool IsEjemplarRented(int ejemplarId)
         {
             try
@@ -26,15 +24,106 @@ namespace Biblioteca_WebForms
                 var ejempFound = dataDB.Ejemplars.Where
                             (ej => ej.IdEjemplar == ejemplarId).FirstOrDefault();
 
-                return ejempFound.EstaAlquilado;
+                if (ejempFound != null)
+                    return ejempFound.EstaAlquilado;
+
+                return false;
             }
             catch (Exception ex)
             {
                 Mensaje = ex.Message;
                 return false;   
             }
-
         }
+        public bool IsAutorInBook(int autorId)
+        {
+            try
+            {
+                var autorFound = dataDB.Obras.Where
+                            (ob => ob.FKAutor == autorId).FirstOrDefault();
 
+                if (autorFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsEditorialInEjemplar(int editorialId)
+        {
+            try
+            {
+                var editorialFound = dataDB.Ejemplars.Where
+                            (ed => ed.FKEditorial == editorialId).FirstOrDefault();
+
+                if (editorialFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsGeneroInBook(int generoId)
+        {
+            try
+            {
+                var generoFound = dataDB.Obras.Where
+                            (gn => gn.FKGenero == generoId).FirstOrDefault();
+
+                if (generoFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsIdiomaInEjemplar(int idiomaId)
+        {
+            try
+            {
+                var idiomaFound = dataDB.Ejemplars.Where
+                            (ej => ej.FkIdioma == idiomaId).FirstOrDefault();
+
+                if (idiomaFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsUbicacionInEjemplar(int ubicacionId)
+        {
+            try
+            {
+                var ubicacionFound = dataDB.Ejemplars.Where
+                            (ej => ej.FkUbicacion == ubicacionId).FirstOrDefault();             
+
+                if (ubicacionFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
     }
 }

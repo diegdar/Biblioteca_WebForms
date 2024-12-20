@@ -62,6 +62,9 @@ namespace Biblioteca_WebForms.DAL
                              where so.IdSocio == newSocio.IdSocio
                              select so).FirstOrDefault();
 
+                if (socio == null)
+                    return false;
+
                 socio.Apellido = newSocio.Apellido;
                 socio.Nombre = newSocio.Nombre;
                 socio.Email = newSocio.Email;
@@ -109,6 +112,9 @@ namespace Biblioteca_WebForms.DAL
                 var socioById = (from so in dataDB.Socio
                                  where so.IdSocio == idSocio
                                  select so).FirstOrDefault();
+
+                if (socioById == null)
+                    return null;
 
                 socio.IdSocio = socioById.IdSocio;
                 socio.Apellido = socioById.Apellido;

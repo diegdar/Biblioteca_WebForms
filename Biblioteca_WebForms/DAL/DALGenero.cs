@@ -58,6 +58,9 @@ namespace Biblioteca_WebForms.DAL
             {
                 var generoExistente = dataDB.Generos.Where(ge => ge.IdGenero == genero.IdGenero).FirstOrDefault();
 
+                if (generoExistente == null)
+                    return false;
+
                 generoExistente.Descripcion = genero.Descripcion;
                 dataDB.SubmitChanges();
                 return true;
