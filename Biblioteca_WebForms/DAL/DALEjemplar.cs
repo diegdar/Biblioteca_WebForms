@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -108,6 +109,28 @@ namespace Biblioteca_WebForms.DAL
         }
 
 
+        public Ejemplar GetByCodigoBarra(string codigo)
+        {
+            try
+            {
+                return dataDB.Ejemplars.Where
+                    (ej => ej.CodigoBarras == codigo).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return null;
+            }
+        }
 
+        public List<Ejemplar> GetFilter(string texto)
+        {
+            return dataDB.Ejemplars.Where(bi => bi.Obra.Titulo.StartsWith(texto) || 
+                                          bi.Obra.Autor.Apellido1.StartsWith(texto) ||
+                                          bi.Editorial.Descripcion.StartsWith(texto) ||
+                                          bi.ISBN.StartsWith(texto))
+                                   .OrderBy(bi => bi.Obra.Titulo)
+                                  .ToList();
+        }
     }
 }

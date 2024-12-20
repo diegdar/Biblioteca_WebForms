@@ -144,7 +144,7 @@ namespace Biblioteca.Pagina
 
         protected void btBuscar_Click(object sender, EventArgs e)
         {
-            dgvEjemplar.DataSource = dALEjemplar.GetList();
+            dgvEjemplar.DataSource = dALEjemplar.GetFilter(txtBuscar.Text);
             dgvEjemplar.DataBind();
         }
     }
