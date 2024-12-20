@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -86,6 +87,7 @@ namespace Biblioteca_WebForms.DAL
                 ejempFound.FKObra = ejempData.FKObra;
                 ejempFound.FkUbicacion = ejempData.FkUbicacion;
                 ejempFound.FkIdioma = ejempData.FkIdioma;
+                ejempFound.EstaActivo = ejempData.EstaActivo;
 
                 dataDB.SubmitChanges();
 
@@ -98,9 +100,43 @@ namespace Biblioteca_WebForms.DAL
             }
         }
 
+        public Ejemplar GetById(int idEjemplar)
+        {
+            try
+            {
+                return dataDB.Ejemplars.Where
+                    (ej => ej.IdEjemplar == idEjemplar).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return null;
+            }
+        }
 
 
+        public Ejemplar GetByCodigoBarra(string codigo)
+        {
+            try
+            {
+                return dataDB.Ejemplars.Where
+                    (ej => ej.CodigoBarras == codigo).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return null;
+            }
+        }
 
-
+        public List<Ejemplar> GetFilter(string texto)
+        {
+            return dataDB.Ejemplars.Where(bi => bi.Obra.Titulo.StartsWith(texto) || 
+                                          bi.Obra.Autor.Apellido1.StartsWith(texto) ||
+                                          bi.Editorial.Descripcion.StartsWith(texto) ||
+                                          bi.ISBN.StartsWith(texto))
+                                   .OrderBy(bi => bi.Obra.Titulo)
+                                  .ToList();
+        }
     }
 }

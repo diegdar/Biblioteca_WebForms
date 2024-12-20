@@ -168,5 +168,22 @@ namespace Biblioteca_WebForms.DAL
 
             return bibliotecario;
         }
+
+        public List<Bibliotecario> GetFilter(string texto)
+        {
+            return dataDB.Bibliotecarios.Where(bi=>bi.Apellido.StartsWith(texto))
+                                        .OrderBy(bi=>bi.Apellido)
+                                        .ToList();
+        }
+
+        public bool VerifyExist(int idBiblio)
+        {
+            var resul = dataDB.Alquilers.Where(ob => ob.FKBibliotecario == idBiblio).ToList();
+            if (resul.Count() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

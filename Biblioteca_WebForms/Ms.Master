@@ -17,7 +17,7 @@
      <form id="form1" runat="server">
          <div class="header-bar">
            <h2>
-               <asp:Label ID="lbTitulo" runat="server" ForeColor="#996600"></asp:Label>
+               <asp:Label ID="lbTitulo" runat="server" ForeColor="#996600" Font-Size="28px"></asp:Label>
            </h2>
          </div>
  

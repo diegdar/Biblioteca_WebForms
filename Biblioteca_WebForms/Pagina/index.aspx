@@ -17,15 +17,10 @@
                 <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">Login</asp:LinkButton>
                 </form></li>
             <li><a href="#buscar-libro-contenido" onclick="mostrarBuscarLibro()">Buscar Libro</a></li>
-            <li><a href="#prestar-libro">Prestar Libro</a></li>
+            <li><a href="GestionAlquiler.aspx">Prestar</a></li>
             <li><a href="#devolver-libro">Devolver Libro</a></li>
-            <li><a href="#gestion-libro">Gestionar Libros</a>
-                <ul class="submenu">
-                    <li><a href="ListadoTitulos.aspx">Ver Libros</a></li>
-                    <li><a href="#estadistica-libros">Estadisticas</a></li>
-                    <li><a href="#ubicar-libros">Ubicar Libros</a></li>
-                </ul>
-            </li>
+            <li><a href="ListadoEjemplares.aspx">Gestionar Ejemplar</a></li>
+            <li><a href="ListadoObras.aspx">Gestionar Obra</a></li>
             <li><a href="#administracion">Administración</a>
                 <ul class="submenu">
                     <li><a href="ListadoAutor.aspx">Autores</a></li>
@@ -34,9 +29,9 @@
 					<li><a href="ListadoIdioma.aspx">Idiomas</a></li>
                     <li><a href="obra-literaria">Obra Literaria</a></li>
                     <li><a href="#ejemplares">Ejemplares</a></li>
-                    <li><a href="#bibliotecario">Bibliotecarios</a></li>
-					<li><a href="#Socio">Socios</a></li>
-					<li><a href="ListadoUbicacion.aspx">Ubicaciones</a></li>
+                    <li><a href="#editorial">Editorial</a></li>
+                    <li><a href="#ubicaciones">Ubicaciones</a></li>
+                    <li><a href="#bibliotecario">Bibliotecario</a></li>
                 </ul>
             </li>
         </ul>

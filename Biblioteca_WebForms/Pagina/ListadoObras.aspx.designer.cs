@@ -7,21 +7,30 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Biblioteca.Pagina
+namespace Biblioteca_WebForms.Pagina
 {
 
 
-    public partial class ListadoTitulos
+    public partial class ListaObras
     {
 
         /// <summary>
-        /// Control txtmensaje.
+        /// Control txtBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtmensaje;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+
+        /// <summary>
+        /// Control btBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btBuscar;
 
         /// <summary>
         /// Control BtnCrear.
@@ -33,13 +42,22 @@ namespace Biblioteca.Pagina
         protected global::System.Web.UI.WebControls.Button BtnCrear;
 
         /// <summary>
-        /// Control GridView1.
+        /// Control lbMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label lbMensaje;
+
+        /// <summary>
+        /// Control dgvObra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvObra;
 
         /// <summary>
         /// Control regresar.

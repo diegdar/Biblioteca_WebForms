@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteca.Pagina;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -91,10 +92,6 @@ namespace Biblioteca_WebForms.DAL
                 var lstAlEjemplar = from alEjemplar in dataDB.AlquilerEjemplars
                                     select alEjemplar;
 
-                foreach (var alEjemplar in lstAlEjemplar)
-                {
-                    listaAlEjemplar.Add(alEjemplar);
-                }
             }
             catch (Exception ex)
             {
@@ -117,11 +114,6 @@ namespace Biblioteca_WebForms.DAL
                 var lstAlEjemplar = from alEjemplar in dataDB.AlquilerEjemplars
                                     where alEjemplar.FKAlquiler == idAlquiler
                                     select alEjemplar;
-
-                foreach (var alEjemplar in lstAlEjemplar)
-                {
-                    listaAlEjemplar.Add(alEjemplar);
-                }
             }
             catch (Exception ex)
             {
@@ -159,6 +151,22 @@ namespace Biblioteca_WebForms.DAL
             }
 
             return alEjemplar;
+        }
+
+        public void InsertAll(List<AlquilerEjemplar> alquileres)
+        {
+            dataDB.AlquilerEjemplars.InsertAllOnSubmit(alquileres);
+            dataDB.SubmitChanges();
+        }
+
+        public void CambioEstadoAlquilado(List<AlquilerEjemplar> ejemplares)
+        {
+            foreach (var item in ejemplares)
+            {
+                var ejemplarEstado = dataDB.Ejemplars.Where(ej => ej.IdEjemplar == item.FKEjemplar).FirstOrDefault();
+                ejemplarEstado.EstaAlquilado = true;
+                dataDB.SubmitChanges();
+            }
         }
     }
 }
