@@ -7,65 +7,56 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Biblioteca.Pagina
+namespace Biblioteca_WebForms.Pagina
 {
 
 
-    public partial class ListadoEjemplares
+    public partial class EjemplaresAlquilados
     {
 
         /// <summary>
-        /// Control txtBuscar.
+        /// Control lbMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        protected global::System.Web.UI.WebControls.Label lbMensaje;
 
         /// <summary>
-        /// Control btBuscar.
+        /// Control ddSocio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btBuscar;
+        protected global::System.Web.UI.WebControls.DropDownList ddSocio;
 
         /// <summary>
-        /// Control txtmensaje.
+        /// Control dgvAlquiler.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtmensaje;
+        protected global::System.Web.UI.WebControls.GridView dgvAlquiler;
 
         /// <summary>
-        /// Control BtnCrear.
+        /// Control btGrabar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCrear;
+        protected global::System.Web.UI.WebControls.Button btGrabar;
 
         /// <summary>
-        /// Control dgvEjemplar.
+        /// Control btRegresar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvEjemplar;
-
-        /// <summary>
-        /// Control regresar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button regresar;
+        protected global::System.Web.UI.WebControls.Button btRegresar;
     }
 }

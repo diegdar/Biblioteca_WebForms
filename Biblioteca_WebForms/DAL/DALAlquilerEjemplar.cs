@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 
 namespace Biblioteca_WebForms.DAL
@@ -153,6 +154,28 @@ namespace Biblioteca_WebForms.DAL
             }
 
             return alEjemplar;
+        }
+
+        private void ObtenerEjemplaresAlquilados()
+        {
+            using (var db = dataDB) // Usar tu contexto LINQ to SQL
+            {
+                var ejemplaresAlquilados = from ejemplar in db.Ejemplars
+                                           join obra in db.Obras on ejemplar.FKObra equals obra.IdObra
+                                           join AlquilerEjemplar in db.AlquilerEjemplars on ejemplar.IdEjemplar equals alquiler.IdEjemplar
+                                           join socio in db.Socio on alquiler.IdSocio equals socio.IdSocio
+                                           where alquiler.FechaDevolucion == null // Solo ejemplares no devueltos
+                                           select new
+                                           {
+                                               IdEjemplar = ejemplar.IdEjemplar,
+                                               Titulo = obra.Titulo,
+                                               CodigoBarras = ejemplar.CodigoBarras,
+                                               NomSocio = socio.Apellido + ", " + socio.Nombre,
+                                               FechaDevProbable = alquiler.FechaDevProbable
+                                           };
+
+                return ejemplaresAlquilados.ToList();
+            }
         }
     }
 }
