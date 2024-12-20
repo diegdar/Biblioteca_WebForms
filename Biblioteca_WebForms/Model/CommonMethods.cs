@@ -13,12 +13,10 @@ namespace Biblioteca_WebForms
         private DataLinQ_BibliotecaDataContext dataDB;
         public string Mensaje { get; set; }
 
-
         public CommonMethods()
         {
             dataDB = new DataLinQ_BibliotecaDataContext();
         }
-
         public bool IsEjemplarRented(int ejemplarId)
         {
             try
@@ -99,6 +97,24 @@ namespace Biblioteca_WebForms
                             (ej => ej.FkIdioma == idiomaId).FirstOrDefault();
 
                 if (idiomaFound != null)
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Mensaje = ex.Message;
+                return false;
+            }
+        }
+        public bool IsUbicacionInEjemplar(int ubicacionId)
+        {
+            try
+            {
+                var ubicacionFound = dataDB.Ejemplars.Where
+                            (ej => ej.FkUbicacion == ubicacionId).FirstOrDefault();             
+
+                if (ubicacionFound != null)
                     return true;
 
                 return false;

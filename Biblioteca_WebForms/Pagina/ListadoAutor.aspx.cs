@@ -10,7 +10,6 @@ namespace Biblioteca_WebForms.Pagina
 {
     public partial class ListadoAutor : System.Web.UI.Page
     {
-
         private CommonMethods comMethods;
         private DALAutor dALAutor;
 
@@ -71,7 +70,6 @@ namespace Biblioteca_WebForms.Pagina
             //    BindGrid();
             //}
         }
-
         protected void lnkEditar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Editar")
@@ -87,8 +85,6 @@ namespace Biblioteca_WebForms.Pagina
                 }
             }
         }
-
-
         protected void lnkBorrar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Borrar")
@@ -101,7 +97,6 @@ namespace Biblioteca_WebForms.Pagina
                 }
             }
         }
-
         private void DeleteAutor(int autorId)
         {
             if (!comMethods.IsAutorInBook(autorId))
@@ -118,7 +113,6 @@ namespace Biblioteca_WebForms.Pagina
                     $" pues esta vinculado a alguna obra!";
             }
         }
-
         protected void regresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Index.aspx");

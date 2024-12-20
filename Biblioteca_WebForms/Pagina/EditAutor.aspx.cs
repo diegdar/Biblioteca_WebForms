@@ -50,7 +50,6 @@ namespace Biblioteca
                 }
             }
         }
-
         private string ObtenerCadenaAMostrar(string cadenaIni)
         {
             if (string.IsNullOrEmpty(cadenaIni))
@@ -81,17 +80,15 @@ namespace Biblioteca
             txtApellido1.Text = ObtenerCadenaAMostrar(autorAct.Apellido1);
             txtApellido2.Text = ObtenerCadenaAMostrar(autorAct.Apellido2);
         }
-
         protected void retornar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListadoAutor.aspx");
         }
-
         protected void actualizar_Click(object sender, EventArgs e)
         {
-            DALAutor dAutor = new DALAutor();
-            
+            DALAutor dAutor = new DALAutor();            
             Autor autor = new Autor();
+
             autor.Nombre = ObtenerCadenaAGuardar(txtNombre.Text.ToString());
             autor.Apellido1 = ObtenerCadenaAGuardar(txtApellido1.Text.ToString());
             autor.Apellido2 = ObtenerCadenaAGuardar(txtApellido2.Text.ToString());
@@ -106,7 +103,6 @@ namespace Biblioteca
                 lbMensaje.Text = "No se pudo realizar la grabacion del registro";
             }
         }
-
         protected void grabar_Click(object sender, EventArgs e)
         {
             DALAutor dAutor = new DALAutor();
@@ -125,7 +121,6 @@ namespace Biblioteca
                 lbMensaje.Text = "No se pudo realizar la grabacion del registro";
             }
         }
-
         protected void borrar_Click(object sender, EventArgs e)
         {
             DALAutor dAutor = new DALAutor();

@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br/>
     <br/>
-    <section id="ABM-Idioma
+    <section id="ABM-idioma
         ">
         <div>
             <asp:label runat="server" for="mensaje" style="color:red" ID="lbMensaje">mensaje:</asp:label>
@@ -14,6 +14,7 @@
                  <br />
                  <asp:label  runat="server" for="tituloIdioma">Descripción</asp:label>
                  <asp:TextBox runat="server" id="txtDescripcion"  name="titulo" class="form-control" placeholder="Ingrese la descripción" Width="221px"></asp:TextBox>
+				 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtDescripcion" ErrorMessage="La descripción es obligatoria" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
              </div>
 
              <div class="campo-form col-md-5 mb-4">

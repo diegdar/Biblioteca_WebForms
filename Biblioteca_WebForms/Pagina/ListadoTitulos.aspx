@@ -21,18 +21,43 @@
                 AllowPaging="True" PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="IdAutor" HeaderText="Id" />
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                    <asp:BoundField DataField="Apellido1" HeaderText="Apellido1" />
-                    <asp:BoundField DataField="Apellido2" HeaderText="Apellido2" />
-                    <asp:TemplateField>
+                    <asp:BoundField DataField="IdEjemplar" HeaderText="Id" />
+                    <asp:BoundField DataField="CodigoBarras" HeaderText="Cod. Barras" />
+                    <asp:BoundField DataField="ISBN" HeaderText="ISBN" />
+                    <asp:BoundField DataField="AnioPublicacion" HeaderText="Año publicacion" />
+                    <%--<asp:BoundField DataField="EstaBuenEstado" HeaderText="Estado titulo" />--%>
+                    <asp:TemplateField HeaderText="Estado titulo">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdAutor") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
+                            <%# Eval("EstaBuenEstado") != null && (bool)Eval("EstaBuenEstado") ? "Bueno" : "Malo" %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="NumPaginas" HeaderText="Num. Paginas" />
+                    <asp:TemplateField HeaderText="Esta alquilado?">
+                        <ItemTemplate>
+                            <%# Eval("EstaAlquilado") != null && (bool)Eval("EstaAlquilado") ? "Si" : "No" %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="Editorial.Descripcion" HeaderText="Editorial" />
+                    <asp:BoundField DataField="Obra.Titulo" HeaderText="Titulo" />
+                    <asp:TemplateField HeaderText="Ubicacion">
+                        <ItemTemplate>
+                            <%# "E:" + Eval("Ubicacion.Estanteria") + " F:" + Eval("Ubicacion.Fila") + " C:" + Eval("Ubicacion.Columna") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="Idioma.Descripcion" HeaderText="Idioma" />
+                    <asp:TemplateField HeaderText="Esta Activo?">
+                        <ItemTemplate>
+                            <%# Eval("EstaActivo") != null && (bool)Eval("EstaActivo") ? "Si" : "No" %>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdAutor") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdAutor") + "?\");" %>' />
+                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdEjemplar") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdEjemplar") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdEjemplar") + "?\");" %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

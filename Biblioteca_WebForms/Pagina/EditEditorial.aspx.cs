@@ -55,7 +55,6 @@ namespace Biblioteca
                 }
             }
         }
-
         private void TraerUnaEditorial()
         {
             DALEditorial dEditorial = new DALEditorial();
@@ -73,6 +72,7 @@ namespace Biblioteca
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALEditorial dEditorial = new DALEditorial();
+
             editorialAct.Descripcion = txtDescripcion.Text.ToString();
 
             if (dEditorial.Update(editorialAct))
@@ -88,6 +88,7 @@ namespace Biblioteca
         {
             DALEditorial dEditorial = new DALEditorial();
             Editorial editorial = new Editorial();
+
             editorial.Descripcion = txtDescripcion.Text.ToString();
 
             if (dEditorial.Insert(editorial))

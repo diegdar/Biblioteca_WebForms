@@ -59,7 +59,7 @@ namespace Biblioteca
         private void TraerUnIdioma()
         {
             DALIdioma dIdioma = new DALIdioma();
-            Idioma genero = dIdioma.GetById(int.Parse(iId));
+            idiomaAct = dIdioma.GetById(int.Parse(iId));
         }
         private void MostrarUnIdioma()
         {
@@ -73,6 +73,7 @@ namespace Biblioteca
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALIdioma dIdioma = new DALIdioma();
+
             idiomaAct.Descripcion = txtDescripcion.Text.ToString();
 
             if (dIdioma.Update(idiomaAct))
@@ -89,6 +90,7 @@ namespace Biblioteca
         {
             DALIdioma dIdioma = new DALIdioma();
             Idioma idioma = new Idioma();
+
             idioma.Descripcion = txtDescripcion.Text.ToString();
 
             if (dIdioma.Insert(idioma))

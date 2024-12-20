@@ -8,49 +8,45 @@ using System.Web.UI.WebControls;
 
 namespace Biblioteca_WebForms.Pagina
 {
-    public partial class ListadoIdioma : System.Web.UI.Page
+    public partial class ListadoUbicacion : System.Web.UI.Page
     {
         private CommonMethods comMethods;
-        private DALIdioma dALIdioma;
+        private DALUbicacion dALUbicacion;
 
-        public ListadoIdioma()
+        public ListadoUbicacion()
         {
             comMethods = new CommonMethods();
-            dALIdioma = new DALIdioma();
+            dALUbicacion = new DALUbicacion();
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 Ms masterPage = (Ms)this.Master;
-                masterPage.Titulo = "Explorar todos los Idiomas";
+                masterPage.Titulo = "Explorar todas las Ubicaciones";
                 BindGrid();
             }
         }
         private void BindGrid()
         {
             //var listEjemps = GetEjempListForView();
-            GridView1.DataSource = dALIdioma.GetList();
+            GridView1.DataSource = dALUbicacion.GetList();
             GridView1.DataBind();
         }
-
         // Evento del botón "Crear"
         protected void BtnCrear_Click(object sender, EventArgs e)
         {
             string opcion = "C";
             string id = "-1";
-            Response.Redirect($"EditIdioma.aspx?id={id}&opcion={opcion}");
+            Response.Redirect($"EditUbicacion.aspx?id={id}&opcion={opcion}");
             BindGrid();
         }
-
         // Evento para paginación
         protected void GridView1_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
             BindGrid();
         }
-
         // Evento para manejar acciones de editar/borrar
         protected void GridView1_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
@@ -65,12 +61,11 @@ namespace Biblioteca_WebForms.Pagina
             //{
             //    // Lógica para borrar
             //    //items.RemoveAll(i => i.Id == id);
-            //    //DeleteIdioma(id);
+            //    //DeleteUbicacion(id);
 
             //    BindGrid();
             //}
         }
-
         protected void lnkEditar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Editar")
@@ -82,7 +77,7 @@ namespace Biblioteca_WebForms.Pagina
                 {
                     string id = args[0];
                     string opcion = args[1];
-                    Response.Redirect($"EditIdioma.aspx?id={id}&opcion={opcion}");
+                    Response.Redirect($"EditUbicacion.aspx?id={id}&opcion={opcion}");
                 }
             }
         }
@@ -94,27 +89,26 @@ namespace Biblioteca_WebForms.Pagina
                 if (args.Length == 2)
                 {
                     int id = int.Parse(args[0]);
-                    DeleteIdioma(id);
+                    DeleteUbicacion(id);
                 }
             }
         }
-
-        private void DeleteIdioma(int IdiomaId)
+        private void DeleteUbicacion(int ubicacionId)
         {
-            if (!comMethods.IsIdiomaInEjemplar(IdiomaId))
+            if (!comMethods.IsUbicacionInEjemplar(ubicacionId))
             {
-                dALIdioma.Delete(IdiomaId);
+                dALUbicacion.Delete(ubicacionId);
                 BindGrid();
-                txtmensaje.Text = $"El libro con id {IdiomaId}" +
-                    $" ha sido eliminado!";
+                txtmensaje.Text = $"La ubicación con id {ubicacionId}" +
+                    $" ha sido eliminada!";
+
             }
             else
             {
-                txtmensaje.Text = $"No se puede eliminar el libro {IdiomaId}" +
-                    $" pues esta actualmente alquilado!";
+                txtmensaje.Text = $"No se puede eliminar la ubicación {ubicacionId}" +
+                    $" pues está actualmente vinculada a un ejemplar!";
             }
         }
-
         protected void regresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Index.aspx");

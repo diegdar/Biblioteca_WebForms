@@ -71,11 +71,12 @@ namespace Biblioteca
         protected void actualizar_Click(object sender, EventArgs e)
         {
             DALGenero dGenero = new DALGenero();
+
             generoAct.Descripcion = txtDescripcion.Text.ToString();
 
             if (dGenero.Update(generoAct))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoGenero.aspx");
             }
             else
             {
@@ -86,11 +87,12 @@ namespace Biblioteca
         {
             DALGenero dGenero = new DALGenero();
             Genero genero = new Genero();
+
             genero.Descripcion = txtDescripcion.Text.ToString();
 
             if (dGenero.Insert(genero))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoGenero.aspx");
             }
             else
             {
@@ -103,7 +105,7 @@ namespace Biblioteca
 
             if (dGenero.Delete(generoAct.IdGenero))
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("ListadoGenero.aspx");
             }
             else
             {

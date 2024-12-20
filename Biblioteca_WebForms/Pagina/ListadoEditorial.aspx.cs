@@ -18,7 +18,6 @@ namespace Biblioteca_WebForms.Pagina
             comMethods = new CommonMethods();
             dALEditorial = new DALEditorial();
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -70,7 +69,6 @@ namespace Biblioteca_WebForms.Pagina
             //    BindGrid();
             //}
         }
-
         protected void lnkEditar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Editar")
@@ -86,8 +84,6 @@ namespace Biblioteca_WebForms.Pagina
                 }
             }
         }
-
-
         protected void lnkBorrar_Command(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "Borrar")
@@ -100,7 +96,6 @@ namespace Biblioteca_WebForms.Pagina
                 }
             }
         }
-
         private void DeleteEditorial(int editorialId)
         {
             if (!comMethods.IsEditorialInEjemplar(editorialId))
@@ -109,7 +104,6 @@ namespace Biblioteca_WebForms.Pagina
                 BindGrid();
                 txtmensaje.Text = $"La editorial con id {editorialId}" +
                     $" ha sido eliminado!";
-
             }
             else
             {
@@ -117,7 +111,6 @@ namespace Biblioteca_WebForms.Pagina
                     $" pues esta actualmente alquilado!";
             }
         }
-
         protected void regresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Index.aspx");

@@ -11,12 +11,12 @@ namespace Biblioteca_WebForms.Pagina
     public partial class ListadoGenero : System.Web.UI.Page
     {
         private CommonMethods comMethods;
-        private DALGenero dALEjemplar;
+        private DALGenero DALGenero;
 
         public ListadoGenero()
         {
             comMethods = new CommonMethods();
-            dALEjemplar = new DALGenero();
+            DALGenero = new DALGenero();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace Biblioteca_WebForms.Pagina
         private void BindGrid()
         {
             //var listEjemps = GetEjempListForView();
-            GridView1.DataSource = dALEjemplar.GetList();
+            GridView1.DataSource = DALGenero.GetList();
             GridView1.DataBind();
         }
 
@@ -102,11 +102,10 @@ namespace Biblioteca_WebForms.Pagina
         {
             if (!comMethods.IsGeneroInBook(generoId))
             {
-                dALEjemplar.Delete(generoId);
+                DALGenero.Delete(generoId);
                 BindGrid();
                 txtmensaje.Text = $"El género con id {generoId}" +
                     $" ha sido eliminado!";
-
             }
             else
             {
@@ -116,7 +115,6 @@ namespace Biblioteca_WebForms.Pagina
         }
         protected void regresar_Click(object sender, EventArgs e)
         {
-
             Response.Redirect("Index.aspx");
         }
     }

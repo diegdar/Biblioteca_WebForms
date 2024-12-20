@@ -129,12 +129,13 @@
     <Content Include="Pagina\EditGenero.aspx" />
     <Content Include="Pagina\EditEditorial.aspx" />
     <Content Include="Pagina\EditAutor.aspx" />
+    <Content Include="Pagina\EditUbicacion.aspx" />
     <Content Include="Pagina\index.aspx" />
     <Content Include="Pagina\ListadoAutor.aspx" />
     <Content Include="Pagina\ListadoEditorial.aspx" />
     <Content Include="Pagina\ListadoGenero.aspx" />
     <Content Include="Pagina\ListadoIdioma.aspx" />
-    <Content Include="Pagina\ListadoTitulos.aspx" />
+    <Content Include="Pagina\ListadoUbicacion.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -295,6 +296,13 @@
     <Compile Include="Pagina\EditAutor.aspx.designer.cs">
       <DependentUpon>EditAutor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pagina\EditUbicacion.aspx.cs">
+      <DependentUpon>EditUbicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditUbicacion.aspx.designer.cs">
+      <DependentUpon>EditUbicacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pagina\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -330,12 +338,12 @@
     <Compile Include="Pagina\ListadoIdioma.aspx.designer.cs">
       <DependentUpon>ListadoIdioma.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoUbicacion.aspx.cs">
+      <DependentUpon>ListadoUbicacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.designer.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoUbicacion.aspx.designer.cs">
+      <DependentUpon>ListadoUbicacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Biblioteca.Pagina
+namespace Biblioteca_WebForms.Pagina
 {
 
 
-    public partial class ListadoTitulos
+    public partial class ListadoUbicacion
     {
 
         /// <summary>

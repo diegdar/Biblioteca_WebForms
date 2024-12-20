@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="ListadoIdioma.aspx.cs" Inherits="Biblioteca_WebForms.Pagina.ListadoIdioma" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Ms.Master" AutoEventWireup="true" CodeBehind="ListadoUbicacion.aspx.cs" Inherits="Biblioteca_WebForms.Pagina.ListadoUbicacion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -20,16 +20,18 @@
                 AllowPaging="True" PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="IdIdioma" HeaderText="Id" />
-                    <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                    <asp:BoundField DataField="IdUbicacion" HeaderText="Id" />
+                    <asp:BoundField DataField="Estanteria" HeaderText="Estanteria" />
+                    <asp:BoundField DataField="Fila" HeaderText="Fila" />
+                    <asp:BoundField DataField="Columna" HeaderText="Columna" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdIdioma") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
+                            <asp:LinkButton ID="lnkEditar" runat="server" Text="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdUbicacion") + ",U" %>' OnCommand="lnkEditar_Command"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdIdioma") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdIdioma") + "?\");" %>' />
+                            <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdUbicacion") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdUbicacion") + "?\");" %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
