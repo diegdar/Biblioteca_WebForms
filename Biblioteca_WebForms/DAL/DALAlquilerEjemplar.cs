@@ -89,10 +89,6 @@ namespace Biblioteca_WebForms.DAL
                 var lstAlEjemplar = from alEjemplar in dataDB.AlquilerEjemplars
                                     select alEjemplar;
 
-                foreach (var alEjemplar in lstAlEjemplar)
-                {
-                    listaAlEjemplar.Add(alEjemplar);
-                }
             }
             catch (Exception ex)
             {
@@ -115,11 +111,6 @@ namespace Biblioteca_WebForms.DAL
                 var lstAlEjemplar = from alEjemplar in dataDB.AlquilerEjemplars
                                     where alEjemplar.FKAlquiler == idAlquiler
                                     select alEjemplar;
-
-                foreach (var alEjemplar in lstAlEjemplar)
-                {
-                    listaAlEjemplar.Add(alEjemplar);
-                }
             }
             catch (Exception ex)
             {

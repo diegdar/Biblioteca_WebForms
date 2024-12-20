@@ -35,8 +35,6 @@
                 <asp:TemplateField>
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdEjemplar") + ",U" %>' OnCommand="lnkBorrar_Command"></asp:LinkButton>
-<%--                        <asp:LinkButton ID="lnkBorrar" runat="server" Text="Borrar" CommandName="Borrar" CommandArgument='<%# Eval("IdSocio") + ",D" %>' OnCommand="lnkBorrar_Command" OnClientClick='<%# "return confirm(\"¿Estás seguro de que deseas borrar el registro # " + Eval("IdSocio") + "?\");" %>'></asp:LinkButton>--%>
-                        <%--OnClientClick="return confirm('¿Estás seguro de que deseas borrar este elemento?');"></asp:LinkButton>--%>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
