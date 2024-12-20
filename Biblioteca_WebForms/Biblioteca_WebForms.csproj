@@ -125,15 +125,25 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Imagen\ImagenBibliotecaII.png" />
-
-    <Content Include="Pagina\Alquiler.aspx" />
+    <Content Include="Pagina\EditAutor.aspx" />
+    <Content Include="Pagina\EditEditorial.aspx" />
+    <Content Include="Pagina\EditGenero.aspx" />
+    <Content Include="Pagina\EditIdioma.aspx" />
+    <Content Include="Pagina\EditUbicacion.aspx" />
     <Content Include="Pagina\EjemplaresAlquilados.aspx" />
+    <Content Include="Pagina\GestionAlquiler.aspx" />
+    <Content Include="Pagina\ListadoAutor.aspx" />
+    <Content Include="Pagina\ListadoBibliotecarios.aspx" />
+    <Content Include="Pagina\ListadoEditorial.aspx" />
+    <Content Include="Pagina\ListadoEjemplares.aspx" />
+    <Content Include="Pagina\ListadoGenero.aspx" />
+    <Content Include="Pagina\ListadoIdioma.aspx" />
+    <Content Include="Pagina\ListadoObras.aspx" />
     <Content Include="Pagina\ListadoSocios.aspx" />
     <Content Include="Pagina\BibliotecarioABM.aspx" />
     <Content Include="Pagina\EjemplarAbm.aspx" />
     <Content Include="Pagina\index.aspx" />
-    <Content Include="Pagina\EditTitulo.aspx" />
-    <Content Include="Pagina\ListadoTitulos.aspx" />
+    <Content Include="Pagina\ListadoUbicacion.aspx" />
     <Content Include="Pagina\Login.aspx" />
     <Content Include="Pagina\ObraABM.aspx" />
     <Content Include="Pagina\SocioABM.aspx" />
@@ -268,12 +278,40 @@
     <Compile Include="Ms.Master.designer.cs">
       <DependentUpon>Ms.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\Alquiler.aspx.cs">
-      <DependentUpon>Alquiler.aspx</DependentUpon>
+    <Compile Include="Pagina\EditAutor.aspx.cs">
+      <DependentUpon>EditAutor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\Alquiler.aspx.designer.cs">
-      <DependentUpon>Alquiler.aspx</DependentUpon>
+    <Compile Include="Pagina\EditAutor.aspx.designer.cs">
+      <DependentUpon>EditAutor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditEditorial.aspx.cs">
+      <DependentUpon>EditEditorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditEditorial.aspx.designer.cs">
+      <DependentUpon>EditEditorial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditGenero.aspx.cs">
+      <DependentUpon>EditGenero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditGenero.aspx.designer.cs">
+      <DependentUpon>EditGenero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditIdioma.aspx.cs">
+      <DependentUpon>EditIdioma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditIdioma.aspx.designer.cs">
+      <DependentUpon>EditIdioma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\EditUbicacion.aspx.cs">
+      <DependentUpon>EditUbicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\EditUbicacion.aspx.designer.cs">
+      <DependentUpon>EditUbicacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\EjemplaresAlquilados.aspx.cs">
       <DependentUpon>EjemplaresAlquilados.aspx</DependentUpon>
@@ -281,6 +319,62 @@
     </Compile>
     <Compile Include="Pagina\EjemplaresAlquilados.aspx.designer.cs">
       <DependentUpon>EjemplaresAlquilados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\GestionAlquiler.aspx.cs">
+      <DependentUpon>GestionAlquiler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\GestionAlquiler.aspx.designer.cs">
+      <DependentUpon>GestionAlquiler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoAutor.aspx.cs">
+      <DependentUpon>ListadoAutor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoAutor.aspx.designer.cs">
+      <DependentUpon>ListadoAutor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoBibliotecarios.aspx.cs">
+      <DependentUpon>ListadoBibliotecarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoBibliotecarios.aspx.designer.cs">
+      <DependentUpon>ListadoBibliotecarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoEditorial.aspx.cs">
+      <DependentUpon>ListadoEditorial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoEditorial.aspx.designer.cs">
+      <DependentUpon>ListadoEditorial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoEjemplares.aspx.cs">
+      <DependentUpon>ListadoEjemplares.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoEjemplares.aspx.designer.cs">
+      <DependentUpon>ListadoEjemplares.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoGenero.aspx.cs">
+      <DependentUpon>ListadoGenero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoGenero.aspx.designer.cs">
+      <DependentUpon>ListadoGenero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoIdioma.aspx.cs">
+      <DependentUpon>ListadoIdioma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoIdioma.aspx.designer.cs">
+      <DependentUpon>ListadoIdioma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pagina\ListadoObras.aspx.cs">
+      <DependentUpon>ListadoObras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pagina\ListadoObras.aspx.designer.cs">
+      <DependentUpon>ListadoObras.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\ListadoSocios.aspx.cs">
       <DependentUpon>ListadoSocios.aspx</DependentUpon>
@@ -310,19 +404,12 @@
     <Compile Include="Pagina\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoUbicacion.aspx.cs">
+      <DependentUpon>ListadoUbicacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pagina\EditTitulo.aspx.designer.cs">
-      <DependentUpon>EditTitulo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pagina\ListadoTitulos.aspx.designer.cs">
-      <DependentUpon>ListadoTitulos.aspx</DependentUpon>
+    <Compile Include="Pagina\ListadoUbicacion.aspx.designer.cs">
+      <DependentUpon>ListadoUbicacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagina\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -338,6 +425,7 @@
     <Compile Include="Pagina\ObraABM.aspx.designer.cs">
       <DependentUpon>ObraABM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pagina\ObraExplorar.aspx.designer.cs" />
     <Compile Include="Pagina\SocioABM.aspx.cs">
       <DependentUpon>SocioABM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
